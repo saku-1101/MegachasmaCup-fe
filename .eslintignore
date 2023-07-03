@@ -1,0 +1,12 @@
+node_modules/
+.next/
+build/
+dist/
+out/
+public/
+package-lock.json
+yarn.lock
+next.config.js
+tsconfig.json
+.storybook
+storybook-static/
