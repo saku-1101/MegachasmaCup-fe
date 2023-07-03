@@ -9,6 +9,11 @@
     "lint": "next lint",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "next lint --fix"
+    ]
+  },
   "dependencies": {
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
