@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "new":"hygen generator new",
+    "new": "hygen generator new",
     "lint:precommit": "eslint 'src/**/*.{ts,tsx}' --max-warnings 0",
     "fmt:precommit": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss}'",
     "storybook": "storybook dev -p 6006",
@@ -41,11 +41,14 @@
     "@storybook/nextjs": "^7.0.26",
     "@storybook/react": "^7.0.26",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "chromatic": "^6.19.9",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "hygen": "^6.2.11",
     "lint-staged": "^13.2.3",
     "storybook": "^7.0.26"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "megachasmacup-fe@0.1.0"
 }
