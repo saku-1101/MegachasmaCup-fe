@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:precommit": "eslint 'src/**/*.{ts,tsx}' --max-warnings 0",
+    "fmt:precommit": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss}'"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "next lint --fix"
-    ]
+    "src/**/*.{ts,tsx}": "npm run lint:precommit",
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit"
   },
   "dependencies": {
     "@types/node": "20.3.3",
