@@ -50,5 +50,9 @@
     "storybook": "^7.0.26"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "megachasmacup-fe@0.1.0"
+  "_id": "megachasmacup-fe@0.1.0",
+  "volta": {
+    "node": "20.4.0",
+    "npm": "9.8.0"
+  }
 }
