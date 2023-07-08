@@ -1,9 +1,14 @@
 ---
-to: src/components/<%= name %>/<%= name %>.stories.ts
+to: src/components/<%= atomic %>/<%= name %>/<%= name %>.stories.ts
 ---
 import { Meta, StoryObj } from "@storybook/react";
 
 import { <%= name %> } from './<%= name %>';
+
+<% if (have_props) { -%>
+export type <%= name %>Props = {};
+<% } -%>
+
 export default {
   title: "<%= name %>",
   component: <%= name %>,

@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Test } from './Test';
+
+export type TestProps = {};
+
 export default {
   title: "Test",
   component: Test,
