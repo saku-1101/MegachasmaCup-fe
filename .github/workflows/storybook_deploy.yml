@@ -17,7 +17,7 @@ jobs:
         uses: pnpm/action-setup@v2.2.2
         with:
           # 必要に応じて pnpm のバージョンを変更してください
-          version: 7.28.0
+          version: 8.6.6
       - run: pnpm i --frozen-lockfile
         # 👇 Adds Chromatic as a step in the workflow
       - id: react
@@ -27,4 +27,4 @@ jobs:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
-          buildScriptName: "build-storybook"
+          buildScriptName: 'build-storybook'
