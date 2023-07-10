@@ -47,6 +47,7 @@
     "chromatic": "^6.19.9",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-storybook": "^0.6.12",
+    "framer-motion": "^10.12.18",
     "husky": "^8.0.3",
     "hygen": "^6.2.11",
     "lint-staged": "^13.2.3",
