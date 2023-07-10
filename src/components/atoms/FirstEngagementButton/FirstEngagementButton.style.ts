@@ -9,4 +9,5 @@ export const Div = tw.div`
 `;
 export const StyledButton = tw.button`
 px-4 py-2 bg-secondary rounded justify-center items-center
+hover:bg-secondarySecond
 `;

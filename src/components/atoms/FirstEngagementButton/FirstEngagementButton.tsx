@@ -5,9 +5,10 @@ import PoppingData from '@/assets/lottie/popping.json';
 import { useRef, useState } from 'react';
 export type FirstEngagementButtonProps = {
   label: string;
+  handleAction: () => void;
 };
 
-export const FirstEngagementButton = ({ label }: FirstEngagementButtonProps) => {
+export const FirstEngagementButton = ({ label, handleAction }: FirstEngagementButtonProps) => {
   const playerRef = useRef<Player>(null);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
@@ -16,6 +17,7 @@ export const FirstEngagementButton = ({ label }: FirstEngagementButtonProps) => 
     }
     setIsActive(true);
     playerRef.current.play();
+    handleAction;
   };
 
   return (
@@ -35,7 +37,7 @@ export const FirstEngagementButton = ({ label }: FirstEngagementButtonProps) => 
             position: 'absolute',
             bottom: '0',
             right: '-50%',
-            width: '100%',
+            width: '200%',
           }}
         />
       </StyledButton>

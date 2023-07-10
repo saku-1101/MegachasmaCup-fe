@@ -38,22 +38,12 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle }: ModalProps) =
     return;
   };
   return (
-    <AnimatePresence
-      // Disable any initial animations on children that
-      // are present when the component is first rendered
-      initial={false}
-      // Only render one component at a time.
-      // The exiting component will finish its exit
-      // animation before entering component is rendered
-      mode='wait'
-      // Fires when all exiting nodes have completed animating out
-      onExitComplete={() => null}
-    >
+    <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
       {modalOpen && (
         <Backdrop onClick={handleClose}>
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className='modal orange-gradient'
+            className='modal'
             variants={dropIn}
             initial='hidden'
             animate='visible'

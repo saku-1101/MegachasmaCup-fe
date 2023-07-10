@@ -31,12 +31,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .modal {
   width: clamp(50%, 700px, 90%);
-  height: min(50%, 300px);
   margin: auto;
   padding: 1rem 2rem;
   border-width: 2px;
@@ -45,8 +44,5 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.orange-gradient {
   background: #fafcfe;
 }
