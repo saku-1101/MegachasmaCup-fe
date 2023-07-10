@@ -1,12 +1,11 @@
 import tw from 'tailwind-styled-components';
 
 export const Div = tw.div`
-    w-screen
-    h-screen
+    w-full
     flex
     items-center
     justify-center
-    bg-primary
+    p-[1rem]
 `;
 export const StyledButton = tw.button`
 px-4 py-2 bg-secondary rounded justify-center items-center
