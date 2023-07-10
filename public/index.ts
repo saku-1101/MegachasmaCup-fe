@@ -12,3 +12,10 @@ export function LogoSvg(colour: string = '#fff'){
 }
 
 
+import {SvgComponent as AddNoteSvgComponent} from './AddNoteIcon/note-icon'
+import AddNoteSvgData from './AddNoteIcon/note-icon.svg'
+export function AddNoteSvg(colour: string = '#131338'){
+    return AddNoteSvgComponent(AddNoteSvgData, colour)
+}
+
+

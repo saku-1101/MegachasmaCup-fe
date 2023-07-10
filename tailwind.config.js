@@ -21,6 +21,8 @@ module.exports = {
         secondarySecond: '#8587F3',
         dark: '#131338',
         light: '#FAFCFE',
+        success: '#46D5B3',
+        accent: '#D22875',
         textBasic: '#363939',
         subtleText: '#9797AA',
         headerBg: 'rgba(255, 255, 255, 0.10)',
