@@ -1,3 +1,4 @@
+'use client';
 import { Div, StyledButton } from './FirstEngagementButton.style';
 import { Player } from '@lottiefiles/react-lottie-player';
 import PoppingData from '@/assets/lottie/popping.json';

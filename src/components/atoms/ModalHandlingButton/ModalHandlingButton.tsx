@@ -1,8 +1,7 @@
+'use client';
 import { useState } from 'react';
 import { Button } from '../Button/Button';
-import { Div } from './ModalHandlingButton.style';
 import { Modal } from '../../molecules/Modal/Modal';
-import { motion } from 'framer-motion';
 
 export type ModalHandlingButtonProps = {
   label: string;
