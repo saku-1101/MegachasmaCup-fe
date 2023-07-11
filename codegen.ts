@@ -2,19 +2,20 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: process.env.GRAPHQL_ENDPOINT,
-  documents: 'src/graphql/**/*.graphql',
+  schema: process.env.NEXT_PUBLIC_HASURA_GRAPHQL_URL!,
+  config: {
+    skipTypename: true,
+    enumsAsTypes: true,
+    scalars: {
+      numeric: 'number',
+    },
+  },
+  documents: 'src/graphql/query/queries.graphql',
   generates: {
-    'src/generates/graphql.ts': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
-      config: {
-        withHooks: true,
-        withComponent: false,
-        scalars: {
-          timestamptz: 'string',
-          uuid: 'string',
-        },
-      },
+    'src/codegen/gql/': {
+      preset: 'client',
+      config: {},
+      plugins: [],
     },
   },
 };
