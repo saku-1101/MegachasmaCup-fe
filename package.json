@@ -20,6 +20,8 @@
     "src/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit"
   },
   "dependencies": {
+    "@apollo/client": "3.8.0-alpha.15",
+    "@apollo/experimental-nextjs-app-support": "^0.3.2",
     "@graphql-codegen/cli": "^4.0.1",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@graphql-typed-document-node/core": "^3.2.0",
