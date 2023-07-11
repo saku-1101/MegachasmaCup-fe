@@ -5,7 +5,7 @@ import { ModalHandlingButton } from './ModalHandlingButton';
 export type ModalHandlingButtonProps = {};
 
 export default {
-  title: 'ModalHandlingButton',
+  title: 'Button/ModalHandlingButton',
   component: ModalHandlingButton,
   tags: ['autodocs'],
   parameters: {

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { LikeButton } from './LikeButton';
 
 export default {
-  title: 'LikeButton',
+  title: 'Button/LikeButton',
   component: LikeButton,
   tags: ['autodocs'],
   parameters: {

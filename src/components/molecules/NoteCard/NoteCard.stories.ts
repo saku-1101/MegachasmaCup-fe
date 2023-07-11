@@ -5,7 +5,7 @@ import { NoteCard } from './NoteCard';
 export type NoteCardProps = {};
 
 export default {
-  title: 'NoteCard',
+  title: 'Card/NoteCard',
   component: NoteCard,
   tags: ['autodocs'],
   parameters: {

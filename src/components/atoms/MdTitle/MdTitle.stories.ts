@@ -5,7 +5,7 @@ import { MdTitle } from './MdTitle';
 export type MdTitleProps = {};
 
 export default {
-  title: 'MdTitle',
+  title: 'Paragraph/MdTitle',
   component: MdTitle,
   tags: ['autodocs'],
   parameters: {

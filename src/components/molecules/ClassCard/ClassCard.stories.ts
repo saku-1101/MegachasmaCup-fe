@@ -5,7 +5,7 @@ import { ClassCard } from './ClassCard';
 export type ClassCardProps = {};
 
 export default {
-  title: 'ClassCard',
+  title: 'Card/ClassCard',
   component: ClassCard,
   tags: ['autodocs'],
   parameters: {

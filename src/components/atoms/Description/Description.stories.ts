@@ -5,7 +5,7 @@ import { Description } from './Description';
 export type DescriptionProps = {};
 
 export default {
-  title: 'Description',
+  title: 'Paragraph/Description',
   component: Description,
   tags: ['autodocs'],
   parameters: {
