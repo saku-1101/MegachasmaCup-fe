@@ -19,6 +19,8 @@ export const LikeButton = ({ on }: LikeButtonProps) => {
   }, [on]);
 
   return (
-    <Player ref={playerRef} src={LikeButtonData} keepLastFrame style={{ height: '300px', width: '300px' }}></Player>
+    <>
+      <Player ref={playerRef} src={LikeButtonData} keepLastFrame style={{ height: '300px', width: '300px' }}></Player>
+    </>
   );
 };

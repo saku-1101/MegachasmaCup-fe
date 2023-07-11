@@ -18,4 +18,10 @@ export function AddNoteSvg(colour: string = '#131338'){
     return AddNoteSvgComponent(AddNoteSvgData, colour)
 }
 
+import {SvgComponent as TagSvgComponent} from './TagIcon/tag-icon'
+import TagSvgData from './TagIcon/tag-icon.svg'
+export function TagSvg(colour: string = '#131338'){
+    return TagSvgComponent(TagSvgData, colour)
+}
+
 
