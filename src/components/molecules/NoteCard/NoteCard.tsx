@@ -5,7 +5,6 @@ import { Description } from '../../atoms/Description/Description';
 import { TagSvg } from '../../../../public/index';
 import { Tag } from '@/components/atoms/Tag/Tag';
 import { LikeButton } from '../../atoms/LikeButton/LikeButton';
-import { useState } from 'react';
 export type NoteCardProps = {
   nameOfStudent: string;
   description: string;

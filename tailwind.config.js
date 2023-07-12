@@ -22,6 +22,7 @@ module.exports = {
         dark: '#131338',
         light: '#FAFCFE',
         success: '#46D5B3',
+        error: '#EB2525',
         accent: '#D22875',
         textBasic: '#363939',
         subtleText: '#9797AA',

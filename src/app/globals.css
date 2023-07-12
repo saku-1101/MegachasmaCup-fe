@@ -46,3 +46,43 @@ body {
   align-items: center;
   background: #fafcfe;
 }
+.dropdown-container {
+  border-radius: 24px;
+  background-color: #fafcfe;
+  overflow-x: hidden;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  transition: height 0.5s;
+  z-index: 200;
+  overflow-y: hidden;
+  border: 0.2rem solid #131338;
+}
+
+.dropdown {
+  align-items: flex-start;
+  display: flex;
+  height: 100%;
+  transition: height 0.3s;
+  width: 100%;
+}
+.item-list {
+  list-style-type: none;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item-list .item {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  line-height: 3.5rem;
+  transition: all 0.2s;
+}
+
+.item-list .item:hover {
+  color: #fafcfe;
+  background: #ffd542;
+}

@@ -1,13 +1,22 @@
 import { StyledHeader } from './Header.style';
 import { HeaderLogo } from '../../atoms/HeaderLogo/HeaderLogo';
 import { AccountButton } from '../../atoms/AccountButton/AccountButton';
-export type HeaderProps = {};
+import { DropdownMenu } from '../MenuBar/DropdownMenu';
+export type HeaderProps = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    faculty: string;
+    year: number;
+  };
+};
 
-export const Header = ({}: HeaderProps) => {
+export const Header = ({ user }: HeaderProps) => {
   return (
     <StyledHeader>
       <HeaderLogo />
-      <AccountButton />
+      <DropdownMenu user={user} />
     </StyledHeader>
   );
 };
