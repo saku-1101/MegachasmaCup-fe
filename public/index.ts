@@ -24,4 +24,10 @@ export function TagSvg(colour: string = '#131338'){
     return TagSvgComponent(TagSvgData, colour)
 }
 
+import {SvgComponent as PlusSvgComponent} from './PlusIcon/plus-icon'
+import PlusSvgData from './PlusIcon/plus-icon.svg'
+export function PlusSvg(colour: string = '#131338'){
+    return PlusSvgComponent(PlusSvgData, colour)
+}
+
 
