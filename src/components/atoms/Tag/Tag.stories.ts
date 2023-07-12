@@ -5,7 +5,7 @@ import { Tag } from './Tag';
 export type TagProps = {};
 
 export default {
-  title: 'Tag',
+  title: 'Tag/Tag',
   component: Tag,
   tags: ['autodocs'],
   parameters: {
