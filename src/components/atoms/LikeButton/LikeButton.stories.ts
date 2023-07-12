@@ -14,6 +14,6 @@ export default {
 
 export const Default: StoryObj<typeof LikeButton> = {
   args: {
-    on: false,
+    numOfLike: 0,
   },
 };

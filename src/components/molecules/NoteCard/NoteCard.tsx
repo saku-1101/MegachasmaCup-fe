@@ -14,22 +14,6 @@ export type NoteCardProps = {
 };
 
 export const NoteCard = ({ nameOfStudent, description, tags, numOfLike }: NoteCardProps) => {
-  const [on, setOn] = useState(false);
-  const [like, setLike] = useState(numOfLike);
-  const handleAction = () => {
-    if (on) {
-      setOn(false);
-      const newlike = like - 1;
-      setLike(newlike);
-      // TODO: Post an updated number of like
-    } else {
-      setOn(true);
-      const newlike = like + 1;
-      setLike(newlike);
-      // TODO: Post an updated number of like
-    }
-    console.log('Clicked');
-  };
   return (
     <StyledCard>
       <div className='md:basis-1/5 flex md:justify-start justify-center'>
@@ -46,17 +30,7 @@ export const NoteCard = ({ nameOfStudent, description, tags, numOfLike }: NoteCa
           ))}
         </div>
       </div>
-      <div className='flex justify-center items-center'>
-        <button
-          onClick={handleAction}
-          className='max-h-[100px] max-w-[100px] flex flex-col justify-center items-center relative overflow-hidden'
-        >
-          <LikeButton on={on} />
-          <span className='text-subtleText absolute right-50' style={{ bottom: '0%' }}>
-            {like}
-          </span>
-        </button>
-      </div>
+      <LikeButton numOfLike={numOfLike} />
     </StyledCard>
   );
 };

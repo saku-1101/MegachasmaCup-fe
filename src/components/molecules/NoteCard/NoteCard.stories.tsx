@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { NoteCard } from './NoteCard';
+import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
 
 export type NoteCardProps = {};
 
@@ -15,6 +16,15 @@ export default {
 } as Meta<typeof NoteCard>;
 
 export const Default: StoryObj<typeof NoteCard> = {
+  decorators: [
+    (Story) => (
+      <WrapperContainer>
+        <CoreContainer>
+          <Story />
+        </CoreContainer>
+      </WrapperContainer>
+    ),
+  ],
   args: {
     nameOfStudent: 'Student',
     description: 'description description description description description',
