@@ -1,19 +1,21 @@
-import Link from 'next/link';
-import { Test } from '../components/atoms/Test/Test';
+'use client';
+import { motion } from 'framer-motion';
+import { WelcomePage } from '../components/templates/WelcomePage/WelcomePage';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+  setTimeout(() => {
+    router.push('/auth');
+  }, 3 * 1000);
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <Test />
-      <>
-        <h1>Hello, Next.js 13 App Directory!</h1>
-        <p>
-          <Link href='/client-side'>Use Apollo Client inside Client Side Component</Link>
-        </p>
-        <p>
-          <Link href='/server-side'>Use Apollo Client inside React Server Component (RSC)</Link>
-        </p>
-      </>
-    </main>
+    <motion.div
+      initial={{ opacity: 0 }} // 初期状態
+      animate={{ opacity: 1 }} // マウント時
+      exit={{ opacity: 0 }} // アンマウント時
+      className='mt-10vh flex h-[90vh] min-w-screen justify-center items-center'
+    >
+      <WelcomePage />
+    </motion.div>
   );
 }

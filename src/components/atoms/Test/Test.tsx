@@ -11,7 +11,7 @@ export const Test = async ({}: TestProps) => {
   const profiles = await handleGetProfiles();
   return (
     <div>
-      {profiles.map((el) => (
+      {profiles.map((el: { id: number; name: string }) => (
         <p key={el.id}>{el.name}</p>
       ))}
     </div>
