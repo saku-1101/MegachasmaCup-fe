@@ -1,17 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
 import { HeaderLogo } from './HeaderLogo';
 
-
 export default {
-  title: "HeaderLogo",
+  title: 'Logo/HeaderLogo',
   component: HeaderLogo,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-  argTypes: {
-  },
+  argTypes: {},
 } as Meta<typeof HeaderLogo>;
 
 export const Default: StoryObj<typeof HeaderLogo> = {};

@@ -1,0 +1,34 @@
+{/* Typography.mdx */}
+
+import { Meta, Typeset } from '@storybook/blocks';
+import { typography } from './styles/fontStyles.ts';
+
+<Meta title='Typography' />
+
+export const SampleText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+# Typography
+
+📝 Here's the Typography documentation we're using in Kouguiita app.
+
+**Font:** Work Sans
+
+**Weights:** 400(regular), 700(bold), 800(extrabold), 900(black)
+
+<Typeset
+  fontSizes={[
+    Number(typography.size.h1),
+    Number(typography.size.h2),
+    Number(typography.size.h3),
+    Number(typography.size.largeBody),
+    Number(typography.size.body),
+    Number(typography.size.small),
+    Number(typography.size.preTitle),
+    Number(typography.size.button),
+    Number(typography.size.link),
+  ]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+  style={{ color: '#131338' }}
+/>

@@ -5,7 +5,7 @@ import { Button } from './Button';
 export type ButtonProps = {};
 
 export default {
-  title: 'Button',
+  title: 'Button/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

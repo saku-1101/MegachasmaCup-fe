@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { FirstEngagementButton } from './FirstEngagementButton';
 
 export default {
-  title: 'FirstEngagementButton',
+  title: 'Button/FirstEngagementButton',
   component: FirstEngagementButton,
   tags: ['autodocs'],
   parameters: {

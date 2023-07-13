@@ -5,7 +5,7 @@ import { InputField } from './InputField';
 export type InputFieldProps = {};
 
 export default {
-  title: 'InputField',
+  title: 'Field/InputField',
   component: InputField,
   tags: ['autodocs'],
   parameters: {

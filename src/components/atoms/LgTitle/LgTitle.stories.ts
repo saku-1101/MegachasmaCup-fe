@@ -5,7 +5,7 @@ import { LgTitle } from './LgTitle';
 export type LgTitleProps = {};
 
 export default {
-  title: 'LgTitle',
+  title: 'Paragraph/LgTitle',
   component: LgTitle,
   tags: ['autodocs'],
   parameters: {

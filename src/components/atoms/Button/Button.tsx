@@ -7,10 +7,10 @@ export type ButtonProps = {
 
 export const Button = ({ label, isSecondaryBg, handleAction }: ButtonProps) => {
   return (
-    <Div>
+    <>
       <StyledButton $isSecondary={isSecondaryBg} onClick={handleAction}>
         {label}
       </StyledButton>
-    </Div>
+    </>
   );
 };
