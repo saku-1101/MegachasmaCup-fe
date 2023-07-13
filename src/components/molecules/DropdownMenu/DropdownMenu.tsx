@@ -3,7 +3,7 @@ import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
 
-export type MenuBarProps = {
+export type DropdownMenuProps = {
   user: {
     id: string;
     name: string;
@@ -59,7 +59,7 @@ const slideHorizontalAnimation = {
   },
 };
 
-export const DropdownMenu = ({ user }: MenuBarProps) => {
+export const DropdownMenu = ({ user }: DropdownMenuProps) => {
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 4) * 35;
   return (

@@ -1,7 +1,7 @@
 import { StyledHeader } from './Header.style';
 import { HeaderLogo } from '../../atoms/HeaderLogo/HeaderLogo';
 import { AccountButton } from '../../atoms/AccountButton/AccountButton';
-import { DropdownMenu } from '../MenuBar/DropdownMenu';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
 export type HeaderProps = {
   user: {
     id: string;
