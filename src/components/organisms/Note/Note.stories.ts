@@ -21,14 +21,15 @@ export const Default: StoryObj<typeof Note> = {
       name: 'student',
       faculty: 'Informatics',
       year: 4,
-      notes: {
+      note_id: '0',
+      note: {
         id: '0',
         description: 'descriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         content:
           'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
+        like: 24,
       },
     },
-    numOfLike: 24,
   },
 };

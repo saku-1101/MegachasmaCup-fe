@@ -3,9 +3,9 @@ import { EmptyPage } from '@/components/templates/EmptyPage/EmptyPage';
 import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
 
 export type UserProps = {
-  user_id: string;
+  params: { user_id: string };
 };
-export default function User({ user_id }: UserProps) {
+export default function User({ params: { user_id } }: UserProps) {
   // fetch user's subject and note content with user_id
   // *** mock
   const user = {

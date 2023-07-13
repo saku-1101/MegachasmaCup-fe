@@ -16,19 +16,7 @@ export default {
 
 export const Default: StoryObj<typeof NotePage> = {
   args: {
-    user: {
-      id: '0',
-      name: 'student',
-      faculty: 'Informatics',
-      year: 4,
-      notes: {
-        id: '0',
-        description: 'descriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        content:
-          'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
-      },
-    },
-    numOfLike: 24,
+    user_id: '0',
+    note_id: '0',
   },
 };
