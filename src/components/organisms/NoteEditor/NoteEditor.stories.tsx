@@ -1,21 +1,21 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Note } from './Note';
+import { NoteEditor } from './NoteEditor';
 import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
 
 export type NoteProps = {};
 
 export default {
-  title: 'Note/Note',
-  component: Note,
+  title: 'Note/NoteEditor',
+  component: NoteEditor,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
   argTypes: {},
-} as Meta<typeof Note>;
+} as Meta<typeof NoteEditor>;
 
-export const Default: StoryObj<typeof Note> = {
+export const Default: StoryObj<typeof NoteEditor> = {
   decorators: [
     (Story) => (
       <WrapperContainer>
