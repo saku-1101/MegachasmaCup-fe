@@ -1,7 +1,7 @@
 import tw from 'tailwind-styled-components';
 
 export const WrapperContainer = tw.div`
-w-screen flex justify-center pt-[20vh] pb-[10vh]
+w-screen flex justify-center mt-[10vh] pb-[10vh]
 `;
 
 export const CoreContainer = tw.div`

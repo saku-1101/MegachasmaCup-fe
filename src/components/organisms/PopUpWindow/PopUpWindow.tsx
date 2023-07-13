@@ -1,3 +1,4 @@
+'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';

@@ -14,16 +14,3 @@ export const StyledNote = tw.div`
     items-center
     bg-light
 `;
-
-export const NoteContentWrapper = tw.div`
-    w-full
-    md:py-[1rem]
-    py-[0.5rem]
-`;
-export const NoteContent = tw.p`
-    w-full
-    md:py-[1rem]
-    py-[0.5rem]
-    text-textBasic
-    text-[1rem]
-`;
