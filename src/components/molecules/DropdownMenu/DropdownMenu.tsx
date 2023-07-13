@@ -1,4 +1,4 @@
-import { useState } from 'react';
+'use client';
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';

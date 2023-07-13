@@ -10,10 +10,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // user Data fetch
+  const user = {
+    id: '0',
+    name: 'student',
+    email: 'example@email.com',
+    faculty: 'infomatics',
+    year: 4,
+  };
+  user;
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Header />
+        <Header user={user} />
         {children}
       </body>
     </html>
