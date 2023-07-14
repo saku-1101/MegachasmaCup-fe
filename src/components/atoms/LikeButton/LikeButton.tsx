@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { Player } from '@/components/common';
 import LikeButtonData from '@/assets/lottie/like-button.json';
 
 export type LikeButtonProps = {

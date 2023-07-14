@@ -2,12 +2,15 @@
 import { motion } from 'framer-motion';
 import { WelcomePage } from '../components/templates/WelcomePage/WelcomePage';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
   const router = useRouter();
-  setTimeout(() => {
-    router.push('/auth');
-  }, 3 * 1000);
+  useEffect(() => {
+    setTimeout(() => {
+      router.push('/auth');
+    }, 3 * 1000);
+  }, [router]);
   return (
     <motion.div
       initial={{ opacity: 0 }} // 初期状態

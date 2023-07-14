@@ -1,4 +1,3 @@
-'use client';
 import { StyledCard } from './NoteCard.style';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';

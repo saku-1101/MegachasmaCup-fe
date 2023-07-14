@@ -1,6 +1,5 @@
-'use client';
 import { Div } from './WelcomeAnimation.style';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { Player } from '@/components/common';
 import gettingStartedData from '@/assets/lottie/getting-started.json';
 
 export const WelcomeAnimation = () => {

@@ -1,5 +1,5 @@
 import { NotePage } from '@/components/templates/NotePage/NotePage';
-import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
+import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 export type NoteProps = {
   params: {
     user_id: string;
