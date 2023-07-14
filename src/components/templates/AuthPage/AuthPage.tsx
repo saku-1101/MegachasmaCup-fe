@@ -1,5 +1,4 @@
 import { PopUpWindow } from '@/components/organisms/PopUpWindow/PopUpWindow';
-import { Div } from './AuthPage.style';
 
 export const AuthPage = () => {
   return (

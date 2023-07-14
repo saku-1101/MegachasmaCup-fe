@@ -1,6 +1,6 @@
 import { ClassPage } from '@/components/templates/ClassPage/ClassPage';
 import { EmptyPage } from '@/components/templates/EmptyPage/EmptyPage';
-import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
+import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 
 export type UserProps = {
   params: { user_id: string };

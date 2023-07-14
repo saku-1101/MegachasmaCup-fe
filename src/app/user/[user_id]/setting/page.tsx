@@ -1,5 +1,5 @@
 import { AccountPage } from '@/components/templates/AccountPage/AccountPage';
-import { WrapperContainer } from '@/components/styles/containers';
+import { WrapperContainer } from '@/components/common/containers';
 
 export type SettingProps = {
   params: { user_id: string };
