@@ -5,8 +5,7 @@ block
 w-full
 text-subtleText
     p-[1rem]
-    pr-2.5
-    m-[0.5rem]
+    mt-[0.5rem]
     bg-light
     border
     rounded-[50px]
@@ -18,7 +17,6 @@ text-subtleText
 export const StyledLabel = tw.label`   
 block    
 w-full  
-pl-[1.5rem]
-mt-[1rem]
+my-[1rem]
   text-textBasic
 `;

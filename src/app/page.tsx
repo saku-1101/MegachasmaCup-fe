@@ -8,6 +8,9 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
+      // isAuthenticated === true
+      // router.push('/user/' + {user_id} + '/class');
+      // isAuthenticated === false
       router.push('/auth');
     }, 3 * 1000);
   }, [router]);

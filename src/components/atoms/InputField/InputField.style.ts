@@ -5,7 +5,7 @@ block
 w-full
 text-subtleText
     p-[1rem]
-    m-[0.5rem]
+    mt-[0.5rem]
     bg-light
     border
     rounded-[50px]
@@ -13,11 +13,11 @@ text-subtleText
     border-subtleText
     hover:border-textBasic
     focus:border-textBasic
+    invalid:border-error
 `;
 export const StyledLabel = tw.label`   
 block    
 w-full  
-pl-[1.5rem]
-mt-[1rem]
+my-[1rem]
   text-textBasic
 `;
