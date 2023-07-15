@@ -1,0 +1,77 @@
+mutation CreateUser($input: NewUser!){
+    createUser(input: $input){
+        id
+    }
+}
+
+mutation UpdateUser($input: NewUser){
+    updateUser(input: $input){
+        id
+    }
+}
+
+mutation CreateNote($input: NewNote!){
+    createNote(input: $input){
+        id
+    }
+}
+
+mutation UpdateNote($input: NewNote){
+    updateNote(input: $input){
+        id
+    }
+}
+
+mutation CreateClass($input: NewClass!){
+    createClass(input: $input){
+        id
+    }
+}
+
+mutation UpdateClass($input: NewClass){
+    updateClass(input: $input){
+
+    }
+}
+
+mutation CreateSchool($input: NewSchool!){
+    createSchool(input: $input){
+        id
+    }
+}
+
+mutation UpdateSchool($input: NewSchool){
+    updateSchool(input: $input){
+        id
+    }
+}
+
+mutation CreateComment($input: NewComment){
+    createComment(input: $input){
+        id
+    }
+}
+
+mutation UpdateComment($input: NewComment){
+    updateComment(input: $input){
+        id
+    }
+}
+
+mutation CreateTag($input: NewTag){
+    createTag(input: $input){
+        id
+    }
+}
+
+mutation JoinClass($input: NewJoinClass!){
+    joinClass(input: $input){
+        id
+    }
+}
+
+mutation JoinSchool($input: NewJoinSchool!){
+    joinSchool(input: $input){
+        id
+    }
+}
