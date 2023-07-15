@@ -1,14 +1,15 @@
-import { StyledCard } from '@/components/molecules/ClassCard/ClassCard.style';
 import { Div } from './LoadingCard.style';
-export type LoadingCardProps = {};
+import { SkeltonClassCard } from './SkeltonClassCard';
+import { JsxElement } from 'typescript';
+// export type LoadingCardProps = {
+//   SkeltonClassCard: JsxElement;
+// };
 
-export const LoadingCard = ({}: LoadingCardProps) => {
+export const LoadingCard = () => {
   return (
-    <Div className='loading'>
-      <div className='absolute inset-0 bg-white overflow-hidden z-50'>
-        <div className='absolute top-0 left-0 z-100 block w-full h-full bg-gradient-to-r from-transparent via-white to-transparent animate-skeleton-animation duration-1200 linear infinite'></div>
-        <div className='block w-full h-full bg-gray-300 rounded-full'></div>
-        <div className='block mt-10 h-20 bg-gray-300'></div>
+    <Div className='flex rounded-xl animate-pulse flex-row items-center h-full justify-center space-x-5'>
+      <div className='w-full bg-gray-300 h-full '>
+        <SkeltonClassCard></SkeltonClassCard>
       </div>
     </Div>
   );

@@ -1,10 +1,22 @@
-import tw from "tailwind-styled-components"
+import tw from 'tailwind-styled-components';
 
 export const Div = tw.div`
     flex
-    items-center
-    justify-center
     w-full
     h-full
-    bg-primary
-`
+    bg-light
+`;
+export const StyledCard = tw.div`
+    w-full    
+    margin-auto
+    border-2
+    border-textBasic
+    rounded-xl
+    flex
+    md:flex-row
+    justify-between
+    items-center
+    bg-white
+    flex-col
+    h-24
+`;

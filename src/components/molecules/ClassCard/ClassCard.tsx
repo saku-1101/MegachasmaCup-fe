@@ -1,9 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyledCard } from './ClassCard.style';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
 import { AddNoteSvg } from '../../../../public/index';
+import { LoadingCard } from '@/components/atoms/LoadingCard/LoadingCard';
+import { SkeltonClassCard } from '@/components/atoms/LoadingCard/SkeltonClassCard';
 
 export type ClassCardProps = {
   title: string;
@@ -19,6 +21,7 @@ export const ClassCard = ({ title, numOfStudent, numOfNote }: ClassCardProps) =>
     // router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
     // return;
   };
+
   return (
     <>
       <StyledCard>
