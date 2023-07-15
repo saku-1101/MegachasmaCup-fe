@@ -1,0 +1,145 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+scalar DateTime
+
+type User {
+  id: String!
+  image_url: String!
+  name: String!
+  email: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+
+  school: [School!]!
+  likes: [Note!]!
+  classes: [Class!]!
+  notes: [Note!]!
+}
+type Note {
+  id: String!
+  class_id: String!
+  school_id: String!
+  description: String!
+  title: String!
+  user_id: String!
+  is_public: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+
+  school: School!
+  tags: [Tag!]!
+  like_user: [User!]!
+  comment: [Comment!]!
+}
+type School {
+  id: String!
+  name: String!
+  owner_id: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+
+  owner: User!
+  students: [User!]!
+}
+
+type Class {
+  id: String!
+  name: String!
+  school_id: String!
+  owner_id: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+
+  school: School!
+  students: [User!]!
+  notes: [Note!]!
+}
+
+type Tag {
+  id: String!
+  name: String!
+}
+type Comment {
+  id: String!
+  note_id: String!
+  comment: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+}
+
+type Query {
+  getNotes(user_id: String!, class_id: String, note_id: String): [Note!]!
+  getSchools(searchWord: String!): [School!]!
+  getClasses(user_id: String!): [Class!]!
+  getTags(searchWord: String!): [Tag!]!
+  getMyNotes(user_id: String!): [Note!]!
+  getUser(user_id: String!): User!
+}
+type Mutation {
+  createUser(input: NewUser!): User!
+  updateUser(input: NewUser): User!
+  createNote(input: NewNote!): Note!
+  updateNote(input: NewNote): Note!
+  createClass(input: NewClass!): Class!
+  updateClass(input: NewClass): Class!
+  createSchool(input: NewSchool!): School!
+  updateSchool(input: NewSchool): School!
+  createComment(input: NewComment!): Comment!
+  updateComment(input: NewComment): Comment!
+  createTag(input: NewTag!): Tag!
+  joinClass(input: NewJoinClass!): Class!
+  joinSchool(input: NewJoinSchool!): School!
+}
+
+input NewNote {
+  classID: String!
+  schoolID: String!
+  description: String!
+  title: String!
+  userID: String!
+  isPublic: Boolean!
+}
+
+input NewClass {
+  name: String!
+  schoolID: String!
+  ownerID: String!
+}
+
+input NewSchool {
+  Name: String!
+  schoolID: String!
+  userID: String!
+}
+
+input NewUser {
+  Name: String!
+  Email: String!
+  Password: String!
+}
+
+input NewTag {
+  Name: String!
+}
+
+input NewComment {
+  Comment: String!
+  NoteID: String!
+}
+
+input NewJoinClass {
+  ClassID: String!
+  UserID: String!
+}
+
+input NewJoinSchool {
+  SchoolID: String!
+  UserID: String!
+}

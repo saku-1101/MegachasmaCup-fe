@@ -1,132 +1,132 @@
 # 投稿したノート一覧ページ
-query GetMyNotes($user_id: String) {
-  user(user_id: $user_id) {
-    notes(is_public: true) {
+query GetMyNotes($user_id: String!) {
+  getNotes(user_id: $user_id) {
+    id
+    class_id
+    title
+    description
+    tags {
       id
-      class_id
-      title
-      description
-      tags {
-        id
-        name
-      }
-      like_user
+      name
+    }
+    like_user {
+      id
     }
   }
 }
 
 # いいねしたノート一覧ページ
-query getLikedNotesOfUser($user_id: String) {
-  user(user_id: $user_id) {
+query getLikedNotesOfUser($user_id: String!) {
+  getUser(user_id: $user_id) {
     likes {
-      note {
+      id
+      class_id
+      title
+      description
+      like_user {
         id
-        class_id
-        title
-        description
-        like_user
       }
     }
   }
 }
 
 # 保存(private)したノート一覧ページ
-query getPrivateNotesOfUser($user_id: String) {
-  user(user_id: $user_id) {
-    notes(is_public: false) {
+query getPrivateNotesOfUser($user_id: String!) {
+  getMyNotes(user_id: $user_id) {
+    id
+    class_id
+    title
+    description
+    tags {
       id
-      class_id
-      title
-      description
-      tags {
-        id
-        name
-      }
-      like_user
+      name
+    }
+    like_user {
+      id
     }
   }
 }
 
 # アカウント設定ページ
-query getAccountSettings($user_id: String) {
-  user(user_id: $user_id) {
+query getAccountSettings($user_id: String!) {
+  getUser(user_id: $user_id) {
     id
     image_url
     name
     email
-    school
+    school {
+      id
+      name
+    }
   }
 }
 
 # クラスページ
-query getClassesOfUser($user_id: String) {
-  user(user_id: $user_id) {
-    classes {
+query getClassesOfUser($user_id: String!) {
+  getClasses(user_id: $user_id) {
+    id
+    name
+    school {
       id
       name
-      school
-      students
+    }
+    students {
+      id
     }
   }
 }
 
 # クラスページに移動する時の表示のみ
-query getClasses($user_id: String) {
-  user(user_id: $user_id) {
-    class {
-      id
-      name
-    }
-  }
-}
-
-# ノート一覧ページ
-query getNotes($user_id: String, $class_id: String) {
-  user(user_id: $user_id) {
-    classes(class_id: $class_id, is_public: true) {
-      notes {
-        id
-        description
-        tags {
-          id
-          name
-        }
-        like_user
-      }
-    }
-  }
-}
-
-# ノートページ
-query getNote($user_id: String, $class_id: String) {
-  user(user_id: $user_id) {
-    classes(class_id: $class_id, is_public: true) {
-      notes(note_id: note_id) {
-        id
-        description
-        tags {
-          id
-          name
-        }
-        like_user
-        comment {
-          id
-          comment
-        }
-      }
-    }
-  }
-}
-
-query getTags {
-  tags {
+query getClasses($user_id: String!) {
+  getClasses(user_id: $user_id) {
     id
     name
   }
 }
 
-query getSchools {
-  schools {
+# ノート一覧ページ
+query getNotes($user_id: String!, $class_id: String) {
+  getNotes(user_id: $user_id, class_id: $class_id) {
+    id
+    description
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
+    }
+  }
+}
+
+# ノートページ
+query getNote($user_id: String!, $class_id: String, $note_id: String) {
+  getNotes(user_id: $user_id, class_id: $class_id, note_id: $note_id) {
+    id
+    description
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
+    }
+    comment {
+      id
+      comment
+    }
+  }
+}
+
+query getTags($searchWord: String!) {
+  getTags(searchWord: $searchWord) {
+    id
+    name
+  }
+}
+
+query getSchools($searchWord: String!) {
+  getSchools(searchWord: $searchWord) {
     id
     name
   }
