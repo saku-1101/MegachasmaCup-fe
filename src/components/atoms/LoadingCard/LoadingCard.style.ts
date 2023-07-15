@@ -10,6 +10,7 @@ export const StyledCard = tw.div`
     w-full    
     margin-auto
     border-2
+    p-[3.25rem]
     border-textBasic
     rounded-xl
     flex

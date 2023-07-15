@@ -17,7 +17,10 @@ export type MdEditorProps = {
   class_id: string;
   note_id: string;
 };
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false, loading: () => <div>now loading</div> });
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
+  ssr: false,
+  loading: () => <div>エディタを読み込み中．．．</div>,
+});
 
 export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
   const [markdown, setMarkdown] = useState<string | undefined>();
