@@ -1,14 +1,16 @@
 import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
 import { Div } from './NoteListPage.style';
-
+import type { Note } from '@/app/models';
+import { AddButton } from '../../atoms/AddButton/AddButton';
 export type NoteListPageProps = {
+  user_id: string;
   class_id: string;
 };
 
-export const NoteListPage = ({ class_id }: NoteListPageProps) => {
-  // fetch class details with class_ids
+export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
+  // fetch notes with class_ids
   const notes: {
-    data: Array<{ id: string; name: string; description: string; tags: Array<string>; numOfLike: number }>;
+    data: Array<Note>;
   } = {
     data: [
       {
@@ -94,6 +96,7 @@ export const NoteListPage = ({ class_id }: NoteListPageProps) => {
           numOfLike={el.numOfLike}
         />
       ))}
+      <AddButton isNoteAdd={true} user_id={user_id} class_id={class_id} />
     </Div>
   );
 };

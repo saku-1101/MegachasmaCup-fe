@@ -18,10 +18,38 @@ export const AccountCard = ({ user }: AccountCardProps) => {
     <StyledCard>
       <div>{AccountSvg()}</div>
       <StyledGrid>
-        <InputField label='名前' value={user.name} readonly={true} />
-        <InputField label='メールアドレス' value={user.email} />
-        <InputField label='大学' value={user.school} readonly={true} />
-        <InputField label='専攻' value={user.faculty} />
+        <InputField
+          name='name'
+          inputType='text'
+          label='ユーザ名'
+          placeholder='ユーザ名'
+          value={user.name}
+          readonly={true}
+        />
+        <InputField
+          name='email'
+          inputType='email'
+          label='メールアドレス'
+          placeholder='メールアドレス'
+          value={user.email}
+          readonly={false}
+        />
+        <InputField
+          name='school'
+          inputType='text'
+          label='大学'
+          placeholder='大学'
+          value={user.school}
+          readonly={true}
+        />
+        <InputField
+          name='faculty'
+          inputType='text'
+          label='学部'
+          placeholder='学部'
+          value={user.faculty}
+          readonly={false}
+        />
       </StyledGrid>
       <Button label='更新する' isSecondaryBg={false} />
     </StyledCard>

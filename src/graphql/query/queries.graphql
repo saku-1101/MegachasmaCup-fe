@@ -4,3 +4,38 @@ query GetProfiles {
     name
   }
 }
+
+query GetPublicNotesOfUser {
+  notes(user_id: user_id, is_public: true) {
+    id
+    class_id
+    school_id
+    title
+    description
+  }
+}
+
+query getLikedNotesOfUser {
+  like(user_id: user_id){
+    notes{
+      note_id
+      title
+      description
+      likeCount
+    }
+  }
+}
+
+query getPrivateNotesOfUser {
+  notes(user_id: user_id, is_public: false){
+    id
+    class_id
+    school_id
+    title
+    description
+  }
+}
+
+query getAccountSettings {
+  
+}

@@ -3,11 +3,14 @@ import { Div } from './WelcomePageInputs.style';
 import { InputField } from '../../atoms/InputField/InputField';
 import { SelectField } from '../../atoms/SelectField/SelectField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
+import { useRouter } from 'next/navigation';
 export type WelcomePageInputsProps = {
   buttonLabel: string;
 };
 
 export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
+  // 親cmpがどのみちclient cmpなのでuseRouter使う
+  const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const { value: user_name } = (event.target as any).userName;
@@ -15,6 +18,12 @@ export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
     const { value: school } = (event.target as any).school;
     const { value: password } = (event.target as any).password;
     console.log(`userName: ${user_name} \n email: ${email} \n school: ${school} \n password: ${password}`);
+
+    // fetch auth result
+    // *** mock
+    const user_id = '0';
+    router.push(`/user/${user_id}/class`);
+    router.refresh();
   };
   return (
     <Div>
