@@ -2,9 +2,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
-import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { WelcomePageInputs } from '@/components/molecules/WelcomePageInputs/WelcomePageInputs';
-import { SelectField } from '@/components/atoms/SelectField/SelectField';
+import { SubjectSelectComponent } from '@/components/molecules/SubjectSelectComponent/SubjectSelectComponent';
 
 const dropIn = {
   hidden: {
@@ -31,15 +30,12 @@ export type PopUpWindowProps = {
 };
 
 export const PopUpWindow = ({ title, subtitle, isWelcomePage, buttonLabel }: PopUpWindowProps) => {
-  const someAction = () => {
-    console.log('yay!');
-  };
   return (
     <AnimatePresence initial={true} mode='wait' onExitComplete={() => null}>
       <div className='backdrop'>
         <motion.div
           onClick={(e) => e.stopPropagation()}
-          className='modal orange-gradient'
+          className='modal'
           variants={dropIn}
           initial='hidden'
           animate='visible'
@@ -47,8 +43,11 @@ export const PopUpWindow = ({ title, subtitle, isWelcomePage, buttonLabel }: Pop
         >
           <MdTitle title={title} />
           <Description description={subtitle} />
-          {isWelcomePage ? <WelcomePageInputs /> : <SelectField label='講義名' placeholder='Select' />}
-          <FirstEngagementButton label={buttonLabel} handleAction={someAction} />
+          {isWelcomePage ? (
+            <WelcomePageInputs buttonLabel={buttonLabel} />
+          ) : (
+            <SubjectSelectComponent buttonLabel={buttonLabel} />
+          )}
         </motion.div>
       </div>
     </AnimatePresence>

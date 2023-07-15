@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { AccountCard } from './AccountCard';
-import { WrapperContainer } from '@/components/styles/containers';
+import { WrapperContainer } from '@/components/common/containers';
 
 export type AccountCardProps = {};
 

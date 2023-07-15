@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { NoteEditor } from './NoteEditor';
-import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
+import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 
 export type NoteProps = {};
 

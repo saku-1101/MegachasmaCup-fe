@@ -1,5 +1,5 @@
 import { NoteEditPage } from '@/components/templates/NoteEditPage/NoteEditPage';
-import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
+import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 type NoteEditProps = {
   params: { user_id: string };
 };
