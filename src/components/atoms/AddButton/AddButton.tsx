@@ -18,6 +18,7 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id 
   const [isClassAddPopupVisible, setIsClassAddPopupVisible] = useState(false);
   const [isCommentEditorVisible, setIsCommentEditorVisible] = useState(false);
   const router = useRouter();
+
   const handleAction = () => {
     // add note
     if (isNoteAdd) {

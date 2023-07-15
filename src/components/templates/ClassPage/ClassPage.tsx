@@ -2,6 +2,7 @@ import { ClassCard } from '@/components/molecules/ClassCard/ClassCard';
 import { Div } from './ClassPage.style';
 import { Class } from '@/app/models';
 import { AddButton } from '../../atoms/AddButton/AddButton';
+import { Suspense } from 'react';
 
 export type ClassPageProps = {
   classes: Array<Class>;
