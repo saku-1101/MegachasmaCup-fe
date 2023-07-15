@@ -23,6 +23,7 @@ export const ClassCard = ({ class_id, title, numOfStudent, numOfNote, user_id }:
     router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
     router.refresh();
   };
+
   return (
     <>
       <StyledCard>
