@@ -2,6 +2,7 @@
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
+import { LogoutModal } from '../LogoutModal/LogoutModal';
 
 export type DropdownMenuProps = {
   user: {
@@ -80,9 +81,12 @@ export const DropdownMenu = ({ user }: DropdownMenuProps) => {
                   {text.name}
                 </Link>
               ))}
-              <Link className='item text-error' href='/'>
+              <Link className='item text-error' href='/LogoutModal.tsx'>
                 ログアウト
               </Link>
+              {/* <button className='item text-error' onClick={LogoutModal}>
+                ログアウト
+              </button> */}
             </ul>
           </motion.div>
         </motion.div>
