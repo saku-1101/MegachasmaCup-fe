@@ -1,41 +1,133 @@
-query GetProfiles {
-  profiles {
+# 投稿したノート一覧ページ
+query GetMyNotes($user_id: String) {
+  user(user_id: $user_id) {
+    notes(is_public: true) {
+      id
+      class_id
+      title
+      description
+      tags {
+        id
+        name
+      }
+      like_user
+    }
+  }
+}
+
+# いいねしたノート一覧ページ
+query getLikedNotesOfUser($user_id: String) {
+  user(user_id: $user_id) {
+    likes {
+      note {
+        id
+        class_id
+        title
+        description
+        like_user
+      }
+    }
+  }
+}
+
+# 保存(private)したノート一覧ページ
+query getPrivateNotesOfUser($user_id: String) {
+  user(user_id: $user_id) {
+    notes(is_public: false) {
+      id
+      class_id
+      title
+      description
+      tags {
+        id
+        name
+      }
+      like_user
+    }
+  }
+}
+
+# アカウント設定ページ
+query getAccountSettings($user_id: String) {
+  user(user_id: $user_id) {
+    id
+    image_url
+    name
+    email
+    school
+  }
+}
+
+# クラスページ
+query getClassesOfUser($user_id: String) {
+  user(user_id: $user_id) {
+    classes {
+      id
+      name
+      school
+      students
+    }
+  }
+}
+
+# クラスページに移動する時の表示のみ
+query getClasses($user_id: String) {
+  user(user_id: $user_id) {
+    class {
+      id
+      name
+    }
+  }
+}
+
+# ノート一覧ページ
+query getNotes($user_id: String, $class_id: String) {
+  user(user_id: $user_id) {
+    classes(class_id: $class_id, is_public: true) {
+      notes {
+        id
+        description
+        tags {
+          id
+          name
+        }
+        like_user
+      }
+    }
+  }
+}
+
+# ノートページ
+query getNote($user_id: String, $class_id: String) {
+  user(user_id: $user_id) {
+    classes(class_id: $class_id, is_public: true) {
+      notes(note_id: note_id) {
+        id
+        description
+        tags {
+          id
+          name
+        }
+        like_user
+        comment {
+          id
+          comment
+        }
+      }
+    }
+  }
+}
+
+query getTags {
+  tags {
     id
     name
   }
 }
 
-query GetPublicNotesOfUser {
-  notes(user_id: user_id, is_public: true) {
+query getSchools {
+  schools {
     id
-    class_id
-    school_id
-    title
-    description
+    name
   }
-}
-
-query getLikedNotesOfUser {
-  like(user_id: user_id){
-    notes{
-      note_id
-      title
-      description
-      likeCount
-    }
-  }
-}
-
-query getPrivateNotesOfUser {
-  notes(user_id: user_id, is_public: false){
-    id
-    class_id
-    school_id
-    title
-    description
-  }
-}
-
-query getAccountSettings {
-  
 }
