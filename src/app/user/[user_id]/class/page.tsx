@@ -26,7 +26,9 @@ export default function User({ params: { user_id } }: UserProps) {
 
   return (
     <WrapperContainer>
-      <CoreContainer>{classes.data.length === 0 ? <EmptyPage /> : <ClassPage classes={classes.data} />}</CoreContainer>
+      <CoreContainer>
+        {classes.data.length === 0 ? <EmptyPage /> : <ClassPage classes={classes.data} user_id={user_id} />}
+      </CoreContainer>
     </WrapperContainer>
   );
 }

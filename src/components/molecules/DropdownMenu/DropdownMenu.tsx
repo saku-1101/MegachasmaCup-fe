@@ -3,22 +3,6 @@ import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
 
-export type DropdownMenuProps = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    faculty: string;
-    year: number;
-  };
-};
-const leftMenu = [
-  { name: '投稿したノート', url: '/' },
-  { name: 'いいねしたノート', url: '/' },
-  { name: 'コメント一覧', url: '/' },
-  { name: 'アカウント設定', url: '/' },
-];
-
 const slideVerticalAnimation = {
   open: {
     rotateX: 0,
@@ -59,7 +43,17 @@ const slideHorizontalAnimation = {
   },
 };
 
-export const DropdownMenu = ({ user }: DropdownMenuProps) => {
+export type DropdownMenuProps = {
+  user_id: string;
+};
+
+export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
+  const leftMenu = [
+    { name: '投稿したノート', url: `/user/${user_id}/your_notes` },
+    { name: 'いいねしたノート', url: `/user/${user_id}/likes` },
+    { name: '保存済みノート', url: `/user/${user_id}/private_notes` },
+    { name: 'アカウント設定', url: `/user/${user_id}/setting` },
+  ];
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 4) * 35;
   return (
@@ -76,7 +70,7 @@ export const DropdownMenu = ({ user }: DropdownMenuProps) => {
           <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
             <ul className='item-list'>
               {leftMenu.map((text, i) => (
-                <Link key={i} className='item' href='/'>
+                <Link key={i} className='item' href={text.url}>
                   {text.name}
                 </Link>
               ))}

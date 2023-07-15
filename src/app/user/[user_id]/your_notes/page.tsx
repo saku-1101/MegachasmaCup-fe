@@ -1,16 +1,24 @@
-import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
-import { Div } from './NoteListPage.style';
+import { WrapperContainer, CoreContainer, Div } from '@/components/common/containers';
 import type { Note } from '@/app/models';
-import { AddButton } from '../../atoms/AddButton/AddButton';
-export type NoteListPageProps = {
-  user_id: string;
-  class_id: string;
-};
+import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
+import { LgTitle } from '../../../../components/atoms/LgTitle/LgTitle';
 
-export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
-  // fetch notes with class_ids
+export type PrivateNotesProps = {
+  params: {
+    user_id: string;
+  };
+};
+export default function YourNotes({ params: { user_id } }: PrivateNotesProps) {
+  // TODO: fetch user notes with user_id under the condition of is_private === false
   const notes: {
-    data: Array<Note>;
+    data: Array<{
+      id: string;
+      name: string;
+      description: string;
+      tags: Array<string>;
+      numOfLike: number;
+      class_id: string;
+    }>;
   } = {
     data: [
       {
@@ -19,6 +27,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '1',
@@ -26,6 +35,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '2',
@@ -33,6 +43,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '3',
@@ -40,6 +51,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '4',
@@ -47,6 +59,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '5',
@@ -54,6 +67,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '6',
@@ -61,6 +75,7 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
+        class_id: '0',
       },
       {
         id: '7',
@@ -68,38 +83,29 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
         description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
         tags: ['math', 'math', 'math'],
         numOfLike: 24,
-      },
-      {
-        id: '8',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '9',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
+        class_id: '0',
       },
     ],
   };
   return (
-    <Div>
-      {notes.data.map((el) => (
-        <NoteCard
-          key={el.id}
-          note_id={el.id}
-          user_id={user_id}
-          class_id={class_id}
-          nameOfStudent={el.name}
-          description={el.description}
-          tags={el.tags}
-          numOfLike={el.numOfLike}
-        />
-      ))}
-      <AddButton isNoteAdd={true} isCommentAdd={false} user_id={user_id} class_id={class_id} />
-    </Div>
+    <WrapperContainer>
+      <CoreContainer>
+        <Div>
+          <LgTitle title='投稿したノートたち' />
+          {notes.data.map((el) => (
+            <NoteCard
+              key={el.id}
+              note_id={el.id}
+              user_id={user_id}
+              class_id={el.class_id}
+              nameOfStudent={el.name}
+              description={el.description}
+              tags={el.tags}
+              numOfLike={el.numOfLike}
+            />
+          ))}
+        </Div>
+      </CoreContainer>
+    </WrapperContainer>
   );
-};
+}

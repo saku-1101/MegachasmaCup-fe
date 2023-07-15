@@ -1,6 +1,5 @@
 import { StyledHeader } from './Header.style';
 import { HeaderLogo } from '../../atoms/HeaderLogo/HeaderLogo';
-import { AccountButton } from '../../atoms/AccountButton/AccountButton';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
 export type HeaderProps = {
   user: {
@@ -12,11 +11,11 @@ export type HeaderProps = {
   };
 };
 
-export const Header = ({ user }: HeaderProps) => {
+export const Header = ({user}: HeaderProps) => {
   return (
     <StyledHeader>
       <HeaderLogo />
-      <DropdownMenu user={user} />
+      <DropdownMenu user_id={user.id} />
     </StyledHeader>
   );
 };

@@ -10,7 +10,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // user Data fetch
+  // user Data fetch after the authentication
+  // useEffectを使用する必要があるならheaderコンポーネントでuseEffectしてuserの変更を検知し，
+  // dropdownにauth済みユーザを反映する
   const user = {
     id: '0',
     name: 'student',
@@ -18,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     faculty: 'infomatics',
     year: 4,
   };
-  user;
+
   return (
     <html lang='en'>
       <body className={inter.className}>

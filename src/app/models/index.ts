@@ -20,3 +20,10 @@ export type Note = {
   tags: Array<string>;
   numOfLike: number;
 };
+
+export type Comment = {
+  id: string;
+  user: {id: string; name: string};
+  comment: string;
+  like: number;
+};

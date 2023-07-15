@@ -41,7 +41,7 @@ export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
           name='password'
           inputType='password'
           label='パスワード'
-          placeholder='Email'
+          placeholder='Password'
           pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
         />
         <FirstEngagementButton formId='authForm' label={buttonLabel} />
