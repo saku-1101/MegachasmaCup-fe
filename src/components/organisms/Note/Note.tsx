@@ -38,7 +38,7 @@ export const Note = ({ user, numOfLike }: NoteProps) => {
         </div>
         <NoteContent> {user.note.content}</NoteContent>
       </NoteContentWrapper>
-      <UserWithLike user={user} numOfLike={numOfLike} />
+      <UserWithLike isLikeToComment={false} note_id={user.note_id} user={user} numOfLike={numOfLike} />
     </StyledNote>
   );
 };

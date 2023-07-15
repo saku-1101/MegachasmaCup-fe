@@ -8,3 +8,14 @@ export const CoreContainer = tw.div`
 md:w-[60%]
 max-w-[95%]
 `;
+
+export const Div = tw.div`
+    flex
+    flex-col
+    items-center
+    justify-center
+    md:gap-10
+    gap-5
+    w-full
+    h-full
+`;

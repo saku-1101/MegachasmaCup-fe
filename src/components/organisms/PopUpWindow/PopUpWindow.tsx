@@ -27,9 +27,10 @@ export type PopUpWindowProps = {
   subtitle: string;
   isWelcomePage: boolean;
   buttonLabel: string;
+  user_id?: string;
 };
 
-export const PopUpWindow = ({ title, subtitle, isWelcomePage, buttonLabel }: PopUpWindowProps) => {
+export const PopUpWindow = ({ title, subtitle, isWelcomePage, buttonLabel, user_id }: PopUpWindowProps) => {
   return (
     <AnimatePresence initial={true} mode='wait' onExitComplete={() => null}>
       <div className='backdrop'>
@@ -46,7 +47,7 @@ export const PopUpWindow = ({ title, subtitle, isWelcomePage, buttonLabel }: Pop
           {isWelcomePage ? (
             <WelcomePageInputs buttonLabel={buttonLabel} />
           ) : (
-            <SubjectSelectComponent buttonLabel={buttonLabel} />
+            <SubjectSelectComponent buttonLabel={buttonLabel} user_id={user_id} />
           )}
         </motion.div>
       </div>

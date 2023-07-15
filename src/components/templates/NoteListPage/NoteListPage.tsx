@@ -90,13 +90,16 @@ export const NoteListPage = ({ user_id, class_id }: NoteListPageProps) => {
       {notes.data.map((el) => (
         <NoteCard
           key={el.id}
+          note_id={el.id}
+          user_id={user_id}
+          class_id={class_id}
           nameOfStudent={el.name}
           description={el.description}
           tags={el.tags}
           numOfLike={el.numOfLike}
         />
       ))}
-      <AddButton isNoteAdd={true} user_id={user_id} class_id={class_id} />
+      <AddButton isNoteAdd={true} isCommentAdd={false} user_id={user_id} class_id={class_id} />
     </Div>
   );
 };
