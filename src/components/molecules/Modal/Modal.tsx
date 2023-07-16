@@ -31,12 +31,20 @@ export type ModalProps = {
   title: string;
   subtitle: string;
   handleAction?: () => void;
+  label1?: string;
+  label2?: string;
 };
 
-export const Modal = ({ modalOpen, handleClose, title, subtitle }: ModalProps) => {
+export const Modal = ({ modalOpen, handleClose, title, subtitle, label1, label2 }: ModalProps) => {
   const someAction = () => {
     return;
   };
+  if (label1 === undefined) {
+    label1 = '公開する';
+  }
+  if (label2 === undefined) {
+    label2 = '今はやめておく';
+  }
   return (
     <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
       {modalOpen && (
@@ -51,8 +59,8 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle }: ModalProps) =
           >
             <MdTitle title={title} />
             <Description description={subtitle} />
-            <Button label='公開する' isSecondaryBg={false} handleAction={someAction} />
-            <Button label='今はやめておく' isSecondaryBg={true} handleAction={handleClose} />
+            <Button label={label1} isSecondaryBg={false} handleAction={someAction} />
+            <Button label={label2} isSecondaryBg={true} handleAction={handleClose} />
           </motion.div>
         </Backdrop>
       )}

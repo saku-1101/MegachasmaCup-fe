@@ -4,8 +4,7 @@ import { StyledCard } from './ClassCard.style';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
 import { AddNoteSvg } from '../../../../public/index';
-import { LoadingCard } from '@/components/atoms/LoadingCard/LoadingCard';
-import { SkeltonClassCard } from '@/components/atoms/LoadingCard/SkeltonClassCard';
+import { useRouter } from 'next/navigation';
 
 export type ClassCardProps = {
   title: string;
