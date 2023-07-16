@@ -3,6 +3,9 @@ import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
 
+import { useState } from 'react';
+import { Modal } from '../Modal/Modal';
+
 const slideVerticalAnimation = {
   open: {
     rotateX: 0,
@@ -56,31 +59,50 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
   ];
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 4) * 35;
+  const [WindowState, setWindowState] = useState(false);
+  const ToggleWindowState = () => {
+    setWindowState(!WindowState);
+    console.log(WindowState);
+  };
+
   return (
-    <div className='relative'>
-      <AccountButton onClick={toggleDropdown} />
-      <motion.div
-        className='dropdown-container md:w-[15rem] w-[10rem]'
-        style={{ height: `${leftMenuHeight}px` }}
-        initial='close'
-        animate={isOpen ? 'open' : 'close'}
-        variants={slideVerticalAnimation}
-      >
-        <motion.div className='dropdown' initial='left' variants={slideHorizontalAnimation}>
-          <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
-            <ul className='item-list'>
-              {leftMenu.map((text, i) => (
-                <Link key={i} className='item' href={text.url}>
-                  {text.name}
-                </Link>
-              ))}
-              <Link className='item text-error' href='/'>
-                ログアウト
-              </Link>
-            </ul>
+    <>
+      <div className='relative'>
+        <AccountButton onClick={toggleDropdown} />
+        <motion.div
+          className='dropdown-container md:w-[15rem] w-[10rem]'
+          style={{ height: `${leftMenuHeight}px` }}
+          initial='close'
+          animate={isOpen ? 'open' : 'close'}
+          variants={slideVerticalAnimation}
+        >
+          <motion.div className='dropdown' initial='left' variants={slideHorizontalAnimation}>
+            <div className={WindowState ? 'visible' : 'hidden'}>
+              <Modal
+                title='ログアウト'
+                subtitle='ログアウトしますか？'
+                modalOpen={WindowState}
+                handleClose={ToggleWindowState}
+                label1='ログアウトする'
+                user_id={user_id}
+              ></Modal>
+            </div>
+
+            <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
+              <ul className='item-list'>
+                {leftMenu.map((text, i) => (
+                  <Link key={i} className='item' href='/'>
+                    {text.name}
+                  </Link>
+                ))}
+                <a className='item text-error' onClick={ToggleWindowState}>
+                  ログアウト
+                </a>
+              </ul>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
-    </div>
+      </div>
+    </>
   );
 };
