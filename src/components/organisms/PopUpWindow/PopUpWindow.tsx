@@ -45,6 +45,8 @@ export const PopUpWindow = ({
 }: PopUpWindowProps) => {
   const router = useRouter();
   const handleCreateNote = () => {
+    console.log('here');
+
     const note_id = '0'; // TODO: note_idのuuid作成する
     router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
   };
@@ -63,7 +65,7 @@ export const PopUpWindow = ({
           <Description description={subtitle} />
           {isWelcomePage ? (
             isFirstNoteErrorPage ? (
-              <FirstEngagementButton label={buttonLabel} handleAction={handleCreateNote} />
+              <FirstEngagementButton label={buttonLabel} handleAction={handleCreateNote} type='button' />
             ) : (
               <WelcomePageInputs buttonLabel={buttonLabel} />
             )

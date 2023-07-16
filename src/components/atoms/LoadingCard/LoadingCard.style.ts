@@ -10,14 +10,9 @@ export const StyledCard = tw.div`
     w-full    
     margin-auto
     border-2
-    p-[3.25rem]
+    p-[3rem]
     border-textBasic
-    rounded-xl
-    flex
-    md:flex-row
-    justify-between
-    items-center
     bg-white
-    flex-col
-    h-24
+    animate-pulse
+    rounded-xl
 `;
