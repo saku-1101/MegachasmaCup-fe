@@ -100,8 +100,8 @@ query getNotes($user_id: String!, $class_id: String) {
 }
 
 # ノートページ
-query getNote($user_id: String!, $class_id: String, $note_id: String) {
-  getNotes(user_id: $user_id, class_id: $class_id, note_id: $note_id) {
+query getNote($note_id: String) {
+  getNotes(note_id: $note_id) {
     id
     description
     tags {

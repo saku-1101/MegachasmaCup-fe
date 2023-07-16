@@ -75,7 +75,7 @@ type Comment {
 }
 
 type Query {
-  getNotes(user_id: String!, class_id: String, note_id: String): [Note!]!
+  getNotes(user_id: String, class_id: String, note_id: String): [Note!]!
   getSchools(searchWord: String!): [School!]!
   getClasses(user_id: String!): [Class!]!
   getTags(searchWord: String!): [Tag!]!

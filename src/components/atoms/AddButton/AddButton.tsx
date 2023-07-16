@@ -48,6 +48,7 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id 
           title='講義グループにジョイン！'
           subtitle={`講義グループに入り，講義ノートを作成してみよう！\nノートを作成するとみんなのノートが見れたり，コメントできたりするよ！`}
           isWelcomePage={false}
+          isFirstNoteErrorPage={false}
           buttonLabel='この講義にジョイン！'
           user_id={user_id}
         />

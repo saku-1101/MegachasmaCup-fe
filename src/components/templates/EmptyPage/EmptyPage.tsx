@@ -19,6 +19,7 @@ export const EmptyPage = () => {
           title='講義グループにジョイン！'
           subtitle={`講義グループに入り，講義ノートを作成してみよう！\nノートを作成するとみんなのノートが見れたり，コメントできたりするよ！`}
           isWelcomePage={false}
+          isFirstNoteErrorPage={false}
           buttonLabel='この講義にジョイン！'
         />
       ) : (
