@@ -25,7 +25,4 @@ export const Default: StoryObj<typeof NoteEditor> = {
       </WrapperContainer>
     ),
   ],
-  args: {
-    title: 'Student',
-  },
 };

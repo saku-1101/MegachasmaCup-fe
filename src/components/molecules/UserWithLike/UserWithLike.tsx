@@ -2,28 +2,23 @@ import { AccountSvg } from '../../../../public';
 import { Div } from './UserWithLike.style';
 import { LikeButton } from '../../atoms/LikeButton/LikeButton';
 export type UserWithLikeProps = {
-  user: {
-    id: string;
-    name: string;
-    faculty: string;
-    year: number;
-  };
+  isLikeToComment: boolean;
+  note_id?: string;
+  comment_id?: string;
+  user: { id: string; name: string };
   numOfLike: number;
 };
 
-export const UserWithLike = ({ user, numOfLike }: UserWithLikeProps) => {
+export const UserWithLike = ({ isLikeToComment, note_id, comment_id, user, numOfLike }: UserWithLikeProps) => {
   return (
     <Div>
       <Div className='justify-start'>
         {AccountSvg()}
         <div className='pl-[1rem] flex flex-col'>
-          <p>
-            {user.faculty} {`${user.year}年`}
-          </p>
           <p>{user.name}</p>
         </div>
       </Div>
-      <LikeButton numOfLike={numOfLike} />
+      <LikeButton isLikeToComment={isLikeToComment} note_id={note_id} comment_id={comment_id} numOfLike={numOfLike} />
     </Div>
   );
 };

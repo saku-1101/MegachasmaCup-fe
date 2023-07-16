@@ -2,7 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: process.env.NEXT_PUBLIC_HASURA_GRAPHQL_URL!,
+  schema: 'src/graphql/schema/schema.graphql',
   config: {
     skipTypename: true,
     enumsAsTypes: true,
@@ -10,7 +10,7 @@ const config: CodegenConfig = {
       numeric: 'number',
     },
   },
-  documents: 'src/graphql/query/queries.graphql',
+  documents: ['src/graphql/query/queries.graphql', 'src/graphql/mutation/mutations.graphql'],
   generates: {
     'src/codegen/gql/': {
       preset: 'client',

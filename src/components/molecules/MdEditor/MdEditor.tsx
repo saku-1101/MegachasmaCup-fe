@@ -5,21 +5,33 @@ import onImagePasted from './utils/onImagePasted';
 import '@uiw/react-md-editor/markdown-editor.css';
 import '@uiw/react-markdown-preview/markdown.css';
 import rehypeSanitize from 'rehype-sanitize';
-import { Button } from '../../atoms/Button/Button';
+import { Button } from '@/components/atoms/Button/Button';
 import { PreviewType } from '@uiw/react-md-editor';
 import { Div } from './MdEditor.style';
 import { TagField } from '../TagField/TagField';
 import { TextareaField } from '@/components/atoms/TextareaField/TextareaField';
+import { useRouter } from 'next/navigation';
+import { ModalHandlingButton } from '../../atoms/ModalHandlingButton/ModalHandlingButton';
 
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false, loading: () => <div>now loading</div> });
-export const MdEditor = () => {
+export type MdEditorProps = {
+  user_id: string;
+  class_id: string;
+  note_id: string;
+};
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
+  ssr: false,
+  loading: () => <div>エディタを読み込み中．．．</div>,
+});
+
+export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
   const [markdown, setMarkdown] = useState<string | undefined>();
   const [mode, setMode] = useState<PreviewType | undefined>('edit');
+  const router = useRouter();
   const handleSave = () => {
-    console.log('saved');
-  };
-  const handleRelease = () => {
-    console.log('released');
+    // create note as is_private true using ids
+    // push to note list page
+    router.push(`/user/${user_id}/class/${class_id}/note`);
+    router.refresh();
   };
 
   return (
@@ -55,8 +67,8 @@ export const MdEditor = () => {
       <TextareaField />
       <TagField />
       <div className='w-full flex justify-end items-center gap-4 p-2'>
-        <Button label='一時保存' isSecondaryBg={false} handleAction={() => handleSave} />
-        <Button label='公開' isSecondaryBg={false} handleAction={() => handleRelease} />
+        <Button label='一時保存' isSecondaryBg={false} handleAction={handleSave} />
+        <ModalHandlingButton label='公開' isSecondaryBg={false} user_id={user_id} class_id={class_id} />
       </div>
     </Div>
   );

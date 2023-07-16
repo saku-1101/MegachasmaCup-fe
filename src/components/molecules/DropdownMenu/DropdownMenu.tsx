@@ -2,25 +2,13 @@
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
+
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
 import { ModalHandlingButton } from '@/components/atoms/ModalHandlingButton/ModalHandlingButton';
 import { LogoutModal } from '../LogoutModal/LogoutModal';
-export type DropdownMenuProps = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    faculty: string;
-    year: number;
-  };
-};
-const leftMenu = [
-  { name: '投稿したノート', url: '/' },
-  { name: 'いいねしたノート', url: '/' },
-  { name: 'コメント一覧', url: '/' },
-  { name: 'アカウント設定', url: '/' },
-];
+
+
 
 const slideVerticalAnimation = {
   open: {
@@ -62,7 +50,17 @@ const slideHorizontalAnimation = {
   },
 };
 
-export const DropdownMenu = ({ user }: DropdownMenuProps) => {
+export type DropdownMenuProps = {
+  user_id: string;
+};
+
+export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
+  const leftMenu = [
+    { name: '投稿したノート', url: `/user/${user_id}/your_notes` },
+    { name: 'いいねしたノート', url: `/user/${user_id}/likes` },
+    { name: '保存済みノート', url: `/user/${user_id}/private_notes` },
+    { name: 'アカウント設定', url: `/user/${user_id}/setting` },
+  ];
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 4) * 35;
   const [WindowState, setWindowState] = useState(false);
@@ -72,6 +70,7 @@ export const DropdownMenu = ({ user }: DropdownMenuProps) => {
   };
 
   return (
+
     <>
       <div className='relative'>
         <AccountButton onClick={toggleDropdown} />
@@ -109,6 +108,7 @@ export const DropdownMenu = ({ user }: DropdownMenuProps) => {
                 </a>
               </ul>
             </motion.div>
+
           </motion.div>
         </motion.div>
       </div>

@@ -5,11 +5,12 @@ import PoppingData from '@/assets/lottie/popping.json';
 import { useRef, useState } from 'react';
 export type FirstEngagementButtonProps = {
   label: string;
-  formId: string;
+  formId?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   handleAction?: () => void;
 };
 
-export const FirstEngagementButton = ({ label, formId, handleAction }: FirstEngagementButtonProps) => {
+export const FirstEngagementButton = ({ label, formId, type = 'submit', handleAction }: FirstEngagementButtonProps) => {
   const playerRef = useRef<Player>(null);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
@@ -18,14 +19,17 @@ export const FirstEngagementButton = ({ label, formId, handleAction }: FirstEnga
     }
     setIsActive(true);
     playerRef.current.play();
-    handleAction;
+    if (type === 'button') {
+      console.log(handleAction!());
+      handleAction!();
+    }
   };
 
   return (
     <Div>
       <StyledButton
         id='submitButton'
-        type='submit'
+        type={type}
         form={formId}
         onClick={() => handleClick()}
         style={{ position: 'relative' }}

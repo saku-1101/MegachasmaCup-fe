@@ -1,18 +1,17 @@
 import { NoteEditPage } from '@/components/templates/NoteEditPage/NoteEditPage';
 import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 type NoteEditProps = {
-  params: { user_id: string };
-};
-export default function NoteEdit({ params: { user_id } }: NoteEditProps) {
-  // get user with user_id
-  const user = {
-    user_id: '0',
-    name: 'student',
+  params: {
+    user_id: string;
+    class_id: string;
+    note_id: string;
   };
+};
+export default function NoteEdit({ params: { user_id, class_id, note_id } }: NoteEditProps) {
   return (
     <WrapperContainer>
       <CoreContainer>
-        <NoteEditPage user={user} />
+        <NoteEditPage user_id={user_id} class_id={class_id} note_id={note_id} />
       </CoreContainer>
     </WrapperContainer>
   );

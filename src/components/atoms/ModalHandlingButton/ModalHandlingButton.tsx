@@ -6,9 +6,11 @@ import { Modal } from '../../molecules/Modal/Modal';
 export type ModalHandlingButtonProps = {
   label: string;
   isSecondaryBg: boolean;
+  user_id: string;
+  class_id?: string;
 };
 
-export const ModalHandlingButton = ({ label, isSecondaryBg }: ModalHandlingButtonProps) => {
+export const ModalHandlingButton = ({ label, isSecondaryBg, user_id, class_id }: ModalHandlingButtonProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const close = () => setModalOpen(false);
@@ -16,7 +18,14 @@ export const ModalHandlingButton = ({ label, isSecondaryBg }: ModalHandlingButto
   return (
     <>
       <Button label={label} isSecondaryBg={isSecondaryBg} handleAction={() => (modalOpen ? close() : open())} />
-      <Modal modalOpen={modalOpen} handleClose={close} title='This is a modal' subtitle='This is a sentence' />
+      <Modal
+        modalOpen={modalOpen}
+        handleClose={close}
+        title='⚠️'
+        subtitle='本当に公開しますか？'
+        user_id={user_id}
+        class_id={class_id}
+      />
     </>
   );
 };
