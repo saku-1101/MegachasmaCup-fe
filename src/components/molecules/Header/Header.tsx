@@ -1,3 +1,4 @@
+'use client';
 import { StyledHeader } from './Header.style';
 import { HeaderLogo } from '../../atoms/HeaderLogo/HeaderLogo';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';

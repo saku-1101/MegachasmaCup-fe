@@ -13,4 +13,6 @@ export const StyledCard = tw.div`
     items-center
     bg-light
     flex-col
+    dark:bg-black 
+    dark:text-white
 `;
