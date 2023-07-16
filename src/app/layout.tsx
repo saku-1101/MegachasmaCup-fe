@@ -28,7 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const user = await getUser();
 
   return (
-    <html lang='en' className="max-w-screen overflow-x-hidden">
+    <html lang='en' className='w-screen overflow-x-hidden'>
       <body className={inter.className}>
         <Suspense fallback='loading...'>
           <Header user={user} />
