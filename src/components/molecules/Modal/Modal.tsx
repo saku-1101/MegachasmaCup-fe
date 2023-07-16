@@ -3,6 +3,7 @@ import Backdrop from './Backdrop';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
 import { Button } from '../../atoms/Button/Button';
+import { useRouter } from 'next/navigation';
 
 const dropIn = {
   hidden: {
@@ -31,11 +32,17 @@ export type ModalProps = {
   title: string;
   subtitle: string;
   handleAction?: () => void;
+  user_id: string;
+  class_id?: string;
 };
 
-export const Modal = ({ modalOpen, handleClose, title, subtitle }: ModalProps) => {
-  const someAction = () => {
-    return;
+export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_id }: ModalProps) => {
+  const router = useRouter();
+  const handleRelease = () => {
+    // create note as is_private false using ids
+    // push to note list page
+    router.push(`/user/${user_id}/class/${class_id}/note`);
+    router.refresh();
   };
   return (
     <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
@@ -51,7 +58,7 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle }: ModalProps) =
           >
             <MdTitle title={title} />
             <Description description={subtitle} />
-            <Button label='公開する' isSecondaryBg={false} handleAction={someAction} />
+            <Button label='公開する' isSecondaryBg={false} handleAction={handleRelease} />
             <Button label='今はやめておく' isSecondaryBg={true} handleAction={handleClose} />
           </motion.div>
         </Backdrop>

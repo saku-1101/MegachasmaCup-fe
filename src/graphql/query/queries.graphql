@@ -1,41 +1,133 @@
-query GetProfiles {
-  profiles {
+# 投稿したノート一覧ページ
+query GetMyNotes($user_id: String!) {
+  getNotes(user_id: $user_id) {
+    id
+    class_id
+    title
+    description
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
+    }
+  }
+}
+
+# いいねしたノート一覧ページ
+query getLikedNotesOfUser($user_id: String!) {
+  getUser(user_id: $user_id) {
+    likes {
+      id
+      class_id
+      title
+      description
+      like_user {
+        id
+      }
+    }
+  }
+}
+
+# 保存(private)したノート一覧ページ
+query getPrivateNotesOfUser($user_id: String!) {
+  getMyNotes(user_id: $user_id) {
+    id
+    class_id
+    title
+    description
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
+    }
+  }
+}
+
+# アカウント設定ページ
+query getAccountSettings($user_id: String!) {
+  getUser(user_id: $user_id) {
+    id
+    image_url
+    name
+    email
+    school {
+      id
+      name
+    }
+  }
+}
+
+# クラスページ
+query getClassesOfUser($user_id: String!) {
+  getClasses(user_id: $user_id) {
+    id
+    name
+    school {
+      id
+      name
+    }
+    students {
+      id
+    }
+  }
+}
+
+# クラスページに移動する時の表示のみ
+query getClasses($user_id: String!) {
+  getClasses(user_id: $user_id) {
     id
     name
   }
 }
 
-query GetPublicNotesOfUser {
-  notes(user_id: user_id, is_public: true) {
+# ノート一覧ページ
+query getNotes($user_id: String!, $class_id: String) {
+  getNotes(user_id: $user_id, class_id: $class_id) {
     id
-    class_id
-    school_id
-    title
     description
-  }
-}
-
-query getLikedNotesOfUser {
-  like(user_id: user_id){
-    notes{
-      note_id
-      title
-      description
-      likeCount
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
     }
   }
 }
 
-query getPrivateNotesOfUser {
-  notes(user_id: user_id, is_public: false){
+# ノートページ
+query getNote($note_id: String) {
+  getNotes(note_id: $note_id) {
     id
-    class_id
-    school_id
-    title
     description
+    tags {
+      id
+      name
+    }
+    like_user {
+      id
+    }
+    comment {
+      id
+      comment
+    }
   }
 }
 
-query getAccountSettings {
-  
+query getTags($searchWord: String!) {
+  getTags(searchWord: $searchWord) {
+    id
+    name
+  }
+}
+
+query getSchools($searchWord: String!) {
+  getSchools(searchWord: $searchWord) {
+    id
+    name
+  }
 }

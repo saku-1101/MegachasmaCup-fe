@@ -6,12 +6,10 @@ export type HeaderProps = {
     id: string;
     name: string;
     email: string;
-    faculty: string;
-    year: number;
   };
 };
 
-export const Header = ({user}: HeaderProps) => {
+export const Header = ({ user }: HeaderProps) => {
   return (
     <StyledHeader>
       <HeaderLogo />

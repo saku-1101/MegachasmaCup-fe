@@ -23,10 +23,13 @@ export const ClassCard = ({ class_id, title, numOfStudent, numOfNote, user_id }:
     router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
     router.refresh();
   };
+
   return (
     <>
       <StyledCard>
-        <MdTitle title={title} />
+        <a href={`/user/${user_id}/class/${class_id}/note`}>
+          <MdTitle title={title} />
+        </a>
         <Description description={numOfStudent.toString() + '人がこの講義に参加しています'} />
         <div className='text-dark'>
           <p>📝Note投稿数:</p>

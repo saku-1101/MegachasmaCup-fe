@@ -11,13 +11,17 @@ import { Div } from './MdEditor.style';
 import { TagField } from '../TagField/TagField';
 import { TextareaField } from '@/components/atoms/TextareaField/TextareaField';
 import { useRouter } from 'next/navigation';
+import { ModalHandlingButton } from '../../atoms/ModalHandlingButton/ModalHandlingButton';
 
 export type MdEditorProps = {
   user_id: string;
   class_id: string;
   note_id: string;
 };
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false, loading: () => <div>now loading</div> });
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
+  ssr: false,
+  loading: () => <div>エディタを読み込み中．．．</div>,
+});
 
 export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
   const [markdown, setMarkdown] = useState<string | undefined>();
@@ -25,12 +29,6 @@ export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
   const router = useRouter();
   const handleSave = () => {
     // create note as is_private true using ids
-    // push to note list page
-    router.push(`/user/${user_id}/class/${class_id}/note`);
-    router.refresh();
-  };
-  const handleRelease = () => {
-    // create note as is_private false using ids
     // push to note list page
     router.push(`/user/${user_id}/class/${class_id}/note`);
     router.refresh();
@@ -70,7 +68,7 @@ export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
       <TagField />
       <div className='w-full flex justify-end items-center gap-4 p-2'>
         <Button label='一時保存' isSecondaryBg={false} handleAction={handleSave} />
-        <Button label='公開' isSecondaryBg={false} handleAction={handleRelease} />
+        <ModalHandlingButton label='公開' isSecondaryBg={false} user_id={user_id} class_id={class_id} />
       </div>
     </Div>
   );

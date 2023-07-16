@@ -4,11 +4,13 @@ import { InputField } from '../../atoms/InputField/InputField';
 import { SelectField } from '../../atoms/SelectField/SelectField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/atoms/Button/Button';
 export type WelcomePageInputsProps = {
   buttonLabel: string;
 };
 
 export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
+  const [isLogin, setIsLogin] = useState(false);
   // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -28,7 +30,11 @@ export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
   return (
     <Div>
       <form className='w-[80%] max-w-[600px]' onSubmit={handleSubmit} id='authForm'>
-        <InputField name='userName' inputType='text' label='ユーザ名' placeholder='Username' pattern='.{3,}' />
+        {isLogin ? (
+          ''
+        ) : (
+          <InputField name='userName' inputType='text' label='ユーザ名' placeholder='Username' pattern='.{3,}' />
+        )}
         <InputField
           name='email'
           inputType='email'
@@ -36,7 +42,7 @@ export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
           placeholder='Email'
           pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
         />
-        <SelectField name='school' label='大学' placeholder='Select' />
+        {isLogin ? '' : <SelectField name='school' label='大学' placeholder='Select' />}
         <InputField
           name='password'
           inputType='password'
@@ -44,7 +50,23 @@ export const WelcomePageInputs = ({ buttonLabel }: WelcomePageInputsProps) => {
           placeholder='Password'
           pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
         />
-        <FirstEngagementButton formId='authForm' label={buttonLabel} />
+        {isLogin ? '' : <FirstEngagementButton formId='authForm' label={buttonLabel} />}
+        {isLogin ? <Button formId='authForm' type='submit' isSecondaryBg={true} label='ログイン' /> : ''}
+        {isLogin ? (
+          <p className='text-sm text-subtleText text-center'>
+            新規登録はここから &gt;&gt;{' '}
+            <span className='text-accent hover:text-secondary' onClick={() => setIsLogin(false)}>
+              新規登録へ進む
+            </span>
+          </p>
+        ) : (
+          <p className='text-sm text-subtleText text-center'>
+            ログインはここから &gt;&gt;{' '}
+            <span className='text-accent hover:text-secondary' onClick={() => setIsLogin(true)}>
+              ログインへ進む
+            </span>
+          </p>
+        )}
       </form>
     </Div>
   );

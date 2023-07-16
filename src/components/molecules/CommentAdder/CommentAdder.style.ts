@@ -2,8 +2,7 @@ import tw from 'tailwind-styled-components';
 
 export const StyledCard = tw.div`
     w-full
-    max-h-[300px]       
-    margin-auto
+    max-h-[400px]       
     md:p-[1rem]
     p-[0.5rem]
     border-2
