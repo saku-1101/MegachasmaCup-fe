@@ -5,10 +5,6 @@ import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
 
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { ModalHandlingButton } from '@/components/atoms/ModalHandlingButton/ModalHandlingButton';
-import { LogoutModal } from '../LogoutModal/LogoutModal';
-
-
 
 const slideVerticalAnimation = {
   open: {
@@ -70,7 +66,6 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
   };
 
   return (
-
     <>
       <div className='relative'>
         <AccountButton onClick={toggleDropdown} />
@@ -89,6 +84,7 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
                 modalOpen={WindowState}
                 handleClose={ToggleWindowState}
                 label1='ログアウトする'
+                user_id={user_id}
               ></Modal>
             </div>
 
@@ -99,16 +95,11 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
                     {text.name}
                   </Link>
                 ))}
-                {/* <ModalHandlingButton label='ログアウト' isSecondaryBg={false} /> */}
-                {/* <Link className='item text-error' href='/LogoutModal.tsx'>
-                  ログアウト
-                </Link> */}
                 <a className='item text-error' onClick={ToggleWindowState}>
                   ログアウト
                 </a>
               </ul>
             </motion.div>
-
           </motion.div>
         </motion.div>
       </div>
