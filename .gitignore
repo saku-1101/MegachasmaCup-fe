@@ -38,3 +38,6 @@ next-env.d.ts
 # storybook
 build-storybook.log
 /storybook-static
+
+# gcp storage key
+megashasmacup-storage-728047d25308.json
