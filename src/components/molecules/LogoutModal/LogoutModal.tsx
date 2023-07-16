@@ -1,9 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import Backdrop from './Backdrop';
+import Backdrop from '../Modal/Backdrop';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
 import { Button } from '../../atoms/Button/Button';
-import { useRouter } from 'next/navigation';
 
 const dropIn = {
   hidden: {
@@ -26,38 +25,18 @@ const dropIn = {
   },
 };
 
-export type ModalProps = {
+export type LogoutModalProps = {
   modalOpen: boolean;
   handleClose: () => void;
   title: string;
   subtitle: string;
   handleAction?: () => void;
-
- 
-
-
-
-  label1?: string;
-  label2?: string;
-  user_id: string;
-  class_id?: string;
 };
 
-export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_id ,label1,label2}: ModalProps) => {
-  const router = useRouter();
-  const handleRelease = () => {
-    // create note as is_private false using ids
-    // push to note list page
-    router.push(`/user/${user_id}/class/${class_id}/note`);
-    router.refresh();
-
+export const LogoutModal = ({ modalOpen, handleClose, title, subtitle }: LogoutModalProps) => {
+  const someAction = () => {
+    return;
   };
-  if (label1 === undefined) {
-    label1 = '公開する';
-  }
-  if (label2 === undefined) {
-    label2 = '今はやめておく';
-  }
   return (
     <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
       {modalOpen && (
@@ -72,10 +51,8 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
           >
             <MdTitle title={title} />
             <Description description={subtitle} />
-
-            <Button label={label1} isSecondaryBg={false} handleAction={handleRelease} />
-            <Button label={label2} isSecondaryBg={true} handleAction={handleClose} />
-
+            <Button label='LogOutする' isSecondaryBg={false} handleAction={someAction} />
+            <Button label='今はやめておく' isSecondaryBg={true} handleAction={handleClose} />
           </motion.div>
         </Backdrop>
       )}
