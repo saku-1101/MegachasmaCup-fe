@@ -2,7 +2,6 @@
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
-
 import { useEffect, useState } from 'react';
 import { Modal } from '../Modal/Modal';
 const slideVerticalAnimation = {
@@ -74,43 +73,46 @@ export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
   };
 
   return (
-    <div className='relative'>
-      <AccountButton img_url={img_url} onClick={toggleDropdown} Mode={Mode} />
-      <motion.div
-        className='dropdown-container md:w-[15rem] w-[10rem]'
-        style={{ height: `${leftMenuHeight}px` }}
-        initial='close'
-        animate={isOpen ? 'open' : 'close'}
-        variants={slideVerticalAnimation}
-      >
-        <motion.div className='dropdown' initial='left' variants={slideHorizontalAnimation}>
-          <div className={WindowState ? 'visible' : 'hidden'}>
-            <Modal
-              title='ログアウト'
-              subtitle='ログアウトしますか？'
-              modalOpen={WindowState}
-              handleClose={ToggleWindowState}
-              label1='ログアウトする'
-              user_id={user_id}
-            ></Modal>
-          </div>
-          <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
-            <ul className='item-list'>
-              {leftMenu.map((text, i) => (
-                <Link key={i} className='item' href={text.url}>
-                  {text.name}
-                </Link>
-              ))}
-              <button onClick={ToggleMode} className='item text-black dark:text-white'>
-                Dark Mode : {Mode ? 'ON' : 'OFF'}
-              </button>
-              <Link className='item text-error' href='/'>
-                ログアウト
-              </Link>
-            </ul>
+    <>
+      <div className='relative'>
+        <AccountButton img_url={img_url} onClick={toggleDropdown} Mode={Mode} />
+        <motion.div
+          className='dropdown-container md:w-[15rem] w-[10rem]'
+          style={{ height: `${leftMenuHeight}px` }}
+          initial='close'
+          animate={isOpen ? 'open' : 'close'}
+          variants={slideVerticalAnimation}
+        >
+          <motion.div className='dropdown' initial='left' variants={slideHorizontalAnimation}>
+            <div className={WindowState ? 'visible' : 'hidden'}>
+              <Modal
+                title='ログアウト'
+                subtitle='ログアウトしますか？'
+                modalOpen={WindowState}
+                handleClose={ToggleWindowState}
+                label1='ログアウトする'
+                user_id={user_id}
+              ></Modal>
+            </div>
+
+            <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
+              <ul className='item-list'>
+                {leftMenu.map((text, i) => (
+                  <Link key={i} className='item' href={text.url}>
+                    {text.name}
+                  </Link>
+                ))}
+                <button onClick={ToggleMode} className='item text-black dark:text-white'>
+                  Dark Mode : {Mode ? 'ON' : 'OFF'}
+                </button>
+                <a className='item text-error' onClick={ToggleWindowState}>
+                  ログアウト
+                </a>
+              </ul>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
-    </div>
+      </div>
+    </>
   );
 };
