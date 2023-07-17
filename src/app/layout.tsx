@@ -2,6 +2,8 @@ import { Header } from '@/components/molecules/Header/Header';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
+import { gqlClient } from '@/lib/client';
+import { GetAccountSettingsDocument } from '@/codegen/gql/graphql';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,6 +22,9 @@ const getUser = async () => {
 
   return user as {data: { id: string; name: string; email: string; img_url: string | undefined }};
 };
+// async function getUser() {
+//   const data = await gqlClient.request(GetAccountSettingsDocument, {});
+// }
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // user Data fetch after the authentication
   // useEffectを使用する必要があるならheaderコンポーネントでuseEffectしてuserの変更を検知し，

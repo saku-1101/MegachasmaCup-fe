@@ -4,8 +4,8 @@ mutation CreateUser($input: NewUser!) {
   }
 }
 
-mutation UpdateUser($input: NewUser) {
-  updateUser(input: $input) {
+mutation UpdateUser($id: String!, $input: UpdateUserProps) {
+  updateUser(id: $id, input: $input) {
     id
   }
 }
@@ -16,8 +16,8 @@ mutation CreateNote($input: NewNote!) {
   }
 }
 
-mutation UpdateNote($input: NewNote) {
-  updateNote(input: $input) {
+mutation UpdateNote($id: String!, $input: UpdateNoteProps) {
+  updateNote(id: $id, input: $input) {
     id
   }
 }
@@ -28,8 +28,8 @@ mutation CreateClass($input: NewClass!) {
   }
 }
 
-mutation UpdateClass($input: NewClass) {
-  updateClass(input: $input) {
+mutation UpdateClass($id: String!, $input: UpdateClassProps) {
+  updateClass(id: $id, input: $input) {
     id
   }
 }
@@ -39,8 +39,8 @@ mutation CreateSchool($input: NewSchool!) {
   }
 }
 
-mutation UpdateSchool($input: NewSchool) {
-  updateSchool(input: $input) {
+mutation UpdateSchool($id: String!, $input: UpdateSchoolProps) {
+  updateSchool(id: $id, input: $input) {
     id
   }
 }
@@ -51,8 +51,8 @@ mutation CreateComment($input: NewComment!) {
   }
 }
 
-mutation UpdateComment($input: NewComment) {
-  updateComment(input: $input) {
+mutation UpdateComment($id: String!, $input: UpdateCommentProps) {
+  updateComment(id: $id, input: $input) {
     id
   }
 }
@@ -63,14 +63,14 @@ mutation CreateTag($input: NewTag!) {
   }
 }
 
-mutation JoinClass($input: NewJoinClass!) {
-  joinClass(input: $input) {
+mutation JoinClass($classID: String!) {
+  joinClass(classID: $classID) {
     id
   }
 }
 
-mutation JoinSchool($input: NewJoinSchool!) {
-  joinSchool(input: $input) {
+mutation JoinSchool($schoolID: String!) {
+  joinSchool(schoolID: $schoolID) {
     id
   }
 }
