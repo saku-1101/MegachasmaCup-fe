@@ -2,7 +2,9 @@
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
+
 import { useEffect, useState } from 'react';
+import { Modal } from '../Modal/Modal';
 const slideVerticalAnimation = {
   open: {
     rotateX: 0,
@@ -45,9 +47,10 @@ const slideHorizontalAnimation = {
 
 export type DropdownMenuProps = {
   user_id: string;
+  img_url: string | undefined;
 };
 
-export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
+export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
   const leftMenu = [
     { name: '投稿したノート', url: `/user/${user_id}/your_notes` },
     { name: 'いいねしたノート', url: `/user/${user_id}/likes` },
@@ -57,6 +60,10 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 6) * 35;
   const [Mode, setMode] = useState(false);
+  const [WindowState, setWindowState] = useState(false);
+  const ToggleWindowState = () => {
+    setWindowState(!WindowState);
+  };
   const ToggleMode = () => {
     if (Mode) {
       document.documentElement.classList.add('dark');
@@ -65,20 +72,28 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
     }
     setMode(!Mode);
   };
-  useEffect(() => {
-    ToggleMode();
-  });
+
   return (
-    <div className='relative '>
-      <AccountButton onClick={toggleDropdown} Mode={Mode} />
+    <div className='relative'>
+      <AccountButton img_url={img_url} onClick={toggleDropdown} Mode={Mode} />
       <motion.div
-        className='dropdown-container  md:w-[15rem] w-[10rem]'
+        className='dropdown-container md:w-[15rem] w-[10rem]'
         style={{ height: `${leftMenuHeight}px` }}
         initial='close'
         animate={isOpen ? 'open' : 'close'}
         variants={slideVerticalAnimation}
       >
         <motion.div className='dropdown' initial='left' variants={slideHorizontalAnimation}>
+          <div className={WindowState ? 'visible' : 'hidden'}>
+            <Modal
+              title='ログアウト'
+              subtitle='ログアウトしますか？'
+              modalOpen={WindowState}
+              handleClose={ToggleWindowState}
+              label1='ログアウトする'
+              user_id={user_id}
+            ></Modal>
+          </div>
           <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
             <ul className='item-list'>
               {leftMenu.map((text, i) => (
@@ -86,13 +101,12 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
                   {text.name}
                 </Link>
               ))}
-              <Link className='item text-error' href='/'>
-                ログアウト
-              </Link>
-
               <button onClick={ToggleMode} className='item text-black dark:text-white'>
                 Dark Mode : {Mode ? 'ON' : 'OFF'}
               </button>
+              <Link className='item text-error' href='/'>
+                ログアウト
+              </Link>
             </ul>
           </motion.div>
         </motion.div>

@@ -8,4 +8,8 @@ export const Div = tw.div`
     h-full
     bg-primary
     dark:bg-primary
+<<<<<<< HEAD
 `;
+=======
+    `;
+>>>>>>> 3f853c5 (resolve conf)

@@ -2,8 +2,7 @@ import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
 import { Div } from './NoteListPage.style';
 import type { Note } from '@/app/models';
 import { AddButton } from '../../atoms/AddButton/AddButton';
-import { Suspense } from 'react';
-import { LoadingCard } from '@/components/atoms/LoadingCard/LoadingCard';
+
 export type NoteListPageProps = {
   user_id: string;
   class_id: string;

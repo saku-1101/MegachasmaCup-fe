@@ -1,11 +1,9 @@
 import { FormEventHandler, useState } from 'react';
 import { Div } from './WelcomePageInputs.style';
 import { InputField } from '../../atoms/InputField/InputField';
-import { SelectField } from '../../atoms/SelectField/SelectField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button/Button';
-import { PopUpWindow } from '@/components/organisms/PopUpWindow/PopUpWindow';
 export type WelcomePageInputsProps = {
   buttonLabel: string;
   handleAction: (user_id: string) => void | undefined;
