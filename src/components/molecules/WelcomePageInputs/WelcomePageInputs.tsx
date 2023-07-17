@@ -1,9 +1,10 @@
-import { FormEventHandler, useState } from 'react';
-import { Div } from './WelcomePageInputs.style';
-import { InputField } from '../../atoms/InputField/InputField';
-import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button/Button';
+import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
+import { CreateUser } from '@/lib/graphql/auth';
+import { useRouter } from 'next/navigation';
+import { FormEventHandler, useState } from 'react';
+import { InputField } from '../../atoms/InputField/InputField';
+import { Div } from './WelcomePageInputs.style';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import { gqlClient } from '@/lib/client';
 import { CreateUserDocument } from '@/codegen/gql/graphql';
@@ -35,6 +36,8 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
 
       // go to school registration popup
       // get a user id returned by mutation
+      const id = await CreateUser({ input: { email: email, password: password, name: user_name } });
+      console.log(id);
       const user_id = '0'; // this is returned value by mutation
       handleAction(user_id);
     } else {

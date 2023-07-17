@@ -131,3 +131,8 @@ query getSchools($searchWord: String!) {
     name
   }
 }
+query getJwt($input:GetJwtProps!){
+  getJwt(input:$input){
+    token
+  }
+}
