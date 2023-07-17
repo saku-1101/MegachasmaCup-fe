@@ -1,29 +1,29 @@
 # 投稿したノート一覧ページ
-query GetMyNotes($user_id: String!) {
-  getNotes(user_id: $user_id) {
+query GetMyNotes($input: GetNoteProps) {
+  getNotes(input: $input) {
     id
-    class_id
+    classId
     title
     description
     tags {
       id
       name
     }
-    like_user {
+    likeUser {
       id
     }
   }
 }
 
 # いいねしたノート一覧ページ
-query getLikedNotesOfUser($user_id: String!) {
-  getUser(user_id: $user_id) {
-    likes {
+query getLikedNotesOfUser($input: GetUserProps) {
+  getUser(input: $input) {
+    userLikes {
       id
-      class_id
+      classId
       title
       description
-      like_user {
+      likeUser {
         id
       }
     }
@@ -31,30 +31,30 @@ query getLikedNotesOfUser($user_id: String!) {
 }
 
 # 保存(private)したノート一覧ページ
-query getPrivateNotesOfUser($user_id: String!) {
-  getMyNotes(user_id: $user_id) {
+query getPrivateNotesOfUser($input: GetNoteProps) {
+  getNotes(input: $input) {
     id
-    class_id
+    classId
     title
     description
     tags {
       id
       name
     }
-    like_user {
+    likeUser {
       id
     }
   }
 }
 
 # アカウント設定ページ
-query getAccountSettings($user_id: String!) {
-  getUser(user_id: $user_id) {
+query getAccountSettings($input: GetUserProps) {
+  getUser(input: $input) {
     id
-    image_url
+    imageUrl
     name
     email
-    school {
+    userSchool {
       id
       name
     }
@@ -62,56 +62,56 @@ query getAccountSettings($user_id: String!) {
 }
 
 # クラスページ
-query getClassesOfUser($user_id: String!) {
-  getClasses(user_id: $user_id) {
+query getClassesOfUser($input: GetClassesProps) {
+  getClasses(input: $input) {
     id
     name
-    school {
+    classSchool {
       id
       name
     }
-    students {
+    classStudents {
       id
     }
   }
 }
 
 # クラスページに移動する時の表示のみ
-query getClasses($user_id: String!) {
-  getClasses(user_id: $user_id) {
+query getClasses($input: GetClassesProps) {
+  getClasses(input: $input) {
     id
     name
   }
 }
 
 # ノート一覧ページ
-query getNotes($user_id: String!, $class_id: String) {
-  getNotes(user_id: $user_id, class_id: $class_id) {
+query getNotes($input: GetNoteProps) {
+  getNotes(input: $input) {
     id
     description
     tags {
       id
       name
     }
-    like_user {
+    likeUser {
       id
     }
   }
 }
 
 # ノートページ
-query getNote($note_id: String) {
-  getNotes(note_id: $note_id) {
+query getNote($input: GetNoteProps) {
+  getNotes(input: $input) {
     id
     description
     tags {
       id
       name
     }
-    like_user {
+    likeUser {
       id
     }
-    comment {
+    comments {
       id
       comment
     }
