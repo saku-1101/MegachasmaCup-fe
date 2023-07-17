@@ -26,7 +26,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       // auth
       // go to school registration popup
       // get a user id returned by mutation
-      const id = await CreateUser({ input: { email: email, password: password, name: user_name } });
+      const id = await CreateUser({ input: { name: user_name, email: email, password: password } });
       console.log(id);
       const user_id = '0'; // this is returned value by mutation
       handleAction(user_id);
@@ -53,7 +53,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
           inputType='email'
           label='メールアドレス'
           placeholder='Email'
-          pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
+          pattern="[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?"
         />
         <InputField
           name='password'
