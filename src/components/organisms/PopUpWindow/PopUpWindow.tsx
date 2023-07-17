@@ -7,6 +7,7 @@ import { SubjectSelectComponent } from '@/components/molecules/SubjectSelectComp
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { SearchField } from '@/components/atoms/SearchField/SearchField';
 
 const dropIn = {
   hidden: {
@@ -87,6 +88,7 @@ export const PopUpWindow = ({
               buttonLabel={buttonLabel}
               user_id={user_id}
             />
+            // <SearchField isSchoolSelectField={true} />
           )}
         </motion.div>
       </div>
