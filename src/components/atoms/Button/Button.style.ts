@@ -16,6 +16,7 @@ export const StyledButton = tw.button<ButtonProps>`
     rounded
     justify-center
     items-center
+    dark:bg-[#A7A7A7]
     ${(p) => (p.$isSecondary ? 'bg-secondary' : 'bg-primary')}
     ${(p) => (p.$isSecondary ? 'text-light' : 'text-dark')}
     ${(p) => (p.$isSecondary ? 'hover:bg-secondarySecond' : 'hover:bg-primarySecond')}

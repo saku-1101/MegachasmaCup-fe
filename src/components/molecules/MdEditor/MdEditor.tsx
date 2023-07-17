@@ -66,7 +66,7 @@ export const MdEditor = ({ user_id, class_id, note_id }: MdEditorProps) => {
       </div>
       <TextareaField />
       <TagField />
-      <div className='w-full flex justify-end items-center gap-4 p-2'>
+      <div className='w-full flex justify-end items-center gap-4 p-2 dark:rounded  dark:bg-[#646464] dark:text-brack'>
         <Button label='一時保存' isSecondaryBg={false} handleAction={handleSave} />
         <ModalHandlingButton label='公開' isSecondaryBg={false} user_id={user_id} class_id={class_id} />
       </div>

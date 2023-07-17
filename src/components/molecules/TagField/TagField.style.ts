@@ -16,5 +16,6 @@ block
 w-full  
 pl-[1.5rem]
 mt-[1rem]
-  text-textBasic
+text-textBasic
+dark:text-light
 `;

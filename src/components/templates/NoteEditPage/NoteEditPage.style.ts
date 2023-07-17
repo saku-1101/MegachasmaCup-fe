@@ -6,6 +6,6 @@ export const Div = tw.div`
     justify-center
     w-full
     h-full
-    bg-primary
     dark:bg-primary
-`;
+    `;
+// bg-primary

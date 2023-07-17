@@ -71,13 +71,15 @@ export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
     }
     setMode(!Mode);
   };
-
+  useEffect(() => {
+    ToggleMode();
+  }, []);
   return (
     <>
       <div className='relative'>
         <AccountButton img_url={img_url} onClick={toggleDropdown} Mode={Mode} />
         <motion.div
-          className='dropdown-container md:w-[15rem] w-[10rem]'
+          className='dropdown-container md:w-[15rem] w-[10rem] dark:border-[#646464] dark:bg-[#625E5E]'
           style={{ height: `${leftMenuHeight}px` }}
           initial='close'
           animate={isOpen ? 'open' : 'close'}

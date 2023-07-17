@@ -10,11 +10,17 @@ export const Div = tw.div`
     p-[1.5rem]
 `;
 export const StyledTextarea = tw.textarea`
-  w-full p-[0.5rem] my-[0.5rem] border border-gray-300 rounded
+  w-full
+  p-[0.5rem] 
+  my-[0.5rem] 
+  border 
+  border-gray-300 
+  rounded
 `;
 
 export const StyledLabel = tw.label`   
 block    
 w-full  
-  text-textBasic
+text-textBasic
+dark:text-light
 `;

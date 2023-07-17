@@ -13,4 +13,6 @@ export const StyledNoteEditor = tw.div`
     justify-center
     items-center
     bg-light
+    dark:bg-[#535353]
+    dark:border-[#646464]
 `;

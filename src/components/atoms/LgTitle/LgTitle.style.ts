@@ -6,4 +6,5 @@ export const StyledLgTitle = tw.p`
     font-extrabold
     text-[2.5rem]
     p-[1rem]
+    dark:text-light
 `;
