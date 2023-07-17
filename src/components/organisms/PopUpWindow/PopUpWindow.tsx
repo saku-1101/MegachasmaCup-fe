@@ -65,7 +65,7 @@ export const PopUpWindow = ({
         <div className='text-dark dark:text-light '>
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className='modal dark:bg-[#535353] dark:text-light dark:border-[#646464]'
+            className='modal min-w-[400px] dark:bg-[#535353] dark:text-light dark:border-[#646464]'
             variants={dropIn}
             initial='hidden'
             animate='visible'
