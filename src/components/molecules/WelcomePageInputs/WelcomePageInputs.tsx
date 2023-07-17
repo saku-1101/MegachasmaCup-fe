@@ -1,9 +1,10 @@
-import { FormEventHandler, useState } from 'react';
-import { Div } from './WelcomePageInputs.style';
-import { InputField } from '../../atoms/InputField/InputField';
-import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button/Button';
+import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
+import { CreateUser } from '@/lib/graphql/auth';
+import { useRouter } from 'next/navigation';
+import { FormEventHandler, useState } from 'react';
+import { InputField } from '../../atoms/InputField/InputField';
+import { Div } from './WelcomePageInputs.style';
 export type WelcomePageInputsProps = {
   buttonLabel: string;
   handleAction: (user_id: string) => void | undefined;
@@ -14,7 +15,8 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
 
   // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+    console.log('submit!!');
     event.preventDefault();
     if (!isLogin) {
       // 初回
@@ -24,6 +26,8 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       // auth
       // go to school registration popup
       // get a user id returned by mutation
+      const id = await CreateUser({ input: { email: email, password: password, name: user_name } });
+      console.log(id);
       const user_id = '0'; // this is returned value by mutation
       handleAction(user_id);
     } else {
