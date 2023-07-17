@@ -7,7 +7,6 @@ const fileUploader = async (file: File) => {
     return;
   } else {
     const imgUrl = await downloadImg(res);
-    console.log(imgUrl);
     return imgUrl;
   }
 };

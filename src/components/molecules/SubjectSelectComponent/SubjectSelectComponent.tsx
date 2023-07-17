@@ -1,4 +1,5 @@
 import { SelectField } from '@/components/atoms/SelectField/SelectField';
+import { SearchField } from '../../atoms/SearchField/SearchField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { FormEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
@@ -14,8 +15,8 @@ export const SubjectSelectComponent = ({ isSchoolRegistration, buttonLabel, user
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     if (!isSchoolRegistration) {
-      const { value: className } = (event.target as any).class;
-      console.log(`class: ${className} `);
+      const { value: subject } = (event.target as any).subject;
+      console.log(`class: ${subject} `);
       // create class
       // register a class with user_id and class_id
 
@@ -40,14 +41,17 @@ export const SubjectSelectComponent = ({ isSchoolRegistration, buttonLabel, user
   if (!isSchoolRegistration) {
     return (
       <form id='subjectForm' onSubmit={handleSubmit}>
-        <SelectField name='class' label='講義名' placeholder='Select' />
+        {/* <SelectField name='class' label='講義名' placeholder='Select' /> */}
+        <SearchField name='subject' isSchoolSelectField={false} />
         <FirstEngagementButton formId='subjectForm' label={buttonLabel} />
       </form>
     );
   } else {
     return (
       <form id='schoolForm' onSubmit={handleSubmit}>
-        <SelectField name='school' label='大学名' placeholder='Select' />
+        {/* <SelectField name='school' label='大学名' placeholder='Select' /> */}
+        <SearchField name='school' isSchoolSelectField={true} />
+
         <FirstEngagementButton formId='schoolForm' label={buttonLabel} />
       </form>
     );
