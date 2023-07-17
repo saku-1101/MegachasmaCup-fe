@@ -1,3 +1,4 @@
+'use client';
 import { Header } from '@/components/molecules/Header/Header';
 import './globals.css';
 import { Inter } from 'next/font/google';
@@ -20,10 +21,21 @@ const getUser = async () => {
 
   const user = await res.json();
 
-  return user as {data: { id: string; name: string; email: string; img_url: string | undefined }};
+  return user as { data: { id: string; name: string; email: string; img_url: string | undefined } };
 };
 // async function getUser() {
-//   const data = await gqlClient.request(GetAccountSettingsDocument, {});
+//   const data = await gqlClient.request(
+//     GetAccountSettingsDocument,
+//     {
+//       input: {
+//         isMe: true,
+//       },
+//     },
+//     {
+//       authorization: `Bearer ${'000'}`,
+//     },
+//   );
+//   return data.getUser[0];
 // }
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // user Data fetch after the authentication

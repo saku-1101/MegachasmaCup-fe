@@ -1,6 +1,6 @@
 export type User = {
   id: string;
-  image_url: string;
+  img_url: string;
   name: string;
   email: string;
   school_id: string;
@@ -23,7 +23,7 @@ export type Note = {
 
 export type Comment = {
   id: string;
-  user: {id: string; name: string};
+  user: { id: string; name: string };
   comment: string;
   like: number;
 };

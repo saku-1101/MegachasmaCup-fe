@@ -4,6 +4,10 @@ import { InputField } from '../../atoms/InputField/InputField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button/Button';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import { gqlClient } from '@/lib/client';
+import { CreateUserDocument } from '@/codegen/gql/graphql';
+
 export type WelcomePageInputsProps = {
   buttonLabel: string;
   handleAction: (user_id: string) => void | undefined;
@@ -12,9 +16,8 @@ export type WelcomePageInputsProps = {
 export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInputsProps) => {
   const [isLogin, setIsLogin] = useState(false);
 
-  // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (!isLogin) {
       // 初回
@@ -22,6 +25,14 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
       // auth
+      const res = await gqlClient.request(CreateUserDocument, {
+        input: {
+          name: user_name,
+          password: password,
+          email: email,
+        },
+      });
+
       // go to school registration popup
       // get a user id returned by mutation
       const user_id = '0'; // this is returned value by mutation

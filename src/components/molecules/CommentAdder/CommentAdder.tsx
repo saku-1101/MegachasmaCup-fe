@@ -17,7 +17,7 @@ export const CommentAdder = ({ user_id, class_id, note_id, numOfLike }: CommentC
   }
   const data: User = {
     id: user_id!,
-    image_url: '',
+    img_url: '',
     name: 'student',
     email: 'example@email.com',
     school_id: '0',
