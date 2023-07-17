@@ -48,9 +48,10 @@ const slideHorizontalAnimation = {
 
 export type DropdownMenuProps = {
   user_id: string;
+  img_url: string | undefined;
 };
 
-export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
+export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
   const leftMenu = [
     { name: '投稿したノート', url: `/user/${user_id}/your_notes` },
     { name: 'いいねしたノート', url: `/user/${user_id}/likes` },
@@ -64,11 +65,12 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
     setWindowState(!WindowState);
     console.log(WindowState);
   };
+  
 
   return (
     <>
       <div className='relative'>
-        <AccountButton onClick={toggleDropdown} />
+        <AccountButton img_url={img_url} onClick={toggleDropdown} />
         <motion.div
           className='dropdown-container md:w-[15rem] w-[10rem]'
           style={{ height: `${leftMenuHeight}px` }}
@@ -91,7 +93,7 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
             <motion.div className='flex flex-col h-full w-full relative font-bold text-[1rem] menu-categories'>
               <ul className='item-list'>
                 {leftMenu.map((text, i) => (
-                  <Link key={i} className='item' href='/'>
+                  <Link key={i} className='item' href={text.url}>
                     {text.name}
                   </Link>
                 ))}

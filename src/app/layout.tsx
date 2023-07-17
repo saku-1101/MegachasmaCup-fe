@@ -17,21 +17,23 @@ const getUser = async () => {
   }
 
   const user = await res.json();
-  console.log(user);
 
-  return user as { id: string; name: string; email: string };
+  return user as {data: { id: string; name: string; email: string; img_url: string | undefined }};
 };
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // user Data fetch after the authentication
   // useEffectを使用する必要があるならheaderコンポーネントでuseEffectしてuserの変更を検知し，
   // dropdownにauth済みユーザを反映する
   const user = await getUser();
+  console.log('***************************');
+  console.log(user);
+  console.log('***************************');
 
   return (
     <html lang='en' className='w-screen overflow-x-hidden'>
       <body className={inter.className}>
         <Suspense fallback='loading...'>
-          <Header user={user} />
+          <Header user={user.data} />
         </Suspense>
         {children}
       </body>
