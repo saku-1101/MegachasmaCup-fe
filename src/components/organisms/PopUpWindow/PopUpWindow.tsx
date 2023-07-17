@@ -62,33 +62,35 @@ export const PopUpWindow = ({
   return (
     <AnimatePresence initial={true} mode='wait' onExitComplete={() => null}>
       <div className='backdrop'>
-        <motion.div
-          onClick={(e) => e.stopPropagation()}
-          className='modal'
-          variants={dropIn}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-        >
-          <MdTitle title={title} />
-          <Description description={subtitle} />
-          {isWelcomePage ? (
-            isFirstNoteErrorPage ? (
-              // to Note add page
-              <FirstEngagementButton label={buttonLabel} handleAction={handleCreateNote} type='button' />
+        <div className='text-dark dark:text-light '>
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            className='modal dark:bg-[#535353] dark:text-light dark:border-[#646464]'
+            variants={dropIn}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+          >
+            <MdTitle title={title} />
+            <Description description={subtitle} />
+            {isWelcomePage ? (
+              isFirstNoteErrorPage ? (
+                // to Note add page
+                <FirstEngagementButton label={buttonLabel} handleAction={handleCreateNote} type='button' />
+              ) : (
+                // ユーザ認証
+                <WelcomePageInputs buttonLabel={buttonLabel} handleAction={handleHandleShowModal} />
+              )
             ) : (
-              // ユーザ認証
-              <WelcomePageInputs buttonLabel={buttonLabel} handleAction={handleHandleShowModal} />
-            )
-          ) : (
-            // 大学登録・教科登録
-            <SubjectSelectComponent
-              isSchoolRegistration={isSchoolRegistration}
-              buttonLabel={buttonLabel}
-              user_id={user_id}
-            />
-          )}
-        </motion.div>
+              // 大学登録・教科登録
+              <SubjectSelectComponent
+                isSchoolRegistration={isSchoolRegistration}
+                buttonLabel={buttonLabel}
+                user_id={user_id}
+              />
+            )}
+          </motion.div>
+        </div>
       </div>
     </AnimatePresence>
   );

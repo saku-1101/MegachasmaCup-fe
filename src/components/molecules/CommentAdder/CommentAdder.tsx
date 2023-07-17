@@ -23,7 +23,7 @@ export const CommentAdder = ({ user_id, class_id, note_id, numOfLike }: CommentC
     school_id: '0',
   };
   return (
-    <StyledCard>
+    <StyledCard className='dark:bg-[#535353]'>
       <UserWithLike isLikeToComment={true} user={data} numOfLike={numOfLike} />
       <CommentEditor user_id={user_id} class_id={user_id} note_id={user_id} />
     </StyledCard>

@@ -91,12 +91,12 @@ export const NotePage = ({ user_id, class_id, note_id }: PropsToGetNote) => {
   return (
     <>
       <Note user={note.user} numOfLike={note.user.note.like} />
-      <div className='flex flex-col items-start md:gap-10 gap-5 md:mt-[3rem] mt-[2rem]'>
+      <div className='flex flex-col items-start md:gap-10 gap-5 md:mt-[3rem] mt-[2rem] '>
         <MdTitle title='このノートへのコメント' />
         {note.user.note.comments.map((el: Comment) => (
           <CommentCard key={el.id} user={el.user} numOfLike={el.like} comment_id={el.id} comment={el.comment} />
         ))}
-        <AddButton isNoteAdd={false} isCommentAdd={true} user_id='' />
+        <AddButton isNoteAdd={false} isCommentAdd={true} user_id={user_id} />
       </div>
     </>
   );

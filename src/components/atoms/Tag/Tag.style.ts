@@ -9,7 +9,7 @@ export const StyledTag = tw.span`
     px-2.5 
     py-0.5 
     rounded-full 
-    dark:bg-[#65D270]
-    dark:text-yellow
+    dark:bg-[#5cc2cd]
+    dark:text-white
     my-1
 `;

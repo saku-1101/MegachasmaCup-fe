@@ -12,7 +12,7 @@ export const SelectField = ({ name, label, placeholder }: SelectFieldProps) => {
   return (
     <>
       <div className='w-full flex flex-col'>
-        <StyledLabel htmlFor={label}>
+        <StyledLabel className='dark:text-light' htmlFor={label}>
           {label}
           <StyledSelect name={name} id={label} placeholder={placeholder} style={{ appearance: 'menulist' }}>
             <option disabled selected>

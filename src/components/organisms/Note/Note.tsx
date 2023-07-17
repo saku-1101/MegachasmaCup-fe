@@ -25,10 +25,10 @@ export type NoteProps = {
 
 export const Note = ({ user, numOfLike }: NoteProps) => {
   return (
-    <StyledNote>
+    <StyledNote className='dark:bg-[#535353]'>
       <NoteContentWrapper>
         <LgTitle title={user.name + 'のノート'} />
-        <div className='md:basis-1/4 flex items-center md:justify-start justify-center md:m-2 m-5'>
+        <div className='md:basis-1/4 flex items-center md:justify-start justify-center md:m-2 m-5 dark:text-light'>
           <div className='p-2'>{TagSvg()}</div>
           <div className='max-w-[80%] max-h-[100px] flex flex-wrap overflow-y-scroll'>
             {user.note.tags.map((tag, index) => (
@@ -36,7 +36,7 @@ export const Note = ({ user, numOfLike }: NoteProps) => {
             ))}
           </div>
         </div>
-        <NoteContent> {user.note.content}</NoteContent>
+        <NoteContent className='dark:text-light'> {user.note.content}</NoteContent>
       </NoteContentWrapper>
       <UserWithLike isLikeToComment={false} note_id={user.note_id} user={user} numOfLike={numOfLike} />
     </StyledNote>

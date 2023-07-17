@@ -11,7 +11,7 @@ export type CommentCardProps = {
 
 export const CommentCard = ({ comment_id, user, numOfLike, comment }: CommentCardProps) => {
   return (
-    <StyledCard>
+    <StyledCard className='dark:bg-[#535353] dark:border-[#646464]'>
       <UserWithLike isLikeToComment={true} comment_id={comment_id} user={user} numOfLike={numOfLike} />
       <div className='max-w-[100%] overflow-y-scroll break-all'>
         <Description description={comment} />

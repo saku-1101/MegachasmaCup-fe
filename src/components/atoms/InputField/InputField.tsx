@@ -21,7 +21,7 @@ export const InputField = ({
   return (
     <>
       <div className='w-full flex flex-col'>
-        <StyledLabel htmlFor={name}>
+        <StyledLabel className='dark:text-light' htmlFor={name}>
           {label}
           <StyledInput
             type={inputType}
@@ -31,7 +31,7 @@ export const InputField = ({
             readOnly={readonly}
             value={value}
             pattern={pattern}
-            className='peer'
+            className='peer '
           />
           <span className='text-error invisible peer-invalid:visible'>
             {name === 'userName'
