@@ -1,14 +1,16 @@
 'use client';
 import { Div, StyledButton } from './FirstEngagementButton.style';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { Player } from '@/components/common';
 import PoppingData from '@/assets/lottie/popping.json';
 import { useRef, useState } from 'react';
 export type FirstEngagementButtonProps = {
   label: string;
-  handleAction: () => void;
+  formId?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  handleAction?: () => void;
 };
 
-export const FirstEngagementButton = ({ label, handleAction }: FirstEngagementButtonProps) => {
+export const FirstEngagementButton = ({ label, formId, type = 'submit', handleAction }: FirstEngagementButtonProps) => {
   const playerRef = useRef<Player>(null);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
@@ -17,12 +19,21 @@ export const FirstEngagementButton = ({ label, handleAction }: FirstEngagementBu
     }
     setIsActive(true);
     playerRef.current.play();
-    handleAction;
+    if (type === 'button') {
+      console.log(handleAction!());
+      handleAction!();
+    }
   };
 
   return (
     <Div>
-      <StyledButton onClick={() => handleClick()} style={{ position: 'relative' }}>
+      <StyledButton
+        id='submitButton'
+        type={type}
+        form={formId}
+        onClick={() => handleClick()}
+        style={{ position: 'relative' }}
+      >
         {label}
         <Player
           onEvent={(event) => {

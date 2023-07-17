@@ -1,4 +1,4 @@
-import tw from "tailwind-styled-components"
+import tw from 'tailwind-styled-components';
 
 export const Div = tw.div`
     flex
@@ -7,4 +7,4 @@ export const Div = tw.div`
     w-full
     h-full
     bg-primary
-`
+`;

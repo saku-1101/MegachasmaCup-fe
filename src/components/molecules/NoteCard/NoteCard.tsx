@@ -1,4 +1,3 @@
-'use client';
 import { StyledCard } from './NoteCard.style';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
@@ -6,17 +5,30 @@ import { TagSvg } from '../../../../public/index';
 import { Tag } from '@/components/atoms/Tag/Tag';
 import { LikeButton } from '../../atoms/LikeButton/LikeButton';
 export type NoteCardProps = {
+  note_id: string;
+  user_id: string;
+  class_id?: string;
   nameOfStudent: string;
   description: string;
   tags: Array<string>;
   numOfLike: number;
 };
 
-export const NoteCard = ({ nameOfStudent, description, tags, numOfLike }: NoteCardProps) => {
+export const NoteCard = ({
+  note_id,
+  user_id,
+  class_id,
+  nameOfStudent,
+  description,
+  tags,
+  numOfLike,
+}: NoteCardProps) => {
   return (
     <StyledCard>
       <div className='md:basis-1/5 flex md:justify-start justify-center'>
-        <MdTitle title={nameOfStudent + 'のノート'} />
+        <a href={`/user/${user_id}/class/${class_id}/note/${note_id}`}>
+          <MdTitle title={nameOfStudent + 'のノート'} />
+        </a>
       </div>
       <div className='md:basis-1/3 max-h-[200px] overflow-y-scroll break-all'>
         <Description description={description} />
@@ -29,7 +41,7 @@ export const NoteCard = ({ nameOfStudent, description, tags, numOfLike }: NoteCa
           ))}
         </div>
       </div>
-      <LikeButton numOfLike={numOfLike} />
+      <LikeButton isLikeToComment={false} note_id={note_id} numOfLike={numOfLike} />
     </StyledCard>
   );
 };

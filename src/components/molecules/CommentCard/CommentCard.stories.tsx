@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { CommentCard } from './CommentCard';
-import { WrapperContainer, CoreContainer } from '@/components/styles/containers';
+import { WrapperContainer, CoreContainer } from '@/components/common/containers';
 
 export type CommentCardProps = {};
 
@@ -26,13 +26,9 @@ export const Default: StoryObj<typeof CommentCard> = {
     ),
   ],
   args: {
-    user: {
-      id: '0',
-      name: 'student',
-      faculty: 'infomatics',
-      year: 4,
-    },
-    numOfLike: 0,
-    comment: 'commentcommentcommentcommentcommentcommentcommentcommentcommentcommentcommentcommentcomment',
+    comment_id: '0',
+    user: { id: '0', name: 'student' },
+    numOfLike: 20,
+    comment: 'commentcommentcommentcommentcommentcommentcommentcomment',
   },
 };

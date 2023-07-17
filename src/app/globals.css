@@ -25,8 +25,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  z-index: 90;
+  height: 100vh;
+  width: 100vw;
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
@@ -54,7 +55,7 @@ body {
   top: 2rem;
   right: 3rem;
   transition: height 0.5s;
-  z-index: 200;
+  z-index: 180;
   overflow-y: hidden;
   border: 0.2rem solid #131338;
 }
@@ -85,4 +86,8 @@ body {
 .item-list .item:hover {
   color: #fafcfe;
   background: #ffd542;
+}
+
+.error-message {
+  color: #eb2525;
 }
