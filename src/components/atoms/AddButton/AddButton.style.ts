@@ -6,6 +6,7 @@ export const StyledButton = tw.button`
     p-[3.25rem]
     border-2
     border-textBasic
+    dark:border-[#646464]
     rounded-xl
     flex
     flex-row
@@ -13,4 +14,5 @@ export const StyledButton = tw.button`
     items-center
     bg-light
     hover:bg-dark
+    dark:bg-[#535353]
 `;

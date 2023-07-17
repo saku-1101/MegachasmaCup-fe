@@ -15,6 +15,8 @@ export const StyledCard = tw.div`
     justify-between
     items-center
     bg-light
+    dark:bg-[#535353]
+    dark:boder-[#646464]
     block
     md:overflow-hidden
     overflow-y-scroll

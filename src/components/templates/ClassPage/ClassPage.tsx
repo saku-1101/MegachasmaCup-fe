@@ -12,7 +12,7 @@ export type ClassPageProps = {
 
 export const ClassPage = ({ classes, user_id }: ClassPageProps) => {
   return (
-    <Div>
+    <Div className='dark:bg-[#3E3D38]'>
       {classes.map((el) => (
         <>
           <ClassCard

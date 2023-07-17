@@ -28,8 +28,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const user = await getUser();
 
   return (
-    <html lang='en' className="max-w-screen overflow-x-hidden">
-      <body className={inter.className}>
+    <html lang='en' className='max-w-screen overflow-x-hidden'>
+      <body className={`${inter.className} text-textBasic bg-primary  dark:text-light dark:bg-[#3E3D38]`}>
         <Suspense fallback='loading...'>
           <Header user={user} />
         </Suspense>

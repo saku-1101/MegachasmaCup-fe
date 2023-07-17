@@ -12,6 +12,7 @@ export type NoteCardProps = {
   description: string;
   tags: Array<string>;
   numOfLike: number;
+  Mode: boolean;
 };
 
 export const NoteCard = ({
@@ -22,7 +23,9 @@ export const NoteCard = ({
   description,
   tags,
   numOfLike,
+  Mode,
 }: NoteCardProps) => {
+  const color: string = Mode ? '#65D270' : '#131338';
   return (
     <StyledCard>
       <div className='md:basis-1/5 flex md:justify-start justify-center'>
@@ -34,7 +37,7 @@ export const NoteCard = ({
         <Description description={description} />
       </div>
       <div className='md:basis-1/4 flex items-center md:justify-start justify-center md:m-2 m-5'>
-        <div className='p-2'>{TagSvg()}</div>
+        <div className='p-2 '>{TagSvg(color)}</div>
         <div className='max-w-[80%] max-h-[100px] flex flex-wrap overflow-y-scroll'>
           {tags.map((tag, index) => (
             <Tag key={index} text={tag} />

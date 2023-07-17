@@ -19,7 +19,7 @@ export default function Home() {
       initial={{ opacity: 0 }} // 初期状態
       animate={{ opacity: 1 }} // マウント時
       exit={{ opacity: 0 }} // アンマウント時
-      className='mt-10vh flex h-[90vh] min-w-screen justify-center items-center'
+      className='mt-10vh flex h-[90vh] min-w-screen justify-center items-center dark:bg-[#3E3D38]'
     >
       <WelcomePage />
     </motion.div>

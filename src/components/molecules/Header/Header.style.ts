@@ -7,12 +7,13 @@ export const StyledHeader = tw.header`
     flex
     w-screen
     px-8
+    bg-headerBg
     justify-between
     items-center
     rounded-b-lg
-    bg-headerBg
     shadow-md
     shadow-headerShadow
     backdrop-blur-sm  
     overflow-y-visible
-`;
+    `;
+// dark:bg-[#3E3D38]

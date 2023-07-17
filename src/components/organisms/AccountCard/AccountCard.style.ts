@@ -13,6 +13,8 @@ export const StyledCard = tw.div`
     items-center
     bg-light
     flex-col
+    dark:bg-[#3E3D38]
+
 `;
 
 export const StyledGrid = tw.div`

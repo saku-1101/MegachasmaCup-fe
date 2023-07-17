@@ -14,7 +14,7 @@ export type AddButtonProps = {
   note_id?: string;
 };
 export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id }: AddButtonProps) => {
-  const [isHovered, setIsHovered] = useState('#131338');
+  const [isHovered, setIsHovered] = useState('#FFFFFF');
   const [isClassAddPopupVisible, setIsClassAddPopupVisible] = useState(false);
   const [isCommentEditorVisible, setIsCommentEditorVisible] = useState(false);
   const router = useRouter();
@@ -37,8 +37,8 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id 
     <>
       <StyledButton
         onClick={handleAction}
-        onMouseEnter={() => setIsHovered('#FAFCFE')}
-        onMouseLeave={() => setIsHovered('#131338')}
+        onMouseEnter={() => setIsHovered('#46D5B3')}
+        onMouseLeave={() => setIsHovered('#FFFFFF')}
       >
         {PlusSvg(isHovered)}
         <p style={{ color: `${isHovered}` }}> Add</p>

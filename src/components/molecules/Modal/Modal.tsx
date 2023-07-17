@@ -33,24 +33,19 @@ export type ModalProps = {
   subtitle: string;
   handleAction?: () => void;
 
- 
-
-
-
   label1?: string;
   label2?: string;
   user_id: string;
   class_id?: string;
 };
 
-export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_id ,label1,label2}: ModalProps) => {
+export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_id, label1, label2 }: ModalProps) => {
   const router = useRouter();
   const handleRelease = () => {
     // create note as is_private false using ids
     // push to note list page
     router.push(`/user/${user_id}/class/${class_id}/note`);
     router.refresh();
-
   };
   if (label1 === undefined) {
     label1 = '公開する';
@@ -64,7 +59,7 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
         <Backdrop onClick={handleClose}>
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className='modal'
+            className='modal dark:bg-[#535353] dark:border-[#646464]'
             variants={dropIn}
             initial='hidden'
             animate='visible'
@@ -75,7 +70,6 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
 
             <Button label={label1} isSecondaryBg={false} handleAction={handleRelease} />
             <Button label={label2} isSecondaryBg={true} handleAction={handleClose} />
-
           </motion.div>
         </Backdrop>
       )}

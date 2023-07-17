@@ -7,6 +7,7 @@ import { LoadingCard } from '@/components/atoms/LoadingCard/LoadingCard';
 export type NoteListPageProps = {
   user_id: string;
   class_id: string;
+  Mode: boolean;
 };
 
 const getData = async () => {
@@ -16,7 +17,7 @@ const getData = async () => {
   return notes as { data: Array<Note> };
 };
 
-export const NoteListPage = async ({ user_id, class_id }: NoteListPageProps) => {
+export const NoteListPage = async ({ user_id, class_id, Mode }: NoteListPageProps) => {
   // fetch notes with class_ids
   // const notes: {
   //   data: Array<Note>;
@@ -107,6 +108,7 @@ export const NoteListPage = async ({ user_id, class_id }: NoteListPageProps) => 
           description={el.description}
           tags={el.tags}
           numOfLike={el.numOfLike}
+          Mode={Mode}
         />
       ))}
       <AddButton isNoteAdd={true} isCommentAdd={false} user_id={user_id} class_id={class_id} />

@@ -26,12 +26,12 @@ export const ClassCard = ({ class_id, title, numOfStudent, numOfNote, user_id }:
 
   return (
     <>
-      <StyledCard>
+      <StyledCard className='dark:border-[#646464] dark:bg-[#535353] dark:text-white'>
         <a href={`/user/${user_id}/class/${class_id}/note`}>
           <MdTitle title={title} />
         </a>
         <Description description={numOfStudent.toString() + '人がこの講義に参加しています'} />
-        <div className='text-dark'>
+        <div className='text-white'>
           <p>📝Note投稿数:</p>
           <p>{numOfNote}冊</p>
         </div>
@@ -39,7 +39,7 @@ export const ClassCard = ({ class_id, title, numOfStudent, numOfNote, user_id }:
           onClick={handleAction}
           onMouseEnter={() => setIsHovered('#46D5B3')}
           onMouseLeave={() => setIsHovered('#131338')}
-          className='py-[1rem]'
+          className='py-[1rem] '
         >
           {AddNoteSvg(isHovered)}
         </button>

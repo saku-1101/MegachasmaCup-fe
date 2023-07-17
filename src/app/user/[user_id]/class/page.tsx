@@ -35,7 +35,7 @@ export default async function User({ params: { user_id } }: UserProps) {
   const classes: { data: Array<Class> } = await getData();
 
   return (
-    <WrapperContainer>
+    <WrapperContainer className='dark:bg-[#3E3D38]'>
       <CoreContainer>
         {classes.data.length === 0 ? <EmptyPage /> : <ClassPage classes={classes.data} user_id={user_id} />}
       </CoreContainer>

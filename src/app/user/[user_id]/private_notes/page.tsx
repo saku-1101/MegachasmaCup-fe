@@ -6,9 +6,10 @@ import { LgTitle } from '../../../../components/atoms/LgTitle/LgTitle';
 export type PrivateNotesProps = {
   params: {
     user_id: string;
+    Mode: boolean;
   };
 };
-export default function PrivateNotes({ params: { user_id } }: PrivateNotesProps) {
+export default function PrivateNotes({ params: { user_id, Mode } }: PrivateNotesProps) {
   // TODO: fetch user notes with user_id under the condition of is_private === true
   const notes: {
     data: Array<Note>;
@@ -86,6 +87,7 @@ export default function PrivateNotes({ params: { user_id } }: PrivateNotesProps)
               description={el.description}
               tags={el.tags}
               numOfLike={el.numOfLike}
+              Mode={Mode}
             />
           ))}
         </Div>

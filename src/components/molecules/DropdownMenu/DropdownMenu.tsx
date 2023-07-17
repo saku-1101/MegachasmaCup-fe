@@ -2,7 +2,7 @@
 import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { AccountButton } from '@/components/atoms/AccountButton/AccountButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const slideVerticalAnimation = {
   open: {
     rotateX: 0,
@@ -57,7 +57,7 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
   const [isOpen, toggleDropdown] = useCycle(false, true);
   const leftMenuHeight = (leftMenu.length + 6) * 35;
   const [Mode, setMode] = useState(false);
-  const ToggleMoads = () => {
+  const ToggleMode = () => {
     if (Mode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -65,11 +65,14 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
     }
     setMode(!Mode);
   };
+  useEffect(() => {
+    ToggleMode();
+  });
   return (
-    <div className='relative'>
-      <AccountButton onClick={toggleDropdown} />
+    <div className='relative '>
+      <AccountButton onClick={toggleDropdown} Mode={Mode} />
       <motion.div
-        className='dropdown-container md:w-[15rem] w-[10rem]'
+        className='dropdown-container  md:w-[15rem] w-[10rem]'
         style={{ height: `${leftMenuHeight}px` }}
         initial='close'
         animate={isOpen ? 'open' : 'close'}
@@ -87,7 +90,7 @@ export const DropdownMenu = ({ user_id }: DropdownMenuProps) => {
                 ログアウト
               </Link>
 
-              <button onClick={ToggleMoads} className='item text-black dark:text-white'>
+              <button onClick={ToggleMode} className='item text-black dark:text-white'>
                 Dark Mode : {Mode ? 'ON' : 'OFF'}
               </button>
             </ul>
