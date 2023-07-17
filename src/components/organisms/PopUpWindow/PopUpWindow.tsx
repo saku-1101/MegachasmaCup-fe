@@ -6,6 +6,7 @@ import { WelcomePageInputs } from '@/components/molecules/WelcomePageInputs/Welc
 import { SubjectSelectComponent } from '@/components/molecules/SubjectSelectComponent/SubjectSelectComponent';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const dropIn = {
   hidden: {
@@ -29,9 +30,11 @@ export type PopUpWindowProps = {
   subtitle: string;
   isWelcomePage: boolean;
   isFirstNoteErrorPage: boolean;
+  isSchoolRegistration?: boolean;
   buttonLabel: string;
   user_id?: string;
   class_id?: string;
+  handleShowModal?: (user_id: string) => void;
 };
 
 export const PopUpWindow = ({
@@ -39,9 +42,11 @@ export const PopUpWindow = ({
   subtitle,
   isWelcomePage,
   isFirstNoteErrorPage,
+  isSchoolRegistration,
   buttonLabel,
   user_id,
   class_id,
+  handleShowModal,
 }: PopUpWindowProps) => {
   const router = useRouter();
   const handleCreateNote = () => {
@@ -50,6 +55,10 @@ export const PopUpWindow = ({
     const note_id = '0'; // TODO: note_idのuuid作成する
     router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
   };
+  const handleHandleShowModal = (user_id: string) => {
+    handleShowModal!(user_id);
+  };
+
   return (
     <AnimatePresence initial={true} mode='wait' onExitComplete={() => null}>
       <div className='backdrop'>
@@ -65,12 +74,19 @@ export const PopUpWindow = ({
           <Description description={subtitle} />
           {isWelcomePage ? (
             isFirstNoteErrorPage ? (
+              // to Note add page
               <FirstEngagementButton label={buttonLabel} handleAction={handleCreateNote} type='button' />
             ) : (
-              <WelcomePageInputs buttonLabel={buttonLabel} />
+              // ユーザ認証
+              <WelcomePageInputs buttonLabel={buttonLabel} handleAction={handleHandleShowModal} />
             )
           ) : (
-            <SubjectSelectComponent buttonLabel={buttonLabel} user_id={user_id} />
+            // 大学登録・教科登録
+            <SubjectSelectComponent
+              isSchoolRegistration={isSchoolRegistration}
+              buttonLabel={buttonLabel}
+              user_id={user_id}
+            />
           )}
         </motion.div>
       </div>

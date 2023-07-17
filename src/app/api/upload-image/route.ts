@@ -2,7 +2,6 @@ import { Storage } from '@google-cloud/storage';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  console.log(process.env.PROJECT_ID, process.env.BUCKET_NAME, process.env.GOOGLE_APPLICATION_CREDENTIALS);
   const storage = new Storage({
     projectId: process.env.PROJECT_ID,
     keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,

@@ -4,29 +4,52 @@ import { FormEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
 
 export type SubjectSelectComponentProps = {
+  isSchoolRegistration: boolean | undefined;
   buttonLabel: string;
   user_id: string | undefined;
 };
 
-export const SubjectSelectComponent = ({ buttonLabel, user_id }: SubjectSelectComponentProps) => {
+export const SubjectSelectComponent = ({ isSchoolRegistration, buttonLabel, user_id }: SubjectSelectComponentProps) => {
   const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const { value: className } = (event.target as any).class;
-    console.log(`class: ${className} `);
-    // TODO: generate class_id with uuid
-    // register a class with user_id and class_id
+    if (!isSchoolRegistration) {
+      const { value: className } = (event.target as any).class;
+      console.log(`class: ${className} `);
+      // create class
+      // register a class with user_id and class_id
 
-    // redirect and reflesh with the user_id and class_id to note page
-    // !: 登録している間に次ページに遷移できる？？
-    const res = { user_id: '0', class_id: '0' };
-    router.push(`/user/${res.user_id}/class/${res.class_id}/note`);
+      // redirect and reflesh with the user_id and class_id to note page
+      // !: 登録している間に次ページに遷移できる？？
+      const res = { user_id: '0', class_id: '0' };
+      router.push(`/user/${res.user_id}/class/${res.class_id}/note`);
+    } else {
+      const { value: school } = (event.target as any).school;
+      console.log(`school: ${school} `);
+      // create school
+      // register a class with user_id
+
+      // redirect and reflesh with the user_id and class_id to note page
+      // !: 登録している間に次ページに遷移できる？？
+      const res = { user_id: '0', school_id: '0' };
+      router.push(`/user/${res.user_id}/class`);
+    }
+
     router.refresh();
   };
-  return (
-    <form id='subjectForm' onSubmit={handleSubmit}>
-      <SelectField name='class' label='講義名' placeholder='Select' />
-      <FirstEngagementButton formId='subjectForm' label={buttonLabel} />
-    </form>
-  );
+  if (!isSchoolRegistration) {
+    return (
+      <form id='subjectForm' onSubmit={handleSubmit}>
+        <SelectField name='class' label='講義名' placeholder='Select' />
+        <FirstEngagementButton formId='subjectForm' label={buttonLabel} />
+      </form>
+    );
+  } else {
+    return (
+      <form id='schoolForm' onSubmit={handleSubmit}>
+        <SelectField name='school' label='大学名' placeholder='Select' />
+        <FirstEngagementButton formId='schoolForm' label={buttonLabel} />
+      </form>
+    );
+  }
 };
