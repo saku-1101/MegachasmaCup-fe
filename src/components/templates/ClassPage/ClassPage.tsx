@@ -4,23 +4,24 @@ import { Class } from '@/app/models';
 import { AddButton } from '../../atoms/AddButton/AddButton';
 import { Suspense } from 'react';
 import { LoadingCard } from '@/components/atoms/LoadingCard/LoadingCard';
+import { GetClassesOfUserQuery } from '@/codegen/gql/graphql';
 
 export type ClassPageProps = {
-  classes: Array<Class>;
+  classes: GetClassesOfUserQuery;
   user_id: string;
 };
 
 export const ClassPage = ({ classes, user_id }: ClassPageProps) => {
   return (
     <Div>
-      {classes.map((el) => (
+      {classes.getClasses.map((el) => (
         <>
           <ClassCard
             key={el.id}
             class_id={el.id}
             title={el.name}
-            numOfStudent={el.numOfStudent}
-            numOfNote={el.numOfNote}
+            numOfStudent={el.classStudents.length}
+            numOfNote={el.classNotes.length}
             user_id={user_id}
           />
         </>

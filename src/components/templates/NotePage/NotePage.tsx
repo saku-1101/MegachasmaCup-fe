@@ -2,7 +2,7 @@ import { Note } from '@/components/organisms/Note/Note';
 import { CommentCard } from '../../molecules/CommentCard/CommentCard';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { AddButton } from '../../atoms/AddButton/AddButton';
-import { Comment, User } from '@/app/models';
+import { Comment } from '@/app/models';
 
 export type PropsToGetNote = {
   user_id: string;

@@ -6,6 +6,9 @@ import { FormEventHandler, useState } from 'react';
 import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
 import { GetUser } from '@/lib/graphql/auth';
+import { cookies } from 'next/dist/client/components/headers';
+import { getToken } from '@/lib/cookie';
+import { getCookie, setCookie } from 'cookies-next';
 
 export type WelcomePageInputsProps = {
   buttonLabel: string;
@@ -31,12 +34,14 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       // const token = await CreateUser({ input: { name: user_name, email: email, password: password } });
       const JSONres = await res.json();
       const token = JSONres.token;
+      setCookie('token', token);
+      const tokenInCookie = getCookie('token');
 
-      if (token) {
+      if (tokenInCookie) {
         console.log('**********************************');
-        console.log('token here: ', token);
+        console.log('token from next-cookie: ', tokenInCookie);
         console.log('**********************************');
-        const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
+        const res = await fetch(`http://localhost:3000/api/user?token=${tokenInCookie}`);
         const data = await res.json();
         console.log('user :', data);
         handleAction(data.user[0].id);
@@ -47,10 +52,12 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
       const token = await GetJwt({ email: email, password: password });
+      setCookie('token', token);
+      const tokenInCookie = getCookie('token');
       console.log('**********************************');
-      console.log('getjwt : ', token);
+      console.log('getjwt : ', tokenInCookie);
       console.log('**********************************');
-      const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
+      const res = await fetch(`http://localhost:3000/api/user?token=${tokenInCookie}`);
       const data = await res.json();
       // const user = await GetUser(token);
       console.log('user :', data);

@@ -7,7 +7,6 @@ export const EmptyPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setTimeout(() => {
-      console.log('here');
       setIsVisible(true);
     }, 3 * 1000);
   }, []);

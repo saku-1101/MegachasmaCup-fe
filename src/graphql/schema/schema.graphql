@@ -12,7 +12,6 @@ type User {
   email: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-
   userSchool: [School!]!
   userLikes: [Note!]!
   userClass: [Class!]!
@@ -55,7 +54,6 @@ type Class {
   ownerId: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-
   classOwner: User!
   classSchool: School!
   classStudents: [User!]!

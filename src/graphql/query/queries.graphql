@@ -73,6 +73,9 @@ query getClassesOfUser($input: GetClassesProps) {
     classStudents {
       id
     }
+    classNotes {
+      id
+    }
   }
 }
 
@@ -131,8 +134,8 @@ query getSchools($searchWord: String!) {
     name
   }
 }
-query getJwt($input:GetJwtProps!){
-  getJwt(input:$input){
+query getJwt($input: GetJwtProps!) {
+  getJwt(input: $input) {
     token
   }
 }
