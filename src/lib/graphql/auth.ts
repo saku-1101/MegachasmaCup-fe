@@ -7,18 +7,13 @@ import {
 } from '@/codegen/gql/graphql';
 import { gqlClient } from '../client';
 
-export async function getUser(token: string) {
-  const data = await gqlClient.request(
-    GetAccountSettingsDocument,
-    {
-      input: {
-        isMe: true,
-      },
+export async function GetUser(token: string) {
+  gqlClient.setHeader('authorization', `Bearer ${token}`);
+  const data = await gqlClient.request(GetAccountSettingsDocument, {
+    input: {
+      isMe: true,
     },
-    {
-      Authorization: `Bearer ${token}`,
-    },
-  );
+  });
   return data.getUser;
 }
 export async function CreateUser({ input }: CreateUserMutationVariables) {
@@ -28,6 +23,7 @@ export async function CreateUser({ input }: CreateUserMutationVariables) {
   const token = await GetJwt({ email: input.email, password: input.password });
   return token;
 }
+
 export async function GetJwt(input: GetJwtProps) {
   const { getJwt } = await gqlClient.request(GetJwtDocument, {
     input: input,

@@ -1,10 +1,10 @@
-'use client';
 import { Header } from '@/components/molecules/Header/Header';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import { gqlClient } from '@/lib/client';
 import { GetAccountSettingsDocument } from '@/codegen/gql/graphql';
+import user from '@/mockData/user.json';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,29 +14,11 @@ export const metadata = {
 };
 
 const getUser = async () => {
-  const res = await fetch('http://localhost:3000/api/user');
-  if (!res.ok) {
-    throw new Error('error');
-  }
+  const userData = user;
 
-  const user = await res.json();
-
-  return user as { data: { id: string; name: string; email: string; img_url: string | undefined } };
+  return userData as { data: { id: string; name: string; email: string; img_url: string | undefined } };
 };
-// async function getUser() {
-//   const data = await gqlClient.request(
-//     GetAccountSettingsDocument,
-//     {
-//       input: {
-//         isMe: true,
-//       },
-//     },
-//     {
-//       authorization: `Bearer ${'000'}`,
-//     },
-//   );
-//   return data.getUser[0];
-// }
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // user Data fetch after the authentication
   // useEffectを使用する必要があるならheaderコンポーネントでuseEffectしてuserの変更を検知し，

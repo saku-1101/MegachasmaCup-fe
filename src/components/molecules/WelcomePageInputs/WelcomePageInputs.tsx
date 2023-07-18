@@ -1,13 +1,11 @@
 import { Button } from '@/components/atoms/Button/Button';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
-import { CreateUser } from '@/lib/graphql/auth';
+import { CreateUser, GetJwt } from '@/lib/graphql/auth';
 import { useRouter } from 'next/navigation';
 import { FormEventHandler, useState } from 'react';
 import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
-import useLocalStorage from '@/hooks/useLocalStorage';
-import { gqlClient } from '@/lib/client';
-import { CreateUserDocument } from '@/codegen/gql/graphql';
+import { GetUser } from '@/lib/graphql/auth';
 
 export type WelcomePageInputsProps = {
   buttonLabel: string;
@@ -17,8 +15,10 @@ export type WelcomePageInputsProps = {
 export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInputsProps) => {
   const [isLogin, setIsLogin] = useState(false);
 
+  // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+    console.log('submit!!');
     event.preventDefault();
     if (!isLogin) {
       // 初回
@@ -26,25 +26,36 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
       // auth
-      const res = await gqlClient.request(CreateUserDocument, {
-        input: {
-          name: user_name,
-          password: password,
-          email: email,
-        },
-      });
+      // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，それをパラメータとしてrscに渡してapiを通してではなくrscでクッキーに保存する
+      const res = await fetch(`http://localhost:3000/api/auth?name=${user_name}&email=${email}&password=${password}`);
+      // const token = await CreateUser({ input: { name: user_name, email: email, password: password } });
+      const JSONres = await res.json();
+      const token = JSONres.token;
 
-      // go to school registration popup
-      // get a user id returned by mutation
-      const id = await CreateUser({ input: { name: user_name, email: email, password: password } });
-      console.log(id);
-      const user_id = '0'; // this is returned value by mutation
-      handleAction(user_id);
+      if (token) {
+        console.log('**********************************');
+        console.log('token here: ', token);
+        console.log('**********************************');
+        const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
+        const data = await res.json();
+        console.log('user :', data);
+        handleAction(data.user[0].id);
+      } else {
+        return console.log('token was not found in cookieStore');
+      }
     } else {
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
+      const token = await GetJwt({ email: email, password: password });
+      console.log('**********************************');
+      console.log('getjwt : ', token);
+      console.log('**********************************');
+      const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
+      const data = await res.json();
+      // const user = await GetUser(token);
+      console.log('user :', data);
       // *** mock
-      const user_id = '0';
+      const user_id = data.user[0].id;
       router.push(`/user/${user_id}/class`);
       router.refresh();
     }
