@@ -1,7 +1,7 @@
 import { ClassPage } from '@/components/templates/ClassPage/ClassPage';
 import { EmptyPage } from '@/components/templates/EmptyPage/EmptyPage';
 import { WrapperContainer, CoreContainer } from '@/components/common/containers';
-import { GetClassesOfUserDocument } from '@/codegen/gql/graphql';
+import { GetAccountSettingsDocument, GetClassesOfUserDocument, GetSchoolsDocument } from '@/codegen/gql/graphql';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';
@@ -19,11 +19,20 @@ export default async function User({ params: { user_id } }: UserProps, req: Next
       userID: user_id,
     },
   });
+  const user = await gqlClient.request(GetAccountSettingsDocument, {
+    input: {
+      isMe: true,
+    },
+  });
 
   return (
     <WrapperContainer>
       <CoreContainer>
-        {classes.getClasses.length === 0 ? <EmptyPage /> : <ClassPage classes={classes} user_id={user_id} />}
+        {classes.getClasses.length === 0 ? (
+          <EmptyPage user={user} />
+        ) : (
+          <ClassPage classes={classes} user_id={user_id} />
+        )}
       </CoreContainer>
     </WrapperContainer>
   );

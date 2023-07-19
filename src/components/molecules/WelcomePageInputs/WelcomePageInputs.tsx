@@ -6,7 +6,6 @@ import { FormEventHandler, useState } from 'react';
 import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
 import { GetUser } from '@/lib/graphql/auth';
-import { cookies } from 'next/dist/client/components/headers';
 // import { getToken } from '@/lib/cookie';
 import { getCookie, setCookie } from 'cookies-next';
 
@@ -35,7 +34,10 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       // const token = await CreateUser({ input: { name: user_name, email: email, password: password } });
       const JSONres = await res.json();
       const token = JSONres.token;
-      setCookie('token', token, { maxAge: 60 * 6 * 24, httpOnly: true }); // 24時間有効・HTTPのみ有効
+      console.log('**********************************');
+      console.log('token from res: ', token);
+      console.log('**********************************');
+      setCookie('token', token); // TODO: 24時間有効・HTTPのみ有効としたい
       const tokenInCookie = getCookie('token');
 
       if (tokenInCookie) {
@@ -47,14 +49,14 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
         console.log('user :', data);
         handleAction(data.user[0].id);
       } else {
-        return console.log('token was not found in cookieStore');
+        return console.log('token was not found in cookie');
       }
     } else {
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
       const token = await GetJwt({ email: email, password: password });
 
-      setCookie('token', token, { maxAge: 60 * 6 * 24, httpOnly: true }); // 24時間有効・HTTPのみ有効
+      setCookie('token', token); // 24時間有効・HTTPのみ有効としたい
       const tokenInCookie = getCookie('token');
       console.log('**********************************');
       console.log('token from next-cookie: ', tokenInCookie);

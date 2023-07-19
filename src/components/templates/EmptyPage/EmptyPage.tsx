@@ -2,8 +2,12 @@
 import { EmptyPageContent } from '@/components/organisms/EmptyPageContent/EmptyPageContent';
 import { useEffect, useState } from 'react';
 import { PopUpWindow } from '@/components/organisms/PopUpWindow/PopUpWindow';
+import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
 
-export const EmptyPage = () => {
+type EmptyPageProps = {
+  user: GetAccountSettingsQuery;
+};
+export const EmptyPage = ({ user }: EmptyPageProps) => {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -20,6 +24,8 @@ export const EmptyPage = () => {
           isWelcomePage={false}
           isFirstNoteErrorPage={false}
           buttonLabel='この講義にジョイン！'
+          user_id={user.getUser[0].id}
+          school_id={user.getUser[0].userSchool[0].id}
         />
       ) : (
         ''

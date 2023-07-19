@@ -34,6 +34,7 @@ export type PopUpWindowProps = {
   isSchoolRegistration?: boolean;
   buttonLabel: string;
   user_id?: string;
+  school_id?: string;
   class_id?: string;
   handleShowModal?: (user_id: string) => void;
 };
@@ -46,6 +47,7 @@ export const PopUpWindow = ({
   isSchoolRegistration,
   buttonLabel,
   user_id,
+  school_id,
   class_id,
   handleShowModal,
 }: PopUpWindowProps) => {
@@ -85,6 +87,7 @@ export const PopUpWindow = ({
               isSchoolRegistration={isSchoolRegistration}
               buttonLabel={buttonLabel}
               user_id={user_id}
+              school_id={school_id}
             />
           )}
         </motion.div>

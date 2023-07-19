@@ -4,6 +4,7 @@ import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { Description } from '../../atoms/Description/Description';
 import { Button } from '../../atoms/Button/Button';
 import { useRouter } from 'next/navigation';
+import { deleteCookie } from 'cookies-next';
 
 const dropIn = {
   hidden: {
@@ -43,6 +44,7 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
   const exectuteAction = () => {
     if (label1 === 'ログアウトする') {
       // delete cookies
+      deleteCookie('token');
       router.push(`/`);
       router.refresh();
     } else {

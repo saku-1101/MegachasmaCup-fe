@@ -6,7 +6,6 @@ export const getToken = (): string => {
   if (!cookie) {
     throw new Error('Token not found');
   } else {
-    console.log('here: ', cookie);
     return cookie;
   }
 };
