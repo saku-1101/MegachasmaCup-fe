@@ -3,6 +3,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import schools from '@/mockData/schools.json';
 import classes from '@/mockData/classes.json';
+import { getCookie } from 'cookies-next';
+import { gqlClient } from '@/lib/gqlClient';
+import { GetSchoolsDocument } from '@/codegen/gql/graphql';
 
 export type SearchFieldProps = {
   name: string;
@@ -37,6 +40,11 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
         setShowResults([]);
         return;
       }
+      const token = getCookie('token');
+      gqlClient.setHeader('authorization', `Bearer ${token}`);
+      gqlClient.request(GetSchoolsDocument, {
+        searchWord: value,
+      });
 
       if (isSchoolSelectField) {
         const searchedPosts = schools.data.filter(

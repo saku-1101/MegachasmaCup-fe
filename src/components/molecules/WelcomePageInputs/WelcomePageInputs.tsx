@@ -7,7 +7,7 @@ import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
 import { GetUser } from '@/lib/graphql/auth';
 import { cookies } from 'next/dist/client/components/headers';
-import { getToken } from '@/lib/cookie';
+// import { getToken } from '@/lib/cookie';
 import { getCookie, setCookie } from 'cookies-next';
 
 export type WelcomePageInputsProps = {
@@ -28,13 +28,14 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       const { value: user_name } = (event.target as any).userName;
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
-      // auth
-      // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，それをパラメータとしてrscに渡してapiを通してではなくrscでクッキーに保存する
+
+      // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，
+      // それをパラメータとしてrscに渡してapiを通してではなくに(したい)
       const res = await fetch(`http://localhost:3000/api/auth?name=${user_name}&email=${email}&password=${password}`);
       // const token = await CreateUser({ input: { name: user_name, email: email, password: password } });
       const JSONres = await res.json();
       const token = JSONres.token;
-      setCookie('token', token);
+      setCookie('token', token, { maxAge: 60 * 6 * 24, httpOnly: true }); // 24時間有効・HTTPのみ有効
       const tokenInCookie = getCookie('token');
 
       if (tokenInCookie) {
@@ -52,16 +53,16 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
       const token = await GetJwt({ email: email, password: password });
-      setCookie('token', token);
+
+      setCookie('token', token, { maxAge: 60 * 6 * 24, httpOnly: true }); // 24時間有効・HTTPのみ有効
       const tokenInCookie = getCookie('token');
       console.log('**********************************');
-      console.log('getjwt : ', tokenInCookie);
+      console.log('token from next-cookie: ', tokenInCookie);
       console.log('**********************************');
       const res = await fetch(`http://localhost:3000/api/user?token=${tokenInCookie}`);
       const data = await res.json();
-      // const user = await GetUser(token);
       console.log('user :', data);
-      // *** mock
+
       const user_id = data.user[0].id;
       router.push(`/user/${user_id}/class`);
       router.refresh();

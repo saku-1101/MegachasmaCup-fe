@@ -63,9 +63,7 @@ export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
   const [WindowState, setWindowState] = useState(false);
   const ToggleWindowState = () => {
     setWindowState(!WindowState);
-    console.log(WindowState);
   };
-  
 
   return (
     <>
@@ -97,9 +95,9 @@ export const DropdownMenu = ({ user_id, img_url }: DropdownMenuProps) => {
                     {text.name}
                   </Link>
                 ))}
-                <a className='item text-error' onClick={ToggleWindowState}>
+                <li className='item text-error' onClick={ToggleWindowState}>
                   ログアウト
-                </a>
+                </li>
               </ul>
             </motion.div>
           </motion.div>

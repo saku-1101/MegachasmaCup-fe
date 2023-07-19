@@ -86,7 +86,6 @@ export const PopUpWindow = ({
               buttonLabel={buttonLabel}
               user_id={user_id}
             />
-            // <SearchField isSchoolSelectField={true} />
           )}
         </motion.div>
       </div>

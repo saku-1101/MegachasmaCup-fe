@@ -1,5 +1,4 @@
-import { SelectField } from '@/components/atoms/SelectField/SelectField';
-import { SearchField } from '../../atoms/SearchField/SearchField';
+import { SearchField } from '@/components/atoms/SearchField/SearchField';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { FormEventHandler } from 'react';
 import { useRouter } from 'next/navigation';

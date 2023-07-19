@@ -1,4 +1,3 @@
-// import { getToken } from '@/lib/cookie';
 import { CreateUser } from '@/lib/graphql/auth';
 import { NextRequest, NextResponse } from 'next/server';
 import type { NextApiRequest, NextApiResponse } from 'next';

@@ -6,7 +6,7 @@ export type HeaderProps = {
     id: string;
     name: string;
     email: string;
-    img_url: string | undefined;
+    imageUrl: string | undefined;
   };
 };
 
@@ -14,7 +14,7 @@ export const Header = ({ user }: HeaderProps) => {
   return (
     <StyledHeader>
       <HeaderLogo />
-      <DropdownMenu user_id={user.id} img_url={user.img_url} />
+      <DropdownMenu user_id={user.id} img_url={user.imageUrl} />
     </StyledHeader>
   );
 };

@@ -5,7 +5,7 @@ import {
   GetJwtDocument,
   GetJwtProps,
 } from '@/codegen/gql/graphql';
-import { gqlClient } from '../client';
+import { gqlClient } from '../gqlClient';
 
 export async function GetUser(token: string) {
   gqlClient.setHeader('authorization', `Bearer ${token}`);
