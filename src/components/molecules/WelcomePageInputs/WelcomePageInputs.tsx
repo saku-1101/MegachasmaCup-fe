@@ -44,7 +44,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
         console.log('**********************************');
         console.log('token from next-cookie: ', tokenInCookie);
         console.log('**********************************');
-        const res = await fetch(`http://localhost:3000/api/user?token=${tokenInCookie}`);
+        const res = await fetch(`http://localhost:3000/api/user`);
         const data = await res.json();
         console.log('user :', data);
         handleAction(data.user[0].id);
@@ -61,7 +61,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       console.log('**********************************');
       console.log('token from next-cookie: ', tokenInCookie);
       console.log('**********************************');
-      const res = await fetch(`http://localhost:3000/api/user?token=${tokenInCookie}`);
+      const res = await fetch(`http://localhost:3000/api/user`);
       const data = await res.json();
       console.log('user :', data);
 

@@ -91,7 +91,9 @@ query getClasses($input: GetClassesProps) {
 query getNotes($input: GetNoteProps) {
   getNotes(input: $input) {
     id
+    title
     description
+    userId
     tags {
       id
       name
@@ -106,7 +108,9 @@ query getNotes($input: GetNoteProps) {
 query getNote($input: GetNoteProps) {
   getNotes(input: $input) {
     id
+    title
     description
+    userId
     tags {
       id
       name

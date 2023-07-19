@@ -2,7 +2,7 @@ import { GetUser } from '@/lib/graphql/auth';
 import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const token = req.nextUrl.searchParams.get('token');
+  const token = req.cookies.get('token')?.value;
   if (!token) {
     console.log('**********************************');
     console.log('Missed parameters are detected error');

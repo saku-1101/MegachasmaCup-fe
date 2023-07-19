@@ -30,7 +30,6 @@ type Note {
   isPublic: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-
   school: School!
   tags: [Tag!]!
   likeUser: [User!]!

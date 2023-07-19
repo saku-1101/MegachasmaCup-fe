@@ -74,3 +74,18 @@ mutation JoinSchool($schoolID: String!) {
     id
   }
 }
+
+mutation IncrementLike($noteID: String!) {
+  like(noteID: $noteID) {
+    likeUser {
+      id
+    }
+  }
+}
+mutation DecrementLike($noteID: String!) {
+  like(noteID: $noteID) {
+    likeUser {
+      id
+    }
+  }
+}

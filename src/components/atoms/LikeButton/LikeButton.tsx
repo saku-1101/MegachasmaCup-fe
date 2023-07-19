@@ -8,8 +8,21 @@ export type LikeButtonProps = {
   note_id?: string;
   comment_id?: string;
   numOfLike: number;
+  incrementLikeToNote?: () => void;
+  decrementLikeToNote?: () => void;
+  incrementLikeToComment?: () => void;
+  decrementLikeToComment?: () => void;
 };
-export const LikeButton = ({ isLikeToComment, note_id, comment_id, numOfLike }: LikeButtonProps) => {
+export const LikeButton = ({
+  isLikeToComment,
+  note_id,
+  comment_id,
+  numOfLike,
+  incrementLikeToNote,
+  decrementLikeToNote,
+  incrementLikeToComment,
+  decrementLikeToComment,
+}: LikeButtonProps) => {
   const playerRef = useRef<Player>(null);
   const [prevClickSate, setPrevClickState] = useState(false);
   const [like, setLike] = useState(numOfLike);
@@ -29,8 +42,10 @@ export const LikeButton = ({ isLikeToComment, note_id, comment_id, numOfLike }: 
       // update the number of the heart with note_id or comment_id
       if (isLikeToComment) {
         // with comment_id
+        decrementLikeToComment!();
       } else {
         // with note_id
+        decrementLikeToNote!();
       }
     } else {
       playerRef.current.play();
@@ -41,8 +56,10 @@ export const LikeButton = ({ isLikeToComment, note_id, comment_id, numOfLike }: 
       // update the number of the heart with note_id or comment_id
       if (isLikeToComment) {
         // with comment_id
+        incrementLikeToComment!();
       } else {
         // with note_id
+        incrementLikeToNote!();
       }
     }
   };

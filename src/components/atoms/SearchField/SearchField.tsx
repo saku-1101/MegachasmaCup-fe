@@ -1,11 +1,6 @@
 import { StyledInput } from './SearchField.style';
 import { useState, useEffect, useCallback } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
-import schools from '@/mockData/schools.json';
-import classes from '@/mockData/classes.json';
-import { getCookie } from 'cookies-next';
-import { gqlClient } from '@/lib/gqlClient';
-import { GetClassesDocument, GetSchoolsDocument } from '@/codegen/gql/graphql';
 import type { GetClassesQuery, GetSchoolsQuery } from '@/codegen/gql/graphql';
 
 export type SearchFieldProps = {
