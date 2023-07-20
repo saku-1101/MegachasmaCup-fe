@@ -6,7 +6,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const isSchool = req.nextUrl.searchParams.get('isSchool');
   const query = req.nextUrl.searchParams.get('query');
   const token = req.cookies.get('token')?.value;
-
   if (!token || !isSchool || !query) {
     console.log('**********************************');
     console.log('Missed parameters are detected error');
@@ -14,15 +13,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ error: 'Internal Server Error: Missed parameters are detected.' }, { status: 500 });
   } else {
     gqlClient.setHeader('authorization', `Bearer ${token}`);
-    if (isSchool) {
+    if (!isSchool) {
       try {
-        const res = async (value: string) => {
-          const res = await gqlClient.request(GetSchoolsDocument, {
-            searchWord: value,
-          });
-          return res;
-        };
-        console.log('res: ', res);
+        const res = await gqlClient.request(GetSchoolsDocument, {
+          searchWord: query,
+        });
+        console.log('res of schools: ', res);
         return NextResponse.json({ res }, { status: 200 });
       } catch (error) {
         console.log('**********************************');
@@ -40,7 +36,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
             searchWord: query,
           },
         });
-        console.log('res: ', res);
+        console.log('res of classes: ', res.getClasses);
         return NextResponse.json({ res }, { status: 200 });
       } catch (error) {
         console.log('**********************************');

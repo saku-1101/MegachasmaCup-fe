@@ -54,7 +54,7 @@ export const SubjectSelectComponent = ({
     return (
       <form id='subjectForm' onSubmit={handleSubmit}>
         {/* <SelectField name='class' label='講義名' placeholder='Select' /> */}
-        <SearchField name='subject' isSchoolSelectField={false} />
+        <SearchField name='subject' isSchoolSelectField={isSchoolRegistration!} />
         <FirstEngagementButton formId='subjectForm' label={buttonLabel} />
       </form>
     );
@@ -62,7 +62,7 @@ export const SubjectSelectComponent = ({
     return (
       <form id='schoolForm' onSubmit={handleSubmit}>
         {/* <SelectField name='school' label='大学名' placeholder='Select' /> */}
-        <SearchField name='school' isSchoolSelectField={true} />
+        <SearchField name='school' isSchoolSelectField={isSchoolRegistration!} />
         <FirstEngagementButton formId='schoolForm' label={buttonLabel} />
       </form>
     );

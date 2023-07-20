@@ -48,17 +48,17 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
         const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
         const searchedSchools = await res.json();
         setSchoolsShowResults(
-          !Object.keys(searchedSchools).length ? { getSchools: [] } : { getSchools: searchedSchools },
+          !Object.keys(searchedSchools.res.getSchools).length ? { getSchools: [] } : searchedSchools.res,
         );
       } else {
         // 講義選択
         const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
         const searchedClasses = await res.json();
         console.log('***********************************');
-        console.log(searchedClasses);
+        console.log('検索結果: ', searchedClasses.res);
         console.log('***********************************');
         setClassesShowResults(
-          !Object.keys(searchedClasses).length ? { getClasses: [] } : { getClasses: searchedClasses },
+          !Object.keys(searchedClasses.res.getClasses).length ? { getClasses: [] } :searchedClasses.res,
         );
       }
     },

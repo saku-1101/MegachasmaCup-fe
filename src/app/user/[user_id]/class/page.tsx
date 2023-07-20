@@ -31,7 +31,7 @@ export default async function User({ params: { user_id } }: UserProps, req: Next
         {classes.getClasses.length === 0 ? (
           <EmptyPage user={user} />
         ) : (
-          <ClassPage classes={classes} user_id={user_id} />
+          <ClassPage classes={classes} user_id={user_id} school_id={user.getUser[0].userSchool[0].id} />
         )}
       </CoreContainer>
     </WrapperContainer>

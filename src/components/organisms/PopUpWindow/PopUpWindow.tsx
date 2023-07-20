@@ -53,8 +53,7 @@ export const PopUpWindow = ({
 }: PopUpWindowProps) => {
   const router = useRouter();
   const handleCreateNote = () => {
-    const note_id = '0'; // TODO: note_idのuuid作成する
-    router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
+    router.push(`/user/${user_id}/class/${class_id}/note/edit`);
   };
   const handleHandleShowModal = (user_id: string) => {
     handleShowModal!(user_id);

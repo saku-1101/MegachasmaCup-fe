@@ -11,9 +11,10 @@ export type AddButtonProps = {
   isCommentAdd: boolean;
   user_id?: string;
   class_id?: string;
+  school_id?: string;
   note_id?: string;
 };
-export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id }: AddButtonProps) => {
+export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, school_id, note_id }: AddButtonProps) => {
   const [isHovered, setIsHovered] = useState('#131338');
   const [isClassAddPopupVisible, setIsClassAddPopupVisible] = useState(false);
   const [isCommentEditorVisible, setIsCommentEditorVisible] = useState(false);
@@ -49,8 +50,10 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, note_id 
           subtitle={`講義グループに入り，講義ノートを作成してみよう！\nノートを作成するとみんなのノートが見れたり，コメントできたりするよ！`}
           isWelcomePage={false}
           isFirstNoteErrorPage={false}
+          isSchoolRegistration={false}
           buttonLabel='この講義にジョイン！'
           user_id={user_id}
+          school_id={school_id}
         />
       ) : (
         ''
