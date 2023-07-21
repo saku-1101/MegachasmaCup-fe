@@ -42,10 +42,10 @@ export const LikeButton = ({
       // update the number of the heart with note_id or comment_id
       if (isLikeToComment) {
         // with comment_id
-        decrementLikeToComment!();
+        decrementLikeToComment!;
       } else {
         // with note_id
-        decrementLikeToNote!();
+        decrementLikeToNote!;
       }
     } else {
       playerRef.current.play();
@@ -56,10 +56,10 @@ export const LikeButton = ({
       // update the number of the heart with note_id or comment_id
       if (isLikeToComment) {
         // with comment_id
-        incrementLikeToComment!();
+        incrementLikeToComment!;
       } else {
         // with note_id
-        incrementLikeToNote!();
+        incrementLikeToNote!;
       }
     }
   };
