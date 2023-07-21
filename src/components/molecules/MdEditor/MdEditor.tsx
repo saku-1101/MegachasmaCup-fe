@@ -40,9 +40,7 @@ export const MdEditor = ({ user_id, class_id, school_id }: MdEditorProps) => {
     const resCreateNote = await fetch(
       `${
         process.env.NEXT_PUBLIC_LOCAL_API_URL
-      }/api/save?class_id=${class_id}&school_id=${school_id}&description=${escape(markdown!)}&title=${escape(
-        description,
-      )}&isPublic=${isPublic.toString()}`,
+      }/api/save?class_id=${class_id}&school_id=${school_id}&description=${escapedMarkdown}&title=${escapedDescription}&isPublic=${isPublic.toString()}`,
     );
     console.log('**********************************');
     console.log('Client tags: ', joinedTags);
