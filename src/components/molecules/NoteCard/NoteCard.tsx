@@ -8,7 +8,6 @@ import {
   IncrementLikeDocument,
   DecrementLikeDocument,
   Tag as TagType,
-  UpdateNoteDocument,
 } from '@/codegen/gql/graphql';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';
@@ -40,6 +39,7 @@ export const NoteCard = async ({
     },
   });
   const handleIncrementLike = async () => {
+    'use server';
     const res = await gqlClient.request(IncrementLikeDocument, {
       noteID: note_id,
     });
@@ -48,11 +48,12 @@ export const NoteCard = async ({
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
   };
   const handleDecrementLike = async () => {
+    'use server';
     const res = await gqlClient.request(DecrementLikeDocument, {
       noteID: note_id,
     });
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log(res.like.likeUser.length);
+    console.log(res.deleteLike.likeUser.length);
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
   };
   return (
