@@ -24,7 +24,7 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, school_i
     // add note
     if (isNoteAdd) {
       const note_id = '0'; // TODO: note_idのuuid作成する
-      router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
+      router.push(`/user/${user_id}/class/${class_id}/note/edit`);
       return;
     } else if (isCommentAdd) {
       // add comment

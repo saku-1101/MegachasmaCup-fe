@@ -4,11 +4,11 @@ import { Div, StyledTagField, StyledLabel } from './TagField.style';
 import { useState } from 'react';
 
 export type TagFieldProps = {
-  tagsFromRSC: Array<string>;
+  setTags: (array: string[]) => void;
+  tags: string[];
 };
-export const TagField = () => {
+export const TagField = ({ setTags, tags }: TagFieldProps) => {
   const [text, setText] = useState('');
-  const [array, setArray] = useState<string[]>([]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.keyCode === 13) {
@@ -17,13 +17,13 @@ export const TagField = () => {
       event.preventDefault();
 
       if (text.trim() !== '') {
-        setArray([...array, text]);
+        setTags([...tags, text]);
         setText('');
       }
     } else if (event.keyCode === 8) {
       // Backspace key code is 8
-      if (text === '' && array.length > 0) {
-        setArray(array.slice(0, array.length - 1));
+      if (text === '' && tags.length > 0) {
+        setTags(tags.slice(0, tags.length - 1));
       }
     }
   };
@@ -33,7 +33,7 @@ export const TagField = () => {
       <StyledLabel htmlFor='tagField'>Tag</StyledLabel>
       <Div>
         <div className='ml-[1rem]'>
-          {array.map((tag, index) => (
+          {tags.map((tag, index) => (
             <Tag key={index} text={tag} />
           ))}
         </div>
