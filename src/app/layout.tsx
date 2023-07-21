@@ -18,7 +18,6 @@ const getUser = async () => {
     // isAuthenticated === true
     const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
     const data = await res.json();
-    console.log('user in layout:', data);
     const user = {
       id: data.id,
       name: data.name,
