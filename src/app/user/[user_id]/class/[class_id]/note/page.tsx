@@ -15,10 +15,17 @@ export default async function Note({ params: { user_id, class_id } }: NoteListPa
   try {
     const token = getToken();
     gqlClient.setHeader('authorization', `Bearer ${token}`);
+    const user = await gqlClient.request(GetAccountSettingsDocument, {
+      input: {
+        isMe: true,
+      },
+    });
+    const school_id = user.getUser[0].userSchool[0].id;
     const res = await gqlClient.request(GetNotesDocument, {
       input: {
-        isMy: true,
+        schoolID: school_id,
         classID: class_id,
+        isPublic: true,
       },
     });
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');

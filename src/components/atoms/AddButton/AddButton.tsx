@@ -5,16 +5,18 @@ import { StyledButton } from './AddButton.style';
 import { useRouter } from 'next/navigation';
 import { PopUpWindow } from '@/components/organisms/PopUpWindow/PopUpWindow';
 import { CommentAdder } from '@/components/molecules/CommentAdder/CommentAdder';
+import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
 
 export type AddButtonProps = {
   isNoteAdd: boolean;
   isCommentAdd: boolean;
+  user?: GetAccountSettingsQuery;
   user_id?: string;
   class_id?: string;
   school_id?: string;
   note_id?: string;
 };
-export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, school_id, note_id }: AddButtonProps) => {
+export const AddButton = ({ isNoteAdd, isCommentAdd, user, user_id, class_id, school_id, note_id }: AddButtonProps) => {
   const [isHovered, setIsHovered] = useState('#131338');
   const [isClassAddPopupVisible, setIsClassAddPopupVisible] = useState(false);
   const [isCommentEditorVisible, setIsCommentEditorVisible] = useState(false);
@@ -58,11 +60,7 @@ export const AddButton = ({ isNoteAdd, isCommentAdd, user_id, class_id, school_i
       ) : (
         ''
       )}
-      {isCommentEditorVisible ? (
-        <CommentAdder user_id={user_id} class_id={class_id} note_id={note_id} numOfLike={0} />
-      ) : (
-        ''
-      )}
+      {isCommentEditorVisible ? <CommentAdder user={user!} class_id={class_id} note_id={note_id} numOfLike={0} /> : ''}
     </>
   );
 };
