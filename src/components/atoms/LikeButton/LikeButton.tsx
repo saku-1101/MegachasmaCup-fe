@@ -1,36 +1,43 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Player } from '@/components/common';
 import LikeButtonData from '@/assets/lottie/like-button.json';
-
+import { useTransition } from 'react';
 export type LikeButtonProps = {
-  isLikeToComment: boolean;
+  didYouLiked: boolean;
   note_id?: string;
   comment_id?: string;
   numOfLike: number;
   incrementLikeToNote?: () => void;
   decrementLikeToNote?: () => void;
-  incrementLikeToComment?: () => void;
-  decrementLikeToComment?: () => void;
+  // incrementLikeToComment?: () => void;
+  // decrementLikeToComment?: () => void;
 };
 export const LikeButton = ({
-  isLikeToComment,
+  didYouLiked,
   note_id,
-  comment_id,
   numOfLike,
   incrementLikeToNote,
   decrementLikeToNote,
-  incrementLikeToComment,
-  decrementLikeToComment,
 }: LikeButtonProps) => {
+  const [isPending, startTransition] = useTransition();
   const playerRef = useRef<Player>(null);
   const [prevClickSate, setPrevClickState] = useState(false);
   const [like, setLike] = useState(numOfLike);
-  const handleAction = () => {
-    // comment_id, note_idどっちもがない時また，playerRef.currentがない時
-    if (!playerRef.current || (comment_id === undefined && note_id === undefined)) {
-      console.log(comment_id, note_id);
 
+  useEffect(() => {
+    // レンダリング後実行
+    if (didYouLiked) {
+      if (!playerRef.current) {
+        return;
+      }
+      playerRef.current.play();
+      const newState = true;
+      setPrevClickState(newState);
+    }
+  }, [setPrevClickState, didYouLiked, playerRef]);
+  const handleAction = () => {
+    if (!playerRef.current || note_id === undefined) {
       return;
     }
     if (prevClickSate) {
@@ -38,36 +45,20 @@ export const LikeButton = ({
       setPrevClickState(false);
       const newlike = like - 1;
       setLike(newlike);
-      // TODO: Post an updated number of like
-      // update the number of the heart with note_id or comment_id
-      if (isLikeToComment) {
-        // with comment_id
-        decrementLikeToComment!;
-      } else {
-        // with note_id
-        decrementLikeToNote!;
-      }
+      decrementLikeToNote!();
     } else {
       playerRef.current.play();
       setPrevClickState(true);
       const newlike = like + 1;
       setLike(newlike);
-      // TODO: Post an updated number of like
-      // update the number of the heart with note_id or comment_id
-      if (isLikeToComment) {
-        // with comment_id
-        incrementLikeToComment!;
-      } else {
-        // with note_id
-        incrementLikeToNote!;
-      }
+      incrementLikeToNote!();
     }
   };
 
   return (
     <div className='flex justify-center items-center'>
       <button
-        onClick={handleAction}
+        onClick={() => startTransition(handleAction)}
         className='max-h-[100px] max-w-[100px] flex flex-col justify-center items-center relative overflow-hidden'
       >
         <Player ref={playerRef} src={LikeButtonData} keepLastFrame style={{ height: '300px', width: '300px' }}></Player>
