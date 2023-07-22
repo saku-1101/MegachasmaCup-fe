@@ -14,9 +14,6 @@ export const handleNoteRelease = async (
   tags: string[],
 ) => {
   const comment = formData.get('comment');
-  if (!comment) {
-    return;
-  }
   //   const escapedMarkdown = escape(markdown!);
   //   const escapedDescription = escape(description);
   //   const joinedTags = tags.join('*');
@@ -30,7 +27,7 @@ export const handleNoteRelease = async (
       classID: class_id,
       schoolID: school_id,
       description: markdown || ' ',
-      title: comment.toString(),
+      title: comment?.toString()|| '',
       isPublic: isPublic,
     },
   });
