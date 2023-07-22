@@ -2,73 +2,74 @@
   "data": [
     {
       "id": "0",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "田中太郎",
+      "description": "微分積分の基礎から応用までを学びます。",
+      "tags": ["数学", "微分積分", "応用数学"],
+      "numOfLike": 92
     },
     {
       "id": "1",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "山田花子",
+      "description": "線形代数の理論と行列演算について学びます。",
+      "tags": ["数学", "線形代数", "行列演算"],
+      "numOfLike": 78
     },
     {
       "id": "2",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "佐藤健太",
+      "description": "確率と統計の基本的な概念と応用について学びます。",
+      "tags": ["数学", "確率", "統計学"],
+      "numOfLike": 41
     },
     {
       "id": "3",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "鈴木美智子",
+      "description": "データ構造とアルゴリズムについて学びます。",
+      "tags": ["コンピュータ科学", "データ構造", "アルゴリズム"],
+      "numOfLike": 65
     },
     {
       "id": "4",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "高橋大輔",
+      "description": "オペレーティングシステムの設計と実装について学びます。",
+      "tags": ["コンピュータ科学", "オペレーティングシステム", "システムプログラミング"],
+      "numOfLike": 17
     },
     {
       "id": "5",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "伊藤さくら",
+      "description": "プログラミング言語の基礎と応用について学びます。",
+      "tags": ["コンピュータ科学", "プログラミング言語", "ソフトウェア開発"],
+      "numOfLike": 89
     },
     {
       "id": "6",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "渡辺大地",
+      "description": "コンピュータネットワークの原理とプロトコルについて学びます。",
+      "tags": ["コンピュータ科学", "コンピュータネットワーク", "ネットワーキング"],
+      "numOfLike": 35
     },
     {
       "id": "7",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "木村美咲",
+      "description": "信号処理の基本理論とデジタル信号処理について学びます。",
+      "tags": ["電子工学", "信号処理", "デジタル信号処理"],
+      "numOfLike": 76
     },
     {
       "id": "8",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "小林拓海",
+      "description": "人工知能の基礎と機械学習について学びます。",
+      "tags": ["コンピュータ科学", "人工知能", "機械学習"],
+      "numOfLike": 53
     },
     {
       "id": "9",
-      "name": "student",
-      "description": "descriptiondescriptiondescriptiondescriptiondescriptiondescription",
-      "tags": ["math", "math", "math"],
-      "numOfLike": 24
+      "name": "中村結衣",
+      "description": "データベースの設計とクエリ処理について学びます。",
+      "tags": ["コンピュータ科学", "データベース", "SQL"],
+      "numOfLike": 94
     }
   ]
 }
+

@@ -1,14 +1,14 @@
 {
   "data": [
-    { "id": "0", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "1", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "2", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "3", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "4", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "5", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "6", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "7", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "8", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 },
-    { "id": "9", "name": "微分積分", "numOfStudent": 24, "numOfNote": 24 }
+    { "id": "0", "name": "線形代数", "numOfStudent": 62, "numOfNote": 8 },
+    { "id": "1", "name": "微分方程式", "numOfStudent": 87, "numOfNote": 10 },
+    { "id": "2", "name": "統計学", "numOfStudent": 33, "numOfNote": 5 },
+    { "id": "3", "name": "ハッカソン学", "numOfStudent": 54, "numOfNote": 6 },
+    { "id": "4", "name": "データ構造とアルゴリズム", "numOfStudent": 72, "numOfNote": 5 },
+    { "id": "5", "name": "コンピュータネットワーク", "numOfStudent": 21, "numOfNote": 9 },
+    { "id": "6", "name": "信号処理", "numOfStudent": 94, "numOfNote": 4 },
+    { "id": "7", "name": "人工知能", "numOfStudent": 45, "numOfNote": 2 },
+    { "id": "8", "name": "暗号理論", "numOfStudent": 79, "numOfNote": 10 },
+    { "id": "9", "name": "データベース", "numOfStudent": 66, "numOfNote": 2 }
   ]
 }
