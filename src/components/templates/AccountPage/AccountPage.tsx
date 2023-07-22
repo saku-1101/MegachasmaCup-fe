@@ -1,16 +1,10 @@
 import { AccountCard } from '@/components/organisms/AccountCard/AccountCard';
-import { Div } from './AccountPage.style';
-export type AccountPageProps = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    school: string;
-    faculty: string;
-    year: number;
-  };
+import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
+
+type AccountPageProps = {
+  userObj: GetAccountSettingsQuery;
 };
 
-export const AccountPage = ({ user }: AccountPageProps) => {
-  return <AccountCard user={user} />;
+export const AccountPage = ({ userObj }: AccountPageProps) => {
+  return <AccountCard userObj={userObj} />;
 };

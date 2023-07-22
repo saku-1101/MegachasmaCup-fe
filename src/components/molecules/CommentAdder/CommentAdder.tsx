@@ -1,31 +1,28 @@
-import { StyledCard } from './CommentAdder.style';
+import { StyledCard, Div } from './CommentAdder.style';
 import { UserWithLike } from '../UserWithLike/UserWithLike';
 import { User } from '@/app/models';
 import { CommentEditor } from '../CommentEditor/CommentEditor';
+import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
+import { AccountSvg } from '../../../../public';
 export type CommentCardProps = {
-  user_id: string | undefined;
+  user: GetAccountSettingsQuery;
   class_id: string | undefined;
   note_id: string | undefined;
   numOfLike: number;
 };
 
-export const CommentAdder = ({ user_id, class_id, note_id, numOfLike }: CommentCardProps) => {
-  try {
-    // TODO: fetch user with user_id
-  } catch {
-    // if the result of fetch is error
-  }
-  const data: User = {
-    id: user_id!,
-    image_url: '',
-    name: 'student',
-    email: 'example@email.com',
-    school_id: '0',
-  };
+export const CommentAdder = ({ user, class_id, note_id, numOfLike }: CommentCardProps) => {
   return (
     <StyledCard>
-      <UserWithLike isLikeToComment={true} user={data} numOfLike={numOfLike} />
-      <CommentEditor user_id={user_id} class_id={user_id} note_id={user_id} />
+      <Div>
+        <Div className='justify-start'>
+          {AccountSvg()}
+          <div className='pl-[1rem] flex flex-col'>
+            <p>{user.getUser[0].name}</p>
+          </div>
+        </Div>
+      </Div>
+      <CommentEditor user_id={user.getUser[0].id} class_id={class_id} note_id={note_id} />
     </StyledCard>
   );
 };

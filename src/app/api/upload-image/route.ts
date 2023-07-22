@@ -1,10 +1,17 @@
 import { Storage } from '@google-cloud/storage';
 import { NextRequest, NextResponse } from 'next/server';
-
+import { credential } from '@/lib/encode';
 export async function GET(req: NextRequest) {
+
   const storage = new Storage({
     projectId: process.env.PROJECT_ID,
-    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    // important
+    credentials: {
+      // @ts-ignore
+      client_email: credential.client_email,
+      // @ts-ignore
+      private_key: credential.private_key,
+    },
   });
 
   const bucketName = process.env.BUCKET_NAME ?? '';

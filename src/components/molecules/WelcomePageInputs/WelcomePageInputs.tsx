@@ -1,9 +1,13 @@
-import { FormEventHandler, useState } from 'react';
-import { Div } from './WelcomePageInputs.style';
-import { InputField } from '../../atoms/InputField/InputField';
-import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button/Button';
+import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
+import { GetJwt } from '@/lib/graphql/auth';
+import { useRouter } from 'next/navigation';
+import { FormEventHandler, useState } from 'react';
+import { InputField } from '../../atoms/InputField/InputField';
+import { Div } from './WelcomePageInputs.style';
+
+import { getCookie, setCookie } from 'cookies-next';
+
 export type WelcomePageInputsProps = {
   buttonLabel: string;
   handleAction: (user_id: string) => void | undefined;
@@ -14,23 +18,44 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
 
   // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (!isLogin) {
       // 初回
       const { value: user_name } = (event.target as any).userName;
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
-      // auth
-      // go to school registration popup
-      // get a user id returned by mutation
-      const user_id = '0'; // this is returned value by mutation
-      handleAction(user_id);
+
+      // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，
+      // それをパラメータとしてrscに渡してapiを通してではなくに(したい)
+      const res = await fetch(`http://localhost:3000/api/auth?name=${user_name}&email=${email}&password=${password}`);
+      const JSONres = await res.json();
+      const token = JSONres.token;
+      setCookie('token', token); // TODO: 24時間有効・HTTPのみ有効としたい
+
+      try {
+        const res = await fetch(`http://localhost:3000/api/user`);
+        const data = await res.json();
+        console.log('user :', data);
+        handleAction(data.user[0].id);
+      } catch (error) {
+        return console.log(error);
+      }
     } else {
       const { value: email } = (event.target as any).email;
       const { value: password } = (event.target as any).password;
-      // *** mock
-      const user_id = '0';
+      const token = await GetJwt({ email: email, password: password });
+
+      setCookie('token', token); // 24時間有効・HTTPのみ有効としたい
+      const tokenInCookie = getCookie('token');
+      console.log('**********************************');
+      console.log('token from next-cookie: ', tokenInCookie);
+      console.log('**********************************');
+      const res = await fetch(`http://localhost:3000/api/user`);
+      const data = await res.json();
+      console.log('user :', data);
+
+      const user_id = data.user[0].id;
       router.push(`/user/${user_id}/class`);
       router.refresh();
     }
@@ -49,7 +74,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
           inputType='email'
           label='メールアドレス'
           placeholder='Email'
-          pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
+          pattern="[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?"
         />
         <InputField
           name='password'

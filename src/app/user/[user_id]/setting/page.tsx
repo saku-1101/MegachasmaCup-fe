@@ -1,35 +1,23 @@
 import { AccountPage } from '@/components/templates/AccountPage/AccountPage';
 import { WrapperContainer } from '@/components/common/containers';
+import { gqlClient } from '@/lib/gqlClient';
+import { getToken } from '@/lib/cookie';
+import { GetAccountSettingsDocument, GetLikedNotesDocument } from '@/codegen/gql/graphql';
 
-export type SettingProps = {
-  params: { user_id: string };
-};
-export default function Setting({ params: { user_id } }: SettingProps) {
+export default async function Setting() {
   // fetch account data here with user_id
-  // *** mock
-  const user: {
-    data: {
-      id: string;
-      name: string;
-      email: string;
-      school: string;
-      faculty: string;
-      year: number;
-    };
-  } = {
-    data: {
-      id: user_id,
-      name: 'ロエム・イプサム',
-      email: 'example@email.com',
-      school: 'XX University',
-      faculty: 'Informatics',
-      year: 4,
+  const token = getToken();
+  gqlClient.setHeader('authorization', `Bearer ${token}`);
+  const userObj = await gqlClient.request(GetAccountSettingsDocument, {
+    input: {
+      isMe: true,
     },
-  };
+  });
+
   return (
     <WrapperContainer>
       <div className='md:w-[40%] w-[90%]'>
-        <AccountPage user={user.data} />
+        <AccountPage userObj={userObj} />
       </div>
     </WrapperContainer>
   );

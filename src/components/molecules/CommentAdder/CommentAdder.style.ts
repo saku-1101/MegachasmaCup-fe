@@ -16,3 +16,11 @@ export const StyledCard = tw.div`
     md:overflow-hidden
     overflow-y-scroll
 `;
+
+export const Div = tw.div`
+    flex
+    items-center
+    justify-between
+    w-full
+    h-full
+`;

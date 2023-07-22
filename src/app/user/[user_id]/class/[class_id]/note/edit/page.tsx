@@ -4,14 +4,13 @@ type NoteEditProps = {
   params: {
     user_id: string;
     class_id: string;
-    note_id: string;
   };
 };
-export default function NoteEdit({ params: { user_id, class_id, note_id } }: NoteEditProps) {
+export default function NoteEdit({ params: { user_id, class_id } }: NoteEditProps) {
   return (
     <WrapperContainer>
       <CoreContainer>
-        <NoteEditPage user_id={user_id} class_id={class_id} note_id={note_id} />
+        <NoteEditPage user_id={user_id} class_id={class_id} />
       </CoreContainer>
     </WrapperContainer>
   );

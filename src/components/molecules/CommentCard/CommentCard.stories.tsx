@@ -26,9 +26,7 @@ export const Default: StoryObj<typeof CommentCard> = {
     ),
   ],
   args: {
-    comment_id: '0',
-    user: { id: '0', name: 'student' },
-    numOfLike: 20,
+    commentAuthorId: '0',
     comment: 'commentcommentcommentcommentcommentcommentcommentcomment',
   },
 };

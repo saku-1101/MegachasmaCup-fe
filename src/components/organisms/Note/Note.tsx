@@ -4,41 +4,31 @@ import { NoteContent, NoteContentWrapper } from './Note.style';
 import { LgTitle } from '../../atoms/LgTitle/LgTitle';
 import { TagSvg } from '../../../../public/index';
 import { Tag } from '@/components/atoms/Tag/Tag';
+import { GetAccountSettingsQuery, GetNoteQuery } from '@/codegen/gql/graphql';
 
 export type NoteProps = {
-  user: {
-    id: string;
-    name: string;
-    faculty: string;
-    year: number;
-    note_id: string;
-    note: {
-      id: string;
-      description: string;
-      tags: Array<string>;
-      content: string;
-      like: number;
-    };
-  };
+  author: GetAccountSettingsQuery;
+  note: GetNoteQuery;
   numOfLike: number;
+  didYouLiked: boolean;
 };
 
-export const Note = ({ user, numOfLike }: NoteProps) => {
+export const Note = ({ author, note, numOfLike, didYouLiked }: NoteProps) => {
   return (
     <StyledNote>
       <NoteContentWrapper>
-        <LgTitle title={user.name + 'のノート'} />
+        <LgTitle title={author.getUser[0].name + 'のノート'} />
         <div className='md:basis-1/4 flex items-center md:justify-start justify-center md:m-2 m-5'>
           <div className='p-2'>{TagSvg()}</div>
           <div className='max-w-[80%] max-h-[100px] flex flex-wrap overflow-y-scroll'>
-            {user.note.tags.map((tag, index) => (
-              <Tag key={index} text={tag} />
+            {note.getNotes[0].tags.map((tag) => (
+              <Tag key={tag.id} text={tag.name} />
             ))}
           </div>
         </div>
-        <NoteContent> {user.note.content}</NoteContent>
+        <NoteContent> {note.getNotes[0].description}</NoteContent>
       </NoteContentWrapper>
-      <UserWithLike isLikeToComment={false} note_id={user.note_id} user={user} numOfLike={numOfLike} />
+      <UserWithLike note_id={note.getNotes[0].id} user={author} numOfLike={numOfLike} didYouLiked={didYouLiked}/>
     </StyledNote>
   );
 };

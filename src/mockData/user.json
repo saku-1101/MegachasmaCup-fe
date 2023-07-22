@@ -1,8 +1,8 @@
 {
   "data": {
-    "id": "0",
+    "id": "eyJhbGciOiJIUzI1NiI",
     "name": "student",
     "email": "example@email.com",
-    "img_url": "https://storage.cloud.google.com/megashasmacup-storage-bucket/21162883-8cf1-42ef-a77d-050352caf96a?authuser=2"
+    "imageUrl": "https://storage.cloud.google.com/megashasmacup-storage-bucket/21162883-8cf1-42ef-a77d-050352caf96a?authuser=2"
   }
 }

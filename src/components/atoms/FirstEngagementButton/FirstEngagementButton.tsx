@@ -20,7 +20,6 @@ export const FirstEngagementButton = ({ label, formId, type = 'submit', handleAc
     setIsActive(true);
     playerRef.current.play();
     if (type === 'button') {
-      console.log(handleAction!());
       handleAction!();
     }
   };

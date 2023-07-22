@@ -1,64 +1,62 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
+directive @isAuthenticated on FIELD_DEFINITION
 
 scalar DateTime
 
 type User {
   id: String!
-  image_url: String!
+  imageUrl: String!
   name: String!
   email: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  deleted_at: DateTime!
-
-  school: [School!]!
-  likes: [Note!]!
-  classes: [Class!]!
-  notes: [Note!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  userSchool: [School!]!
+  userLikes: [Note!]!
+  userClass: [Class!]!
+  userNotes: [Note!]!
+}
+type Jwt {
+  token: String!
 }
 type Note {
   id: String!
-  class_id: String!
-  school_id: String!
+  classId: String!
+  schoolId: String!
   description: String!
   title: String!
-  user_id: String!
-  is_public: Boolean!
-  created_at: DateTime!
-  updated_at: DateTime!
-  deleted_at: DateTime!
-
+  userId: String!
+  isPublic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   school: School!
   tags: [Tag!]!
-  like_user: [User!]!
-  comment: [Comment!]!
+  likeUser: [User!]!
+  comments: [Comment!]!
 }
 type School {
   id: String!
   name: String!
-  owner_id: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  deleted_at: DateTime!
+  ownerId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 
-  owner: User!
-  students: [User!]!
+  schoolOwner: User!
+  schoolStudents: [User!]!
 }
 
 type Class {
   id: String!
   name: String!
-  school_id: String!
-  owner_id: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  deleted_at: DateTime!
-
-  school: School!
-  students: [User!]!
-  notes: [Note!]!
+  schoolId: String!
+  ownerId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  classOwner: User!
+  classSchool: School!
+  classStudents: [User!]!
+  classNotes: [Note!]!
 }
 
 type Tag {
@@ -67,35 +65,37 @@ type Tag {
 }
 type Comment {
   id: String!
-  note_id: String!
+  noteId: String!
+  userId: String!
   comment: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  deleted_at: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {
-  getNotes(user_id: String, class_id: String, note_id: String): [Note!]!
-  getSchools(searchWord: String!): [School!]!
-  getClasses(user_id: String!): [Class!]!
-  getTags(searchWord: String!): [Tag!]!
-  getMyNotes(user_id: String!): [Note!]!
-  getUser(user_id: String!): User!
+  getNotes(input: GetNoteProps): [Note!]! @isAuthenticated
+  getSchools(searchWord: String!): [School!]! @isAuthenticated
+  getClasses(input: GetClassesProps): [Class!]! @isAuthenticated
+  getTags(searchWord: String!): [Tag!]! @isAuthenticated
+  getUser(input: GetUserProps): [User!]! @isAuthenticated
+  getJwt(input: GetJwtProps): Jwt!
 }
 type Mutation {
   createUser(input: NewUser!): User!
-  updateUser(input: NewUser): User!
-  createNote(input: NewNote!): Note!
-  updateNote(input: NewNote): Note!
-  createClass(input: NewClass!): Class!
-  updateClass(input: NewClass): Class!
-  createSchool(input: NewSchool!): School!
-  updateSchool(input: NewSchool): School!
-  createComment(input: NewComment!): Comment!
-  updateComment(input: NewComment): Comment!
-  createTag(input: NewTag!): Tag!
-  joinClass(input: NewJoinClass!): Class!
-  joinSchool(input: NewJoinSchool!): School!
+  updateUser(id: String!, input: UpdateUserProps): User! @isAuthenticated
+  createNote(input: NewNote!): Note! @isAuthenticated
+  updateNote(id: String!, input: UpdateNoteProps): Note! @isAuthenticated
+  createClass(input: NewClass!): Class! @isAuthenticated
+  updateClass(id: String!, input: UpdateClassProps): Class! @isAuthenticated
+  createSchool(input: NewSchool!): School! @isAuthenticated
+  updateSchool(id: String!, input: UpdateSchoolProps): School! @isAuthenticated
+  createComment(input: NewComment!): Comment! @isAuthenticated
+  updateComment(id: String!, input: UpdateCommentProps): Comment! @isAuthenticated
+  createTag(input: NewTag!): Tag! @isAuthenticated
+  joinClass(classID: String!): Class! @isAuthenticated
+  joinSchool(schoolID: String!): School! @isAuthenticated
+  like(noteID: String!): Note! @isAuthenticated
+  deleteLike(noteID: String!): Note! @isAuthenticated
 }
 
 input NewNote {
@@ -103,43 +103,86 @@ input NewNote {
   schoolID: String!
   description: String!
   title: String!
-  userID: String!
   isPublic: Boolean!
 }
 
 input NewClass {
   name: String!
   schoolID: String!
-  ownerID: String!
 }
 
 input NewSchool {
-  Name: String!
-  schoolID: String!
-  userID: String!
+  name: String!
 }
 
 input NewUser {
-  Name: String!
-  Email: String!
-  Password: String!
+  name: String!
+  email: String!
+  password: String!
+}
+input GetJwtProps {
+  email: String!
+  password: String!
 }
 
 input NewTag {
-  Name: String!
+  name: String!
 }
 
 input NewComment {
-  Comment: String!
-  NoteID: String!
+  noteID: String!
+  comment: String!
 }
 
-input NewJoinClass {
-  ClassID: String!
-  UserID: String!
+input GetClassesProps {
+  schoolID: String
+  userID: String
+  classID: String
+  searchWord: String
 }
 
-input NewJoinSchool {
-  SchoolID: String!
-  UserID: String!
+input GetNoteProps {
+  isMy: Boolean
+  noteID: String
+  schoolID: String
+  userID: String
+  classID: String
+  isPublic: Boolean
+}
+
+input GetUserProps {
+  isMe: Boolean
+  email: String
+  userID: String
+  name: String
+}
+
+input UpdateSchoolProps {
+  name: String
+  ownerID: String
+  deletedAt: DateTime
+}
+
+input UpdateClassProps {
+  name: String
+  owner_id: String
+  deletedAt: DateTime
+}
+
+input UpdateUserProps {
+  email: String
+  name: String
+  imageUrl: String
+  deletedAt: DateTime
+}
+
+input UpdateCommentProps {
+  comment: String
+  deletedAt: DateTime
+}
+input UpdateNoteProps {
+  description: String
+  title: String
+  isPublic: Boolean
+  deletedAt: DateTime
 }

@@ -17,6 +17,7 @@ export default {
 export const Default: StoryObj<typeof NotePage> = {
   args: {
     user_id: '0',
+    class_id: '0',
     note_id: '0',
   },
 };
