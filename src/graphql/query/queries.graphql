@@ -2,6 +2,7 @@
 query GetMyNotes($input: GetNoteProps) {
   getNotes(input: $input) {
     id
+    userId
     classId
     title
     description
