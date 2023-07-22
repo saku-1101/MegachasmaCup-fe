@@ -1,16 +1,13 @@
 import { StyledHeader } from './Header.style';
 import { HeaderLogo } from '../../atoms/HeaderLogo/HeaderLogo';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
+import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
 export type HeaderProps = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    imageUrl: string | undefined;
-  };
+  userObj: GetAccountSettingsQuery;
 };
 
-export const Header = ({ user }: HeaderProps) => {
+export const Header = ({ userObj }: HeaderProps) => {
+const user = userObj.getUser[0]
   return (
     <StyledHeader>
       <HeaderLogo />
