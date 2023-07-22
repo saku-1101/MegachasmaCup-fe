@@ -121,6 +121,7 @@ query getNote($input: GetNoteProps) {
     comments {
       id
       comment
+      userId
     }
   }
 }
@@ -141,5 +142,24 @@ query getSchools($searchWord: String!) {
 query getJwt($input: GetJwtProps!) {
   getJwt(input: $input) {
     token
+  }
+}
+
+query getLikedNotes($input: GetUserProps!) {
+  getUser(input: $input) {
+    userLikes {
+      id
+      userId
+      classId
+      title
+      description
+      tags {
+        id
+        name
+      }
+      likeUser {
+        id
+      }
+    }
   }
 }

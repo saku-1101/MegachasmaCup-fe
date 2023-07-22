@@ -29,7 +29,7 @@ type Note = {
 export type NoteCardProps = {
   note: Note;
   user_id: string;
-  class_id?: string;
+  class_id: string;
 };
 
 export const NoteCard = async ({ note, user_id, class_id }: NoteCardProps) => {

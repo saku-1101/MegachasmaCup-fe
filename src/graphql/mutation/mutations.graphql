@@ -83,7 +83,7 @@ mutation IncrementLike($noteID: String!) {
   }
 }
 mutation DecrementLike($noteID: String!) {
-  like(noteID: $noteID) {
+  deleteLike(noteID: $noteID) {
     likeUser {
       id
     }
