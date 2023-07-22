@@ -3,6 +3,7 @@ import { CreateNoteDocument, CreateTagDocument } from '@/codegen/gql/graphql';
 import { getToken } from '../cookie';
 import { gqlClient } from '../gqlClient';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const handleNoteRelease = async (
   formData: FormData,
@@ -14,11 +15,6 @@ export const handleNoteRelease = async (
   tags: string[],
 ) => {
   const comment = formData.get('comment');
-  //   const escapedMarkdown = escape(markdown!);
-  //   const escapedDescription = escape(description);
-  //   const joinedTags = tags.join('*');
-  // create note as is_private true using ids
-  // contentの代わりにdescription, descriptionの代わりにtitleを使用する
 
   const token = getToken();
   gqlClient.setHeader('authorization', `Bearer ${token}`);
@@ -27,7 +23,7 @@ export const handleNoteRelease = async (
       classID: class_id,
       schoolID: school_id,
       description: markdown || ' ',
-      title: comment?.toString()|| '',
+      title: comment?.toString() || '',
       isPublic: isPublic,
     },
   });
@@ -43,4 +39,5 @@ export const handleNoteRelease = async (
   }
 
   revalidatePath(`/user/${user_id}/class/${class_id}/note/${resCreateNote.createNote.id}`);
+  redirect(`/user/${user_id}/class/${class_id}/note`);
 };
