@@ -28,13 +28,15 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
 
       // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，
       // それをパラメータとしてrscに渡してapiを通してではなくに(したい)
-      const res = await fetch(`http://localhost:3000/api/auth?name=${user_name}&email=${email}&password=${password}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/auth?name=${user_name}&email=${email}&password=${password}`,
+      );
       const JSONres = await res.json();
       const token = JSONres.token;
       setCookie('token', token); // TODO: 24時間有効・HTTPのみ有効としたい
 
       try {
-        const res = await fetch(`http://localhost:3000/api/user`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/user`);
         const data = await res.json();
         console.log('user :', data);
         handleAction(data.user[0].id);
@@ -51,7 +53,7 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       console.log('**********************************');
       console.log('token from next-cookie: ', tokenInCookie);
       console.log('**********************************');
-      const res = await fetch(`http://localhost:3000/api/user`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/user`);
       const data = await res.json();
       console.log('user :', data);
 
