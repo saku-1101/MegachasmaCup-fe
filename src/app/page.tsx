@@ -11,7 +11,7 @@ export default function Home() {
     const token = getCookie('token');
     if (token) {
       // isAuthenticated === true
-      const res = await fetch(`http://localhost:3000/api/user?token=${token}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/user?token=${token}`);
       const data = await res.json();
 
       const user_id = data.user[0].id;

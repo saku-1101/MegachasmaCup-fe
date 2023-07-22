@@ -45,7 +45,9 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
 
       if (isSchoolSelectField === 'true') {
         // 学校選択
-        const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/search?isSchool=${isSchoolSelectField}&query=${value}`,
+        );
         const searchedSchools = await res.json();
         console.log('***********************************');
         console.log('検索結果: ', searchedSchools);
@@ -55,7 +57,9 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
         );
       } else {
         // 講義選択
-        const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/api/search?isSchool=${isSchoolSelectField}&query=${value}`,
+        );
         const searchedClasses = await res.json();
         console.log('***********************************');
         console.log('検索結果: ', searchedClasses);
