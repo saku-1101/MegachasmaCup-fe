@@ -31,7 +31,7 @@ export type PopUpWindowProps = {
   subtitle: string;
   isWelcomePage: boolean;
   isFirstNoteErrorPage: boolean;
-  isSchoolRegistration?: boolean;
+  isSchoolRegistration?: 'true' | 'false';
   buttonLabel: string;
   user_id?: string;
   school_id?: string;
@@ -83,7 +83,7 @@ export const PopUpWindow = ({
           ) : (
             // 大学登録・教科登録
             <SubjectSelectComponent
-              isSchoolRegistration={isSchoolRegistration}
+              isSchoolRegistration={isSchoolRegistration!}
               buttonLabel={buttonLabel}
               user_id={user_id}
               school_id={school_id}

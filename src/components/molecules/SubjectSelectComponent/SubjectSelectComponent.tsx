@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { CreateClassMutation, CreateSchoolMutation } from '@/codegen/gql/graphql';
 
 export type SubjectSelectComponentProps = {
-  isSchoolRegistration: boolean | undefined;
+  isSchoolRegistration: 'true' | 'false';
   buttonLabel: string;
   user_id: string | undefined;
   school_id: string | undefined;
@@ -20,7 +20,7 @@ export const SubjectSelectComponent = ({
   const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    if (!isSchoolRegistration) {
+    if (isSchoolRegistration === 'false') {
       // 講義登録
       const { value: subject } = (event.target as any).subject;
       console.log(`class: ${subject} `);
@@ -50,11 +50,11 @@ export const SubjectSelectComponent = ({
 
     router.refresh();
   };
-  if (!isSchoolRegistration) {
+  if (isSchoolRegistration === 'false') {
     return (
       <form id='subjectForm' onSubmit={handleSubmit}>
         {/* <SelectField name='class' label='講義名' placeholder='Select' /> */}
-        <SearchField name='subject' isSchoolSelectField={isSchoolRegistration!} />
+        <SearchField name='subject' isSchoolSelectField={isSchoolRegistration} />
         <FirstEngagementButton formId='subjectForm' label={buttonLabel} />
       </form>
     );
@@ -62,7 +62,7 @@ export const SubjectSelectComponent = ({
     return (
       <form id='schoolForm' onSubmit={handleSubmit}>
         {/* <SelectField name='school' label='大学名' placeholder='Select' /> */}
-        <SearchField name='school' isSchoolSelectField={isSchoolRegistration!} />
+        <SearchField name='school' isSchoolSelectField={isSchoolRegistration} />
         <FirstEngagementButton formId='schoolForm' label={buttonLabel} />
       </form>
     );

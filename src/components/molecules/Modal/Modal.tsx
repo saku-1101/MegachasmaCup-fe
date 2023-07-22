@@ -32,14 +32,26 @@ export type ModalProps = {
   handleClose: () => void;
   title: string;
   subtitle: string;
-  handleAction?: () => void;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   label1?: string;
   label2?: string;
   user_id: string;
   class_id?: string;
+  formId?: string;
 };
 
-export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_id, label1, label2 }: ModalProps) => {
+export const Modal = ({
+  modalOpen,
+  handleClose,
+  title,
+  subtitle,
+  user_id,
+  class_id,
+  label1,
+  label2,
+  type = 'button',
+  formId,
+}: ModalProps) => {
   const router = useRouter();
   const exectuteAction = () => {
     if (label1 === 'ログアウトする') {
@@ -50,8 +62,7 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
     } else {
       // create note as is_private false using ids
       // push to note list page
-      router.push(`/user/${user_id}/class/${class_id}/note`);
-      router.refresh();
+      // original function is defined in MdEditor
     }
   };
   if (label1 === undefined) {
@@ -75,7 +86,7 @@ export const Modal = ({ modalOpen, handleClose, title, subtitle, user_id, class_
             <MdTitle title={title} />
             <Description description={subtitle} />
 
-            <Button label={label1} isSecondaryBg={false} handleAction={exectuteAction} />
+            <Button label={label1} type={type} isSecondaryBg={false} handleAction={exectuteAction} formId={formId}/>
             <Button label={label2} isSecondaryBg={true} handleAction={handleClose} />
           </motion.div>
         </Backdrop>

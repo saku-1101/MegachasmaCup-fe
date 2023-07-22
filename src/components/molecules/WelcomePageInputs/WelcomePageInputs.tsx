@@ -6,7 +6,7 @@ import { FormEventHandler, useState } from 'react';
 import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
 import { GetUser } from '@/lib/graphql/auth';
-// import { getToken } from '@/lib/cookie';
+
 import { getCookie, setCookie } from 'cookies-next';
 
 export type WelcomePageInputsProps = {
@@ -20,7 +20,6 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
   // 親cmpがどのみちclient cmpなのでuseRouter使う
   const router = useRouter();
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-    console.log('submit!!');
     event.preventDefault();
     if (!isLogin) {
       // 初回
@@ -31,25 +30,17 @@ export const WelcomePageInputs = ({ buttonLabel, handleAction }: WelcomePageInpu
       // passwordなど漏洩してしまうのでawait CreateUserしてtoeknを返し，
       // それをパラメータとしてrscに渡してapiを通してではなくに(したい)
       const res = await fetch(`http://localhost:3000/api/auth?name=${user_name}&email=${email}&password=${password}`);
-      // const token = await CreateUser({ input: { name: user_name, email: email, password: password } });
       const JSONres = await res.json();
       const token = JSONres.token;
-      console.log('**********************************');
-      console.log('token from res: ', token);
-      console.log('**********************************');
       setCookie('token', token); // TODO: 24時間有効・HTTPのみ有効としたい
-      const tokenInCookie = getCookie('token');
 
-      if (tokenInCookie) {
-        console.log('**********************************');
-        console.log('token from next-cookie: ', tokenInCookie);
-        console.log('**********************************');
+      try {
         const res = await fetch(`http://localhost:3000/api/user`);
         const data = await res.json();
         console.log('user :', data);
         handleAction(data.user[0].id);
-      } else {
-        return console.log('token was not found in cookie');
+      } catch (error) {
+        return console.log(error);
       }
     } else {
       const { value: email } = (event.target as any).email;

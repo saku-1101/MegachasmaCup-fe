@@ -5,7 +5,7 @@ import type { GetClassesQuery, GetSchoolsQuery } from '@/codegen/gql/graphql';
 
 export type SearchFieldProps = {
   name: string;
-  isSchoolSelectField: boolean;
+  isSchoolSelectField: 'true' | 'false';
 };
 
 export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => {
@@ -43,10 +43,13 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
       console.log(value);
       console.log('***********************************');
 
-      if (isSchoolSelectField) {
+      if (isSchoolSelectField === 'true') {
         // 学校選択
         const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
         const searchedSchools = await res.json();
+        console.log('***********************************');
+        console.log('検索結果: ', searchedSchools);
+        console.log('***********************************');
         setSchoolsShowResults(
           !Object.keys(searchedSchools.res.getSchools).length ? { getSchools: [] } : searchedSchools.res,
         );
@@ -55,10 +58,10 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
         const res = await fetch(`http://localhost:3000/api/search?isSchool=${isSchoolSelectField}&query=${value}`);
         const searchedClasses = await res.json();
         console.log('***********************************');
-        console.log('検索結果: ', searchedClasses.res);
+        console.log('検索結果: ', searchedClasses);
         console.log('***********************************');
         setClassesShowResults(
-          !Object.keys(searchedClasses.res.getClasses).length ? { getClasses: [] } :searchedClasses.res,
+          !Object.keys(searchedClasses.res.getClasses).length ? { getClasses: [] } : searchedClasses.res,
         );
       }
     },
@@ -67,10 +70,10 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
 
   return (
     <div>
-      <h4>{isSchoolSelectField ? '大学を検索' : '講義を検索'}</h4>
+      <h4>{isSchoolSelectField === 'true' ? '大学を検索' : '講義を検索'}</h4>
       <StyledInput name={name} type='text' value={inputValue} onChange={(e) => handleInputChange(e)} />
       <ul className='pt-[1rem]'>
-        {isSchoolSelectField && showSchoolsResults.getSchools.length !== 0
+        {isSchoolSelectField === 'true' && showSchoolsResults.getSchools.length !== 0
           ? showSchoolsResults.getSchools.map((el) => (
               <li
                 key={el.id}
@@ -80,7 +83,7 @@ export const SearchField = ({ name, isSchoolSelectField }: SearchFieldProps) => 
                 {el.name}
               </li>
             ))
-          : !isSchoolSelectField && showClassesResults.getClasses.length !== 0
+          : isSchoolSelectField === 'false' && showClassesResults.getClasses.length !== 0
           ? showClassesResults.getClasses.map((el) => (
               <li
                 key={el.id}

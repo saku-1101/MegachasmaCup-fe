@@ -8,9 +8,18 @@ export type ModalHandlingButtonProps = {
   isSecondaryBg: boolean;
   user_id: string;
   class_id?: string;
+  formId?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 };
 
-export const ModalHandlingButton = ({ label, isSecondaryBg, user_id, class_id }: ModalHandlingButtonProps) => {
+export const ModalHandlingButton = ({
+  label,
+  isSecondaryBg,
+  user_id,
+  class_id,
+  formId,
+  type = 'button',
+}: ModalHandlingButtonProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const close = () => setModalOpen(false);
@@ -25,6 +34,8 @@ export const ModalHandlingButton = ({ label, isSecondaryBg, user_id, class_id }:
         subtitle='本当に公開しますか？'
         user_id={user_id}
         class_id={class_id}
+        type={type}
+        formId={formId}
       />
     </>
   );

@@ -27,7 +27,7 @@ export const AuthPage = () => {
         subtitle='同じ大学のみんなと繋がろう！'
         isFirstNoteErrorPage={false}
         isWelcomePage={false}
-        isSchoolRegistration={true}
+        isSchoolRegistration='true'
         buttonLabel='大学を登録'
         user_id={userId}
       />

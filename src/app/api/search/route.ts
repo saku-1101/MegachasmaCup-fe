@@ -13,12 +13,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ error: 'Internal Server Error: Missed parameters are detected.' }, { status: 500 });
   } else {
     gqlClient.setHeader('authorization', `Bearer ${token}`);
-    if (!isSchool) {
+    if (JSON.parse(isSchool.toLowerCase())) {
       try {
         const res = await gqlClient.request(GetSchoolsDocument, {
           searchWord: query,
         });
-        console.log('res of schools: ', res);
+        console.log('res of schools: ', res.getSchools);
         return NextResponse.json({ res }, { status: 200 });
       } catch (error) {
         console.log('**********************************');

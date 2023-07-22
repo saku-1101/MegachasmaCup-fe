@@ -20,7 +20,7 @@ export const ClassCard = ({ class_id, title, numOfStudent, numOfNote, user_id }:
   const handleAction = () => {
     // TODO: note editに飛ぶ
     const note_id = '0'; // TODO: note_idのuuid作成する
-    router.push(`/user/${user_id}/class/${class_id}/note/${note_id}/edit`);
+    router.push(`/user/${user_id}/class/${class_id}/note/edit`);
     router.refresh();
   };
 
