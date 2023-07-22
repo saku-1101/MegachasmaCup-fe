@@ -7,7 +7,7 @@ import { downloadImg, uploadImg } from '@/lib/storage';
 import { useState } from 'react';
 import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
 import { handleUpdateAccount } from '@/lib/serverActions/handleUpdateAccount';
-import Image from 'next/image';
+
 export type AccountCardProps = {
   userObj: GetAccountSettingsQuery;
 };

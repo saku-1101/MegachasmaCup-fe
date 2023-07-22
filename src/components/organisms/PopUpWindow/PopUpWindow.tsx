@@ -6,8 +6,6 @@ import { WelcomePageInputs } from '@/components/molecules/WelcomePageInputs/Welc
 import { SubjectSelectComponent } from '@/components/molecules/SubjectSelectComponent/SubjectSelectComponent';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { SearchField } from '@/components/atoms/SearchField/SearchField';
 
 const dropIn = {
   hidden: {

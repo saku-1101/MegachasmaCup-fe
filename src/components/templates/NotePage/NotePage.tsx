@@ -2,7 +2,6 @@ import { Note } from '@/components/organisms/Note/Note';
 import { CommentCard } from '../../molecules/CommentCard/CommentCard';
 import { MdTitle } from '../../atoms/MdTitle/MdTitle';
 import { AddButton } from '../../atoms/AddButton/AddButton';
-import { Comment } from '@/app/models';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';
 import { GetNoteDocument, GetAccountSettingsDocument } from '@/codegen/gql/graphql';

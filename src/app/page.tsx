@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { WelcomePage } from '../components/templates/WelcomePage/WelcomePage';
+import { WelcomePage } from '@/components/templates/WelcomePage/WelcomePage';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 import { getCookie } from 'cookies-next';

@@ -1,11 +1,10 @@
 import { Button } from '@/components/atoms/Button/Button';
 import { FirstEngagementButton } from '@/components/atoms/FirstEngagementButton/FirstEngagementButton';
-import { CreateUser, GetJwt } from '@/lib/graphql/auth';
+import { GetJwt } from '@/lib/graphql/auth';
 import { useRouter } from 'next/navigation';
 import { FormEventHandler, useState } from 'react';
 import { InputField } from '../../atoms/InputField/InputField';
 import { Div } from './WelcomePageInputs.style';
-import { GetUser } from '@/lib/graphql/auth';
 
 import { getCookie, setCookie } from 'cookies-next';
 

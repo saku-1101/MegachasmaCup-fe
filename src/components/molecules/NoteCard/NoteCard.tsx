@@ -7,8 +7,6 @@ import {
   GetAccountSettingsDocument,
   IncrementLikeDocument,
   DecrementLikeDocument,
-  Tag as TagType,
-  GetNoteQuery,
 } from '@/codegen/gql/graphql';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';

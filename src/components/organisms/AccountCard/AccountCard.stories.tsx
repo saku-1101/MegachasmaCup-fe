@@ -26,13 +26,21 @@ export const Default: StoryObj<typeof AccountCard> = {
     ),
   ],
   args: {
-    user: {
-      id: '0',
-      name: 'student',
-      email: 'example@email.com',
-      school: 'XX university',
-      faculty: 'infomatics',
-      year: 4,
+    userObj: {
+      getUser: [
+        {
+          id: 'user_12345',
+          imageUrl: 'https://example.com/user_12345.jpg',
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          userSchool: [
+            {
+              id: 'school_1',
+              name: 'ABC University',
+            },
+          ],
+        },
+      ],
     },
   },
 };

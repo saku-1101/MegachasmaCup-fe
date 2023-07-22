@@ -1,11 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { gqlClient } from '@/lib/gqlClient';
-import {
-  CreateClassDocument,
-  CreateSchoolDocument,
-  GetClassesDocument,
-  GetSchoolsDocument,
-} from '@/codegen/gql/graphql';
+import { CreateSchoolDocument } from '@/codegen/gql/graphql';
 
 export async function GET(req: NextRequest) {
   const name = req.nextUrl.searchParams.get('name');

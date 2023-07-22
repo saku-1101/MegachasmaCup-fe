@@ -1,11 +1,8 @@
 import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
 import { Div } from './NoteListPage.style';
-import type { Note } from '@/app/models';
 import { AddButton } from '../../atoms/AddButton/AddButton';
-import { gqlClient } from '@/lib/gqlClient';
-import { GetNoteQuery, GetNotesDocument } from '@/codegen/gql/graphql';
 import { GetNotesQuery } from '../../../codegen/gql/graphql';
-import { getToken } from '@/lib/cookie';
+
 export type NoteListPageProps = {
   notesObj: GetNotesQuery;
   user_id: string;

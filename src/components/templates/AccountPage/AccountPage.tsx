@@ -1,5 +1,4 @@
 import { AccountCard } from '@/components/organisms/AccountCard/AccountCard';
-import { Div } from './AccountPage.style';
 import { GetAccountSettingsQuery } from '@/codegen/gql/graphql';
 
 type AccountPageProps = {

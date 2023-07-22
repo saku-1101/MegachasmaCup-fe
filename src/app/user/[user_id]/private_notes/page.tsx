@@ -1,6 +1,6 @@
 import { WrapperContainer, CoreContainer, Div } from '@/components/common/containers';
 import { PrivateNoteCard } from '@/components/molecules/PrivateNoteCard/PrivateNoteCard';
-import { LgTitle } from '../../../../components/atoms/LgTitle/LgTitle';
+import { LgTitle } from '@/components/atoms/LgTitle/LgTitle';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';
 
