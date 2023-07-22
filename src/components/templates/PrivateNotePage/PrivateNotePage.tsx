@@ -1,19 +1,14 @@
 import { Note } from '@/components/organisms/Note/Note';
-import { CommentCard } from '../../molecules/CommentCard/CommentCard';
-import { MdTitle } from '../../atoms/MdTitle/MdTitle';
-import { AddButton } from '../../atoms/AddButton/AddButton';
-import { Comment } from '@/app/models';
 import { gqlClient } from '@/lib/gqlClient';
 import { getToken } from '@/lib/cookie';
 import { GetNoteDocument, GetAccountSettingsDocument } from '@/codegen/gql/graphql';
 
 export type PropsToGetNote = {
   user_id: string;
-  class_id: string;
   note_id: string;
 };
 
-export const NotePage = async ({ user_id, class_id, note_id }: PropsToGetNote) => {
+export const PrivateNotePage = async ({ user_id, note_id }: PropsToGetNote) => {
   // fetch note with note_id
   // ** mock
   const token = getToken();
@@ -25,12 +20,11 @@ export const NotePage = async ({ user_id, class_id, note_id }: PropsToGetNote) =
       isMe: true,
     },
   });
-  const school_id = user.getUser[0].userSchool[0].id;
 
   const note = await gqlClient.request(GetNoteDocument, {
     input: {
-      schoolID: school_id,
-      classID: class_id,
+      isMy: true,
+      isPublic: false,
       noteID: note_id,
     },
   });
@@ -53,13 +47,6 @@ export const NotePage = async ({ user_id, class_id, note_id }: PropsToGetNote) =
         numOfLike={note.getNotes[0].likeUser.length}
         didYouLiked={didYouLiked(user.getUser[0].id)}
       />
-      <div className='flex flex-col items-start md:gap-10 gap-5 md:mt-[3rem] mt-[2rem]'>
-        <MdTitle title='このノートへのコメント' />
-        {note.getNotes[0].comments.map((el: { id: string; comment: string; userId: string }) => (
-          <CommentCard key={el.id} commentAuthorId={el.userId} comment={el.comment} />
-        ))}
-        <AddButton isNoteAdd={false} isCommentAdd={true} user={user} class_id={class_id} note_id={note_id} />
-      </div>
     </>
   );
 };

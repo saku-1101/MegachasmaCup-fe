@@ -1,92 +1,33 @@
 import { WrapperContainer, CoreContainer, Div } from '@/components/common/containers';
-import type { Note } from '@/app/models';
-import { NoteCard } from '@/components/molecules/NoteCard/NoteCard';
+import { PrivateNoteCard } from '@/components/molecules/PrivateNoteCard/PrivateNoteCard';
 import { LgTitle } from '../../../../components/atoms/LgTitle/LgTitle';
+import { gqlClient } from '@/lib/gqlClient';
+import { getToken } from '@/lib/cookie';
 
+import { GetNotesDocument } from '@/codegen/gql/graphql';
 export type PrivateNotesProps = {
   params: {
     user_id: string;
   };
 };
-export default function PrivateNotes({ params: { user_id } }: PrivateNotesProps) {
+export default async function PrivateNotes({ params: { user_id } }: PrivateNotesProps) {
   // TODO: fetch user notes with user_id under the condition of is_private === true
-  const notes: {
-    data: Array<Note>;
-  } = {
-    data: [
-      {
-        id: '0',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '1',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '2',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '3',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '4',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '5',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '6',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-      {
-        id: '7',
-        name: 'student',
-        description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescription',
-        tags: ['math', 'math', 'math'],
-        numOfLike: 24,
-      },
-    ],
-  };
+  const token = getToken();
+  gqlClient.setHeader('authorization', `Bearer ${token}`);
+  const notesObj = await gqlClient.request(GetNotesDocument, {
+    input: {
+      isMy: true,
+      isPublic: false,
+    },
+  });
+  const notes = notesObj.getNotes;
   return (
     <WrapperContainer>
       <CoreContainer>
         <Div>
           <LgTitle title='保存しているノートたち' />
-          {notes.data.map((el) => (
-            <NoteCard
-              key={el.id}
-              note_id={el.id}
-              user_id={user_id}
-              nameOfStudent={el.name}
-              description={el.description}
-              tags={el.tags}
-              numOfLike={el.numOfLike}
-            />
+          {notes.map((el) => (
+            <PrivateNoteCard key={el.id} note={el} user_id={user_id} />
           ))}
         </Div>
       </CoreContainer>

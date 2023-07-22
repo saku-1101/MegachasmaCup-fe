@@ -25,12 +25,9 @@ export default async function Note({ params: { user_id, class_id } }: NoteListPa
       input: {
         schoolID: school_id,
         classID: class_id,
-        isPublic: true,
       },
     });
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log(res.getNotes.length);
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
     return (
       <WrapperContainer>
         <CoreContainer>
