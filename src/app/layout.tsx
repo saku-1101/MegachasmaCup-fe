@@ -14,25 +14,30 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // user Data fetch after the authentication
-  // useEffectを使用する必要があるならheaderコンポーネントでuseEffectしてuserの変更を検知し，
-  // dropdownにauth済みユーザを反映する
-  const token = getToken();
-  gqlClient.setHeader('authorization', `Bearer ${token}`);
-  const userObj = await gqlClient.request(GetAccountSettingsDocument, {
-    input: {
-      isMe: true,
-    },
-  });
-
-  return (
-    <html lang='en' className='w-screen overflow-x-hidden'>
-      <body className={inter.className}>
-        <Suspense fallback='loading...'>
-          <Header userObj={userObj} />
-        </Suspense>
-        {children}
-      </body>
-    </html>
-  );
+  // when token is not set, redirect to login page
+  try { 
+    const token = getToken();
+    gqlClient.setHeader('authorization', `Bearer ${token}`);
+    const userObj = await gqlClient.request(GetAccountSettingsDocument, {
+      input: {
+        isMe: true,
+      },
+    });
+    return (
+      <html lang='en' className='w-screen overflow-x-hidden'>
+        <body className={inter.className}>
+          <Suspense fallback='loading...'>
+            <Header userObj={userObj} />
+          </Suspense>
+          {children}
+        </body>
+      </html>
+    );
+  } catch {
+    return (
+      <html lang='en' className='w-screen overflow-x-hidden'>
+        <body className={inter.className}>{children}</body>
+      </html>
+    );
+  }
 }
