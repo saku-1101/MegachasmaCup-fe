@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import { Player } from '@/components/common';
 import LikeButtonData from '@/assets/lottie/like-button.json';
 import { useTransition } from 'react';
@@ -25,13 +25,12 @@ export const LikeButton = ({
   const [prevClickSate, setPrevClickState] = useState(false);
   const [like, setLike] = useState(numOfLike);
 
-  useEffect(() => {
-    // レンダリング後実行
+  useLayoutEffect(() => {
+    // レンダリング前実行
     if (didYouLiked) {
       if (!playerRef.current) {
         return;
       }
-      playerRef.current.play();
       const newState = true;
       setPrevClickState(newState);
     }
@@ -61,7 +60,13 @@ export const LikeButton = ({
         onClick={() => startTransition(handleAction)}
         className='max-h-[100px] max-w-[100px] flex flex-col justify-center items-center relative overflow-hidden'
       >
-        <Player ref={playerRef} src={LikeButtonData} keepLastFrame style={{ height: '300px', width: '300px' }}></Player>
+        <Player
+          autoplay={didYouLiked}
+          ref={playerRef}
+          src={LikeButtonData}
+          keepLastFrame
+          style={{ height: '300px', width: '300px' }}
+        ></Player>
         <span className='text-subtleText absolute right-50' style={{ bottom: '0%' }}>
           {like}
         </span>
