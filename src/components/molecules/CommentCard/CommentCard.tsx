@@ -7,25 +7,26 @@ import { GetAccountSettingsDocument } from '@/codegen/gql/graphql';
 import { AccountSvg } from '../../../../public';
 
 export type CommentCardProps = {
-  userId: string;
+  commentAuthorId: string;
   comment: string;
 };
 
-export const CommentCard = async ({ userId, comment }: CommentCardProps) => {
-  const token = getToken();
-  gqlClient.setHeader('authorization', `Bearer ${token}`);
-  const user = await gqlClient.request(GetAccountSettingsDocument, {
-    input: {
-      userID: userId,
-    },
-  });
+export const CommentCard = async ({ commentAuthorId, comment }: CommentCardProps) => {
+  // TODO: commentAuthorIdを返す実装が完了したらコメントを表示できるようにする
+  // const token = getToken();
+  // gqlClient.setHeader('authorization', `Bearer ${token}`);
+  // const commentAuthor = await gqlClient.request(GetAccountSettingsDocument, {
+  //   input: {
+  //     userID: commentAuthorId,
+  //   },
+  // });
   return (
     <StyledCard>
       <Div className='justify-start'>
         {AccountSvg()}
-        <div className='pl-[1rem] flex flex-col'>
-          <p>{user.getUser[0].name}</p>
-        </div>
+        {/* <div className='pl-[1rem] flex flex-col'>
+          <p>{commentAuthor.getUser[0].name}</p>
+        </div> */}
       </Div>
       <div className='max-w-[100%] overflow-y-scroll break-all'>
         <Description description={comment} />

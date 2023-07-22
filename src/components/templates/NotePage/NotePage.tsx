@@ -59,7 +59,7 @@ export const NotePage = async ({ user_id, class_id, note_id }: PropsToGetNote) =
       <div className='flex flex-col items-start md:gap-10 gap-5 md:mt-[3rem] mt-[2rem]'>
         <MdTitle title='このノートへのコメント' />
         {note.getNotes[0].comments.map((el: { id: string; comment: string; userId: string }) => (
-          <CommentCard key={el.id} userId={el.userId} comment={el.comment} />
+          <CommentCard key={el.id} commentAuthorId={el.userId} comment={el.comment} />
         ))}
         <AddButton isNoteAdd={false} isCommentAdd={true} user={user} class_id={class_id} note_id={note_id} />
       </div>
