@@ -14,4 +14,10 @@ export default {
   argTypes: {},
 } as Meta<typeof DropdownMenu>;
 
-export const Default: StoryObj<typeof DropdownMenu> = {};
+export const Default: StoryObj<typeof DropdownMenu> = {
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
+};

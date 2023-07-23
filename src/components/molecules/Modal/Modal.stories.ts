@@ -20,4 +20,9 @@ export const Default: StoryObj<typeof Modal> = {
     title: 'This is a Modal!',
     subtitle: 'THis is a sentence.',
   },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 };

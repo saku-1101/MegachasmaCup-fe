@@ -21,4 +21,9 @@ export const Default: StoryObj<typeof PopUpWindow> = {
     isWelcomePage: true,
     buttonLabel: 'Start',
   },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 };

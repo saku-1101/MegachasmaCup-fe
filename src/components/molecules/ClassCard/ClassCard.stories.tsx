@@ -30,4 +30,9 @@ export const Default: StoryObj<typeof ClassCard> = {
     numOfStudent: 20,
     numOfNote: 30,
   },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 };

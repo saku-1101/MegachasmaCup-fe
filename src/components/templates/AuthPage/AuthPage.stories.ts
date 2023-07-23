@@ -1,17 +1,21 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
 import { AuthPage } from './AuthPage';
 
-
 export default {
-  title: "AuthPage",
+  title: 'AuthPage',
   component: AuthPage,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-  argTypes: {
-  },
+  argTypes: {},
 } as Meta<typeof AuthPage>;
 
-export const Default: StoryObj<typeof AuthPage> = {};
+export const Default: StoryObj<typeof AuthPage> = {
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
+};

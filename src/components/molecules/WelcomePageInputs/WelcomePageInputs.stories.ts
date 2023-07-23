@@ -14,4 +14,10 @@ export default {
   argTypes: {},
 } as Meta<typeof WelcomePageInputs>;
 
-export const Default: StoryObj<typeof WelcomePageInputs> = {};
+export const Default: StoryObj<typeof WelcomePageInputs> = {
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
+};
